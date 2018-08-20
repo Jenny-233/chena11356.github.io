@@ -13,6 +13,39 @@
     
     <!-- Custom CSS -->
     <?!= include('stylesheet'); ?>
+    
+    <!--
+    //REFERENCE: http://www.firewatchgame.com/ is really nice
+//REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
+
+//TODO: Develop website with GitHub or something else instead
+//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
+//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
+//TODO: Get rid of banner at top with https://issuetracker.google.com/issues/63521070#comment33
+//TODO: Implement Google Analytics code
+
+/*
+COLOR SCHEME:
+- NHS Dark Blue (#05376A)
+- White (#FFFFFF)
+- BxSci Green (#037164)
+- BxSci Yellow (#FFDE00)
+*/
+
+//creates the webpage
+function doGet() {
+  var html = HtmlService.createTemplateFromFile("index").evaluate();
+  html.setTitle("Bronx Science National Honor Society");
+  return html;
+}
+
+//allows us to include css and js
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename)
+      .setSandboxMode(HtmlService.SandboxMode.IFRAME)
+      .getContent();
+}
+-->
   
   </head>
   
