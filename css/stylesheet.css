@@ -1,0 +1,137 @@
+<style>
+ body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: #001910;
+  color: #d1d8d0;
+}
+
+p {
+  font-size: 1.07em;
+}
+
+hr {
+  max-width: 50px;
+  border-width: 3px;
+  border-color: #FFDE00;
+}
+
+hr.light {
+  border-color: #fff;
+}
+
+hr.green {
+  border-color: #037164;
+}
+
+a {
+  color: #037164;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+div#tutoring a, div#formsAndLinks a {
+  color: #FFDE00;
+}
+
+div#accordion {
+  color: #001910;
+}
+
+div#accordion a {
+  color: #037164;
+}
+
+div#accordion a:hover {
+  color: #FFDE00;
+}
+
+div#formsAndLinks ol, div#formsAndLinks ul {
+  text-align: left;
+}
+
+a:hover {
+  color: #FFDE00;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', Arial, sans-serif;
+  color: #FFF;
+}
+
+h1.dark,
+h2.dark,
+h3.dark,
+h4.dark,
+h5.dark,
+h6.dark {
+  color: #000;
+}
+
+button#applyNow{
+    display: block;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+button#applyNow:hover{
+  box-shadow: 0px 0px 15px 3px rgba(255,222,0,0.5);
+  background-color: #FFF;
+}
+
+#welcomeTop, #contact {
+  background-color: #000;
+}
+
+#info {
+  background-color: #FFF;
+  color: #001910;
+}
+
+#tutoring {
+  background-color: #037164;
+}
+
+#formsAndLinks{
+  background-color: #001910;
+}
+
+/*.row {
+  padding: 2em;
+}*/
+
+.container-fluid {
+  padding: 2em;
+}
+
+.page-footer{
+    position: static;
+    background-color: #3e99b7;
+    color: white;
+    text-align: center;
+    font-family: 'Open Sans';
+    bottom: 0;
+}
+
+.page-footer a{
+  color: white;
+}
+</style>

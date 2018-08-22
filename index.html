@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <!-- Vue.js -->
+    <script src="js/vue.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--
+    //REFERENCE: http://www.firewatchgame.com/ is really nice
+//REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
+
+//TODO: Change references to procedures to website-based things.
+//TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
+//TODO: There's no tutoring form upload link or outside tutoring verification link
+//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
+//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
+//TODO: Implement Google Analytics code
+//TODO: For contacts, use https://getbootstrap.com/docs/4.0/components/collapse/
+
+/*
+COLOR SCHEME:
+- NHS Dark Blue (#05376A)
+- White (#FFFFFF)
+- BxSci Green (#037164)
+- Dark BxSci Green (#013a2b)
+- Darker BxSci Green (#001910)
+- BxSci Yellow (#FFDE00)
+*/
+
+-->
+
+  </head>
+
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">Bronx Science National Honor Society</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Welcome</a>
+          <a class="dropdown-item" href="#">Tutoring</a>
+          <a class="dropdown-item" href="#">Forms and Links</a>
+          <a class="dropdown-item" href="#">Contact Us</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Prospective Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Underclassman Applications</a>
+          <a class="dropdown-item" href="#">Junior and Senior Applications</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Application Process</a>
+          <a class="dropdown-item" href="#">Application Requirements</a>
+          <a class="dropdown-item" href="#">FAQ</a>
+          <a class="dropdown-item" href="#">Credit Table</a>
+          <a class="dropdown-item" href="#">Volunteer Opportunities</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Current Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Credit Tracker</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Calendar</a>
+          <a class="dropdown-item" href="#">Maintaining Membership</a>
+          <a class="dropdown-item" href="#">Attendance and Records</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">
+
+<button type="button" class="btn btn-light" id="applyNow">Apply now!</button>
+<hr>
+
+<div class="mainBody">
+
+  <div class="container-fluid text-center" id="welcomeTop">
+    <div class="row">
+      <div class="col">
+        <h1>Welcome to the Bronx Science National Honor Society!</h1>
+        <hr class="light">
+        <p>Gaining membership to the National Honor Society (NHS) is
+          one of the greatest academic honors that a student may receive
+          at Bronx Science. In order to be accepted as a member, students
+          are required to meet rigorous academic and service requirements.
+          Each member must possess exceptional levels of scholarship, service,
+          leadership, and character in order to meet this goal. Information
+          about the overarching organization can be found <a href="https://www.nhs.us/" target="_blank">here</a>.
+        </p>
+      </div>
+      <div class="col">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="info">
+    <div class="row">
+      <div class="col" style="border-right: 1px solid #037164;">
+        <h2 class="dark">Information for Prospective NHS Applicants</h2>
+        <hr class="green">
+        <p>Applications to the National Honor Society are accepted twice a year:
+          Seniors apply during fall semester and Juniors apply during spring semester.
+          Applications will be completed through this web app.
+          Application deadlines will be announced in advance and publicized widely
+          throughout Bronx Science. For information about the application process
+          and requirements, please click <a href="#">here</a>. To start or complete an
+          application, please click <a href="#">here</a>.
+        </p>
+        <p>
+          Once you've submitted an application, you will receive notification of
+          your admission status shortly after the application deadline. If you are
+          accepted to the National Honor Society, your guidance counselor will receive
+          an official notification of your membership.
+        </p>
+      </div>
+      <div class="col" style="border-left: 1px solid #037164;">
+        <h2 class="dark">Information for Current NHS Members</h2>
+        <hr class="green">
+        <p>Congratulations for making it into NHS! This is a huge accomplishment
+          and you should be proud of yourself for all the work that you have put into
+          your community and academics. For upcoming events, membership maintenance requirements,
+          and more, please click <a href="#">here</a>. To review your credits and plan
+          for the future, please click <a href="#">here</a>.
+        </p>
+        <a href="https://bxscience.edu/" target="_blank"><img border="0" alt="atom" src="assets/atomTransparent.png" width="200" height="200">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="tutoring">
+    <h2>Tutoring</h2>
+    <hr class="light">
+    <div class="row">
+      <div class="col-5">
+        <p>Part of the responsibilities of NHS include tutoring individuals who may
+          want extra help with a subject. Please use the appropriate google forms
+          (links provided on right) to submit all tutoring requests.
+          To document tutoring hours, use <a href="http://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">this form</a>.
+        </p>
+        <p><b>Office Hours Tutoring:</b> NHS Members will be available throughout
+          the day in the library multipurpose room and the guidance office.
+        </p>
+        <p><b>Note: To access any google sign up forms, you must be logged in to your Bronx Science account.</b>
+            Emails sent to Mr. DeSilva or any NHS Officer requesting to share Google forms will not receive a reply.
+        </p>
+        <p>Any tutoring ideas or questions should be directed to Margaret Wong (National Honor Society
+          Vice President of Tutoring) at wongm@bxscience.edu.
+        </p>
+      </div>
+      <div class="col">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Tutoring Request Forms for All Students
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                Please use <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">this form</a>
+                 to request a tutor. Margaret Wong (National Honor Society Vice President of Tutoring)
+                 will match tutors and tutees according to the subject.
+                 If you do not hear back from Margaret within a few days,
+                 please email her directly at wongm@bxscience.edu.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Tutoring Request Forms for All Teachers
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                Teachers may request a National Honor Society tutor for their students by submitting
+                <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdLcDrIJrTNdkqQt7-Q9RemKhN9fFzzD79gqI9eySOT2JM0Dg/viewform" target="_blank">this form</a>
+                or to assist them during SGI by submitting
+                <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeyjRcRfL13OwiIX94_SfjTqsf3K9vdkeYprVpDBrNfS6nEhQ/viewform" target="_blank">this form</a>.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Frequenty Asked Questions About Requesting a Tutor
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <ol>
+                  <li><b>How do I request a tutor?</b>
+                    <br>Fill out the
+                    <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request form</a>
+                    and you will be matched with a NHS tutor who can tutor in that subject
+                    and has the same free periods as you.
+                    <br><br>
+                  </li>
+                  <li><b>I requested a tutor but haven’t heard back yet, what do I do?</b>
+                    <br>Please be patient. If it has been more than a week, and you still don't have a tutor, then you may email Samita Rahaman (VP of Tutoring) to inquire about your request.
+                    <br><br>
+                  </li>
+                  <li><b>I am a parent. How do I sign my child up for a tutor?</b>
+                    <br>Have your child fill out the
+                    <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request form</a>
+                     (there is no paper form) and he/she will be matched with a NHS tutor who can tutor in the requested subject.  Students requesting a tutor must use their Bronx Science email address.
+                    <br><br>
+                  </li>
+                  <li><b>Can I meet with my tutor outside of school?</b>
+                    <br>Unfortunately, no. All tutoring must be done in school, in a space with teacher supervision such as the library or a classroom during SGI.
+                    <br><br>
+                  </li>
+                  <li><b>Will tutoring save my grade?</b>
+                    <br>We hope it will, but ultimately, our tutors are not professionals. We recommend going to SGI, using resources such as review books or <a href="https://www.khanacademy.org/" target="_blank">KhanAcademy</a>, or seeking additional outside help if you are really struggling.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Frequenty Asked Questions About Becoming a Tutor
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                <ol>
+                  <li><b>I am an NHS member who signed up to become a tutor, but my tutee is not responding. What do I do?</b>
+                    <br>Email them again, and be sure to Cc Samita. It is your responsibility to keep track of your tutoring assignments. If the student still doesn't respond, please notify Samita and she will inform Mr. DeSilva, who will then take further action to contact the student.
+                    <br><br>
+                  </li>
+                  <li><b>How many tutoring hours can I do outside of school?</b>
+                    <br>You must do at least ten tutoring hours in school. The other ten can be from outside tutoring. Or, you could do five hours of outside tutoring and one additional project.
+                    <br><br>
+                  </li>
+                  <li><b>I am a student who would like to tutor for NHS, even though I am not a member. How can I register?</b>
+                    <br>Fill out the <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdv_9BbLASGFYaNmMquVqXcIGGI-5MBpBcTV8NnO6zNVizOng/viewform" target="_blank">Underclassmen Tutoring Registration Form</a>.
+                    Then, ask a teacher to verify that you are qualified to tutor, using <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">this form</a>.
+                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">NHS Tutoring Form</a>.
+                    Also, although you may receive up to two assignments, please realize that you may not get an assignment right away.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="formsAndLinks">
+    <div class="row">
+      <div class="col" style="border-right: 1px solid #FFDE00;">
+        <h3>Forms and Links</h3>
+        <hr>
+        <ul>
+          <li>
+            <a href="http://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Absence%20Form.pdf" target="_blank">NHS Absence Note</a> - for members
+          </li>
+          <li>
+            <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">Link to Submit Absence Notes</a> - for members
+          </li>
+          <li>
+            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request Form</a> - for students seeking a tutor
+          </li>
+          <li>
+            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdLcDrIJrTNdkqQt7-Q9RemKhN9fFzzD79gqI9eySOT2JM0Dg/viewform" target="_blank">Tutoring Request Form</a> - for faculty seeking a tutor on behalf of an individual student
+          </li>
+          <li>
+            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeyjRcRfL13OwiIX94_SfjTqsf3K9vdkeYprVpDBrNfS6nEhQ/viewform" target="_blank">Tutoring Request Form</a> - for faculty seeking assistance during SGI
+          </li>
+          <li>
+            <a href="http://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">Tutoring Record Form</a> - for members to fill out as they tutor
+          </li>
+          <li>
+            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">Qualifying a Tutor</a> - for teachers to fill out on behalf of a non-NHS student wishing to tutor
+          </li>
+          <li>
+            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSenETrGcOGpo26C1D3kr7cmEQa9ZGVjMFu9SggKcPku9GWlKw/viewform" target="_blank">Suggestion Form</a> - to comment about NHS
+          </li>
+          <li>
+            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSekiccbcJlFNXT300ndquV9qlXfsD0gLdV0t9IN-CmteiHIGA/viewform?c=0&w=1" target="_blank">Tutoring Sign-Up</a> - for members to indicate when they are free to tutor
+          </li>
+          <li>
+            <a href="http://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS_Contract.pdf" target="_blank">NHS Contract</a> - for members
+          </li>
+          <li>
+            <a href="https://www.dropbox.com/request/MsLdbqEyTWg55kZy2dWZ" target="_blank">Link to Submit NHS Contract</a> - for members
+          </li>
+        </ul>
+      </div>
+      <div class="col" style="border-left: 1px solid #FFDE00;">
+        <h3>Uploading Instructions</h3>
+        <hr>
+        <p>Please upload out-of-school activity documentation (applicants and members), tutoring forms (members), and NHS Contracts (members) only!
+        </p>
+        <ol>
+          <li>
+            Scan your file in pdf format and save as "your last name, your first name."  For example, "DeSilva, Paul." Do not include the quotation marks.
+          </li>
+          <li>
+            Please be sure that cookies are enabled in your browser’s preferences.
+          </li>
+          <li>
+            If uploading out-of-school verification letters, click here. If uploading absence notes, click <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">here</a>.
+          </li>
+          <li>
+            Attach a single file.
+          </li>
+          <li>
+            Fill in first name, last name, and email address.
+          </li>
+          <li>
+            Click the “Upload” button.
+          </li>
+          <li>
+            You will receive a confirmation email (provided that you supplied the correct email address) from Dropbox, indicating that your files have been uploaded successfully.
+          </li>
+          <li>
+            Repeat steps 1-7 for each individual file.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="contact">
+    <h2>Contact Us</h2>
+    <hr class="light">
+    <div class="row">
+      <div class="col">
+        <img src="assets/hexagon.png" class="img-fluid" alt="hexagon">
+      </div>
+      <div class="col">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- just testing
+    <div id="test">
+      <h1>Hello, world!</h1>
+      <h1>{{ message }}</h1>
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div> -->
+
+
+
+</div>
+
+    <!-- Footer -->
+<footer class="page-footer font-small">
+
+</footer>
+<!-- Footer -->
+
+    <!-- Optional JavaScript -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="js/javascript.js"></script>
+
+    <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
+
+  </body>
+</html>
