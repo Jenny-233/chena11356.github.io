@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Title of page -->
+    <title>Bronx Science NHS</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <!-- Vue.js -->
+    <script src="js/vue.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--
+    //REFERENCE: http://www.firewatchgame.com/ is really nice
+//REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
+
+//TODO: Change references to procedures to website-based things.
+//TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
+//TODO: There's no tutoring form upload link or outside tutoring verification link
+//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
+//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
+//TODO: Implement Google Analytics code
+//TODO: For contacts, use https://getbootstrap.com/docs/4.0/components/collapse/
+
+/*
+COLOR SCHEME:
+- NHS Dark Blue (#05376A)
+- White (#FFFFFF)
+- BxSci Green (#037164)
+- Dark BxSci Green (#013a2b)
+- Darker BxSci Green (#001910)
+- BxSci Yellow (#FFDE00)
+*/
+
+-->
+
+  </head>
+
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="https://bxsciencenhs.tech/">Bronx Science National Honor Society</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.html#welcomeJump">Welcome</a>
+          <a class="dropdown-item" href="index.html#tutoringJump">Tutoring</a>
+          <a class="dropdown-item" href="index.html#formsAndLinksJump">Forms and Links</a>
+          <a class="dropdown-item" href="index.html#contact">Contact Us</a>
+        </div>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Prospective Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Underclassman Applications</a>
+          <a class="dropdown-item" href="#">Junior and Senior Applications</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#processJump">Application Process</a>
+          <a class="dropdown-item" href="#FAQJump">FAQ</a>
+          <a class="dropdown-item" href="#creditJump">Credit Table</a>
+          <a class="dropdown-item" href="#volunteerJump">Volunteer Opportunities</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Current Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Credit Tracker</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="current.html#calendarJump">Calendar</a>
+          <a class="dropdown-item" href="current.html#membershipJump">Maintaining Membership</a>
+          <a class="dropdown-item" href="#">Photo Gallery</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">
+
+<div class="mainBody">
+
+  <div class="container-fluid text-center" id="apply" style="padding:0em;">
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-light" id="applyNow">Apply now!</button>
+        <hr id="processJump">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="infoThree">
+    <div class="row">
+      <div class="col" style="border-right: 1px solid #d1d8d0;">
+        <h2>For Underclassmen</h2>
+        <hr class="light">
+        <p>Congratulations for thinking about NHS so early in your high school career!
+          Now is the perfect time to start accumulating credits.
+          You may use the links below to back up your credit sheets and verification letters,
+          as well as record credits in advance of applying to NHS.
+        </p>
+        <p>Before reading the instructions below, please carefully note that you are responsible
+          for retaining the paper copies of your own credit sheets and verification letters. We strongly
+          encourage that you make backups of your own documents as well. If materials are
+          incomplete or improperly submitted after the application deadline, they will
+          not be considered.
+        </p>
+        <p>
+          <b>Any prospective applicant that is caught forging a teacher's signature will be
+            exempt from applying to NHS and subject to disciplinary action.</b>
+        </p>
+        <p>
+          If you have any questions, please read the FAQ below.
+          If you still have questions, please email nhs@bxscience.edu.
+        </p>
+      </div>
+      <div class="col" style="border-right: 1px solid #d1d8d0; border-left: 1px solid #d1d8d0;">
+        <h2>For Juniors</h2>
+        <hr class="light">
+        <p>We're excited that you're thinking about joining NHS! As a junior in
+          NHS, you will be eligible to apply for an NHS board position in May
+          and you will have more opportunities to volunteer at events like the Induction Ceremony
+          and Graduation.
+        </p>
+        <p>
+          Before reading the instructions below, please carefully note that you
+          are responsible for retaining the paper copies of your own credit sheets
+          and verification letters. We strongly encourage that you make backups of
+          your own documents as well. If materials are incomplete or improperly
+          submitted after the application deadline, they will not be considered.
+        </p>
+        <p>
+          <b>Any prospective applicant that is caught forging a teacher's signature
+          will be exempt from applying to NHS and subject to disciplinary action.</b>
+        </p>
+        <p>
+          If you have any questions, please read the FAQ below. If you still have
+          questions, please email nhs@bxscience.edu.
+        </p>
+        <h3>Requirements</h3>
+        Applying as a junior who entered Bronx Science as a <i>freshman</i>:
+        <ul>
+          <li>
+            Scholarship: You must have a 90 or above cumulative average.
+          </li>
+          <li>
+            Service: You must have 13 credits.
+          </li>
+          <li>
+            Leadership and Citizenship: You must have 50 credits total
+            (any combination of credits from either or both categories).
+          </li>
+        </ul>
+        Applying as a junior who entered Bronx Science as a <i>sophomore</i>:
+        <ul>
+          <li>
+            Scholarship: You must have a 90 or above cumulative average.
+          </li>
+          <li>
+            Service: You must have 8 credits.
+          </li>
+          <li>
+            Leadership and Citizenship: You must have 30 credits total
+            (any combination of credits from either or both categories).
+          </li>
+        </ul>
+      </div>
+      <div class="col" style="border-left: 1px solid #d1d8d0;">
+        <h2>For Seniors</h2>
+        <hr class="light">
+        <p>We're excited that you're thinking about joining NHS! As a senior in NHS,
+          you will graduate with a special tassel and you will have numerous
+          opportunities to volunteer at events like Open House.
+        </p>
+        <p>
+          Before reading the instructions below, please carefully note that you
+          are responsible for retaining the paper copies of your own credit sheets
+          and verification letters. We strongly encourage that you make backups of
+          your own documents as well. If materials are incomplete or improperly
+          submitted after the application deadline, they will not be considered.
+        </p>
+        <p>
+          <b>Any prospective applicant that is caught forging a teacher's signature
+          will be exempt from applying to NHS and subject to disciplinary action.</b>
+        </p>
+        <p>
+          If you have any questions, please read the FAQ below. If you still have
+          questions, please email nhs@bxscience.edu.
+        </p>
+        <h3>Requirements</h3>
+        Applying as a senior who entered Bronx Science as a <i>freshman</i>:
+        <ul>
+          <li>
+            Scholarship: You must have a 90 or above cumulative average.
+          </li>
+          <li>
+            Service: You must have 15 credits.
+          </li>
+          <li>
+            Leadership and Citizenship: You must have 60 credits total
+            (any combination of credits from either or both categories).
+          </li>
+        </ul>
+        Applying as a senior who entered Bronx Science as a <i>sophomore</i>:
+        <ul>
+          <li>
+            Scholarship: You must have a 90 or above cumulative average.
+          </li>
+          <li>
+            Service: You must have 10 credits.
+          </li>
+          <li id="FAQJump">
+            Leadership and Citizenship: You must have 40 credits total
+            (any combination of credits from either or both categories).
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="FAQ">
+    <h2>Frequently Asked Questions</h2>
+    <hr class="light">
+    <div class="row">
+      <div class="col">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Can I get credit for off-season sports practice?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                If you practice regularly during the off-season, you may receive one citizenship credit for every day of the week that you practice during that season on a weekly basis (single days of practice are not acceptable).
+    For example, if you have lacrosse practice in the fall every Tuesday and Thursday, you receive 2 credits for that semester (with a coach’s verification).
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  What do I include on an out-of-school tutoring verification letter?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                Please state when and for how long you tutored a certain student. Have an adult supervisor (parent/guardian, librarian, teacher, etc.) sign the letter and provide his or her contact information (email or phone number).
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Can I get credit for a volunteer event in which I participated as a member of another club or organization?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                You may only get credit for events that are not mandatory to maintain membership in a certain club
+                or organization. For example, you can get service credit for volunteering at the Kids Walk for
+                Kids With Cancer, even though you went with the Cancer Society, because the event was not
+                mandatory. You cannot get credit for participating in Big Bronx as a member of the Speech
+                & Debate team, since it is a mandatory event for all debaters.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Can I get credit for being part of yearbook or newspaper?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                Since the yearbook and newspaper are classes, you may not receive credit for being a member of either. You may, however, receive credit for an editor position.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFive">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  How can I complete my project requirements?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+              <div class="card-body">
+                Students can take part in service projects offered both in school and outside of school.
+                A comprehensive list of the year's projects, which is updated periodically, may be found
+                here. If there is an event you participated in outside of school, (teens for justice,
+                cancer walks, soup kitchen…) be sure to get a letter signed by the supervisor.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingSix">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  Are there any projects that are mandatory?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+              <div class="card-body">
+                Both fall and spring Open Houses are mandatory for all NHS members, and Graduation is mandatory for all junior NHS members.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingSeven">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                  Can I receive credit for a musical group (orchestra, band, chorus)?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+              <div class="card-body">
+                Service credit can be awarded on the basis of one credit per week for participation as a librarian for any school music ensemble. However, no credit will be awarded for participation in a musical performance (winter/spring concert).
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingEight">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                  How does the electronic credit system work?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+              <div class="card-body">
+                bleh blah bleh
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingNine">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                  Is there any part of the credit system that is not electronic?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+              <div class="card-body">
+                Yes. Applications must be submitted in paper form as well. After it is fully signed, upload a scanned copy to Dropbox. You do not need a Dropbox account for this to work. You can find uploading instructions here.
+    For out-of-school volunteer activities, you must get your supervisor to sign a letter of verification, and then upload to Dropbox as well.
+    Current NHS members must also scan copies of their signed tutoring credit sheets and upload them to Dropbox.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <img src="assets/photos/class.jpg" class="img-fluid" alt="class">
+        <img src="assets/photos/physics.jpg" class="img-fluid" alt="physics">
+        <img src="assets/photos/math.jpg" class="img-fluid" alt="math" id="creditJump">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="creditTable">
+    <h2 class="dark">Credit Table</h2>
+    <hr class="green">
+    <div class="row">
+      <div class="col">
+        <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;color:#000;}
+.tg td{font-size:14px;padding:6px 19px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-size:14px;font-weight:normal;padding:6px 19px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0pky{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-fymr{font-weight:bold;border-color:inherit;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-fymr">Code</th>
+    <th class="tg-fymr">Activity</th>
+    <th class="tg-fymr">Notes</th>
+    <th class="tg-fymr">Credits</th>
+  </tr>
+  <tr>
+    <td class="tg-fymr" rowspan="5" class="noHover">Service</td>
+    <td class="tg-0pky">S1</td>
+    <td class="tg-0pky">Squads</td>
+    <td class="tg-0pky">Maximum 10 credits per semester per squad</td>
+    <td class="tg-0pky">2 credits per period per week</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">S2</td>
+    <td class="tg-0pky">Teacher's Aide</td>
+    <td class="tg-0pky">Performing classroom duties (board erasing, attendance, etc.)</td>
+    <td class="tg-0pky">1 credit per week (5 periods)</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">S3</td>
+    <td class="tg-0pky">Big Sibs</td>
+    <td class="tg-0pky">May be counted for Service OR Leadership</td>
+    <td class="tg-0pky">5 credits per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">S4</td>
+    <td class="tg-0pky">In-School Volunteering</td>
+    <td class="tg-0pky">Tutoring (in SGI or separately), helping out in the main office, library, guidance office, etc.; signature required</td>
+    <td class="tg-0pky">1 credit per period</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">S5</td>
+    <td class="tg-0pky">Bronx Science After-School Volunteering</td>
+    <td class="tg-0pky">Orientation, Open House, Parent-Teacher Conferences, SHSAT, etc.</td>
+    <td class="tg-0pky">1 credit per hour</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr" rowspan="5" class="noHover">Leadership</td>
+    <td class="tg-0pky">L1</td>
+    <td class="tg-0pky">Officer</td>
+    <td class="tg-0pky">...of a team (captain, manager), school production, publication, SO body, or other school organization</td>
+    <td class="tg-0pky">8 credits per position per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">L2</td>
+    <td class="tg-0pky">Officer</td>
+    <td class="tg-0pky">...of a club (president, vice president, secretary)</td>
+    <td class="tg-0pky">6 credits per position per semester<br></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">L3</td>
+    <td class="tg-0pky">Any SO position</td>
+    <td class="tg-0pky">Nutritional Council, Senate, Senior Council, etc.</td>
+    <td class="tg-0pky">4 credits per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">L4</td>
+    <td class="tg-0pky">Cabinet &amp; Wolverine TV</td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky">5 credits per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">L5</td>
+    <td class="tg-0pky">Big Sibs</td>
+    <td class="tg-0pky">May be counted for either Service OR Leadership</td>
+    <td class="tg-0pky">5 credits per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr" rowspan="4" class="noHover">Citizenship</td>
+    <td class="tg-0pky">C1</td>
+    <td class="tg-0pky">Club</td>
+    <td class="tg-0pky">You cannot count these credits if you have a leadership position in the club; only count the leadership credits</td>
+    <td class="tg-0pky">4 credits per club per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">C2</td>
+    <td class="tg-0pky">Team</td>
+    <td class="tg-0pky">Athletics, Debate, Mock Trial, Robotics. You cannot count these credits if you have a leadership position in the team; only count the leadership credits</td>
+    <td class="tg-0pky">6 credits per team per semester</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">C3</td>
+    <td class="tg-0pky">School Production</td>
+    <td class="tg-0pky">S!NG, Theater, Lunar New Year, etc. You cannot count these credits if you have a leadership position in the production; only count the leadership credits</td>
+    <td class="tg-0pky">6 credits per production</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">C4</td>
+    <td class="tg-0pky">Out-of-School Activity</td>
+    <td class="tg-0pky">Scouting, religious youth groups, community organizations, volunteer groups, etc. Your letter of validation must indicate the number of hours you have completed.</td>
+    <td class="tg-0pky" id="volunteerJump">1 credit every 4 hours</td>
+  </tr>
+</table>
+      </div>
+    </div>
+  </div>
+
+    <div class="container-fluid text-center" id="volunteer">
+      <h2>Out-of-School Volunteer Opportunities</h2>
+      <hr>
+      <div class="row">
+        <div class="col" style="border-right: 1px solid #FFDE00;">
+          <h4>New York City Service</h4>
+          <p>This is the go-to web site for volunteering in New York City, where
+            you will find an abundance of opportunities in many different categories.
+          </p>
+          <p>
+            For more information, please click <a href="https://www.nycservice.org/" target="_blank">here</a>.
+          </p>
+          <h4>New York Council for the Humanities</h4>
+          <p><i>Community Conversations</i> provide arenas in which people come
+            together for thoughtful discussion and dialogue about shared values
+            as Americans—past, present, and future. Focused on central themes
+            in American life such as service, freedom, and democracy, <i>Community
+            Conversations</i> allows New Yorkers to join in discussions that offer an
+            alternative to received wisdom and provide an opportunity to take
+            part in a shared national dialogue.
+          </p>
+          <p>
+            <i>Community Conversations for Young Adults</i> engages middle school,
+            high school, or college students in a facilitated discussion of a
+            short reading in or out of school.
+          </p>
+          <p>
+            For more information, please click <a href="https://humanitiesny.org/our-work/programs/community-conversations/" target="_blank">here</a>.
+          </p>
+          <h4>The Leukemia & Lymphoma Society's School & Youth Program</h4>
+          <p>The Leukemia & Lymphoma Society's School & Youth Programs are about just how powerful the youth in our schools can be!</p>
+          <p>Programs like Pennies for Patients, Olive Garden's Pasta for Pennies, and HOP for Leukemia, involve kids by teaching them about community and helping others by joining in the fight against blood cancers.</p>
+          <p>For more information on volunteering, please click <a href="http://www.lls.org/volunteer" target="_blank">here</a>.
+          </p>
+          <h4>Holy Apostles Soup Kitchen</h4>
+          <p>Help to feed the hungry and comfort those in need.</p>
+          <p>For more information, please click <a href="https://holyapostlessoupkitchen.org/" target="_blank">here</a>.
+          </p>
+        </div>
+        <div class="col" style="border-left: 1px solid #FFDE00;">
+          <h4>Gilda's Club New York City</h4>
+          <p>The Teen Program at <b>Gilda’s Club NYC</b> helps individuals impacted by cancer-men, women, teens and children-along with their families and friends.Their innovative program is an essential complement to medical care, providing networking and support groups, workshops, lectures and social activities, all free of charge.
+          </p>
+          <p><b>Teens Connect</b> program provides support to teens impacted by cancer in any way.  It is open to teens that are living with a personal cancer diagnosis, have a friend or loved one living with cancer, or have lost a friend or family member to cancer.
+          </p>
+          <p>
+            For more information, please click <a href="https://bxsciarista.webs.com/Teens%20Connect%20Flyer.pdf" target="_blank">here</a>.
+          </p>
+          <p>
+            <b>Junior Associate Board</b> is open to teens that would like to volunteer their time and make a difference in the community.  The mission of the JAB is to promote awareness of Gilda’s Club NYC in the community it serves, organize initiatives & events, provide volunteer service and earn community service hours.
+          </p>
+          <p>
+            For more information, please click <a href="https://bxsciarista.webs.com/JAB%20Flyer.pdf" target="_blank">here</a>.
+          </p>
+          <p>
+            If you are interested in volunteering, please contact: Michele Halusic, LCSW-R Senior Program Manager Youth & Families at 212-647-9700 ext. 243 or mhalusic@gildasclubnyc.org
+          </p>
+          <p>
+            Gilda's Club New York City 195 West Houston Street New York, New York, 10014
+          </p>
+          <h4>Students for Service: Teens for Food Justice</h4>
+          <p>
+            Are you passionate about fighting hunger and food insecurity? Want to learn hands-on green science and urban farming? Looking to lead community outreach around nutrition and healthy food access? Become a Teen for Food Justice!
+          </p>
+          <p>
+            For more information, please click <a href="http://www.teensforfoodjustice.org/" target="_blank">here</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid text-center page-footer font-small" id="footer">
+      <div class="row">
+        <div class="col">
+          <small>Website designed by Alex Chen © 2018.</small>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="js/javascript.js"></script>
+
+    <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
+
+  </body>
+</html>

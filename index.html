@@ -4,6 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com">
+
+    <!-- Title of page -->
+    <title>Bronx Science NHS</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
@@ -22,6 +27,7 @@
     //REFERENCE: http://www.firewatchgame.com/ is really nice
 //REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
 
+//TODO: Add in the new application processes for the prospective applicants
 //TODO: Change references to procedures to website-based things.
 //TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
 //TODO: There's no tutoring form upload link or outside tutoring verification link
@@ -48,7 +54,7 @@ COLOR SCHEME:
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">Bronx Science National Honor Society</a>
+  <a class="navbar-brand" href="https://bxsciencenhs.tech/">Bronx Science National Honor Society</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -60,10 +66,10 @@ COLOR SCHEME:
           About
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Welcome</a>
-          <a class="dropdown-item" href="#">Tutoring</a>
-          <a class="dropdown-item" href="#">Forms and Links</a>
-          <a class="dropdown-item" href="#">Contact Us</a>
+          <a class="dropdown-item" href="#welcomeJump">Welcome</a>
+          <a class="dropdown-item" href="#tutoringJump">Tutoring</a>
+          <a class="dropdown-item" href="#formsAndLinksJump">Forms and Links</a>
+          <a class="dropdown-item" href="#contact">Contact Us</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -74,11 +80,10 @@ COLOR SCHEME:
           <a class="dropdown-item" href="#">Underclassman Applications</a>
           <a class="dropdown-item" href="#">Junior and Senior Applications</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Application Process</a>
-          <a class="dropdown-item" href="#">Application Requirements</a>
-          <a class="dropdown-item" href="#">FAQ</a>
-          <a class="dropdown-item" href="#">Credit Table</a>
-          <a class="dropdown-item" href="#">Volunteer Opportunities</a>
+          <a class="dropdown-item" href="prospective.html#processJump">Application Process</a>
+          <a class="dropdown-item" href="prospective.html#FAQJump">FAQ</a>
+          <a class="dropdown-item" href="prospective.html#creditJump">Credit Table</a>
+          <a class="dropdown-item" href="prospective.html#volunteerJump">Volunteer Opportunities</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -88,25 +93,32 @@ COLOR SCHEME:
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Credit Tracker</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Calendar</a>
-          <a class="dropdown-item" href="#">Maintaining Membership</a>
-          <a class="dropdown-item" href="#">Attendance and Records</a>
+          <a class="dropdown-item" href="current.html#calendarJump">Calendar</a>
+          <a class="dropdown-item" href="current.html#membershipJump">Maintaining Membership</a>
+          <a class="dropdown-item" href="#">Photo Gallery</a>
         </div>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+      <!--
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </form>
   </div>
 </nav>
 
 <img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">
 
-<button type="button" class="btn btn-light" id="applyNow">Apply now!</button>
-<hr>
-
 <div class="mainBody">
+  <div class="container-fluid text-center" id="apply" style="padding:0em;">
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-light" id="applyNow">Apply now!</button>
+        <hr id="welcomeJump">
+      </div>
+    </div>
+  </div>
 
   <div class="container-fluid text-center" id="welcomeTop">
     <div class="row">
@@ -130,7 +142,7 @@ COLOR SCHEME:
     </div>
   </div>
 
-  <div class="container-fluid text-center" id="info">
+  <div class="container-fluid text-center" id="info" style="color: #000;">
     <div class="row">
       <div class="col" style="border-right: 1px solid #037164;">
         <h2 class="dark">Information for Prospective NHS Applicants</h2>
@@ -143,7 +155,7 @@ COLOR SCHEME:
           and requirements, please click <a href="#">here</a>. To start or complete an
           application, please click <a href="#">here</a>.
         </p>
-        <p>
+        <p id="tutoringJump">
           Once you've submitted an application, you will receive notification of
           your admission status shortly after the application deadline. If you are
           accepted to the National Honor Society, your guidance counselor will receive
@@ -181,7 +193,7 @@ COLOR SCHEME:
         <p><b>Note: To access any google sign up forms, you must be logged in to your Bronx Science account.</b>
             Emails sent to Mr. DeSilva or any NHS Officer requesting to share Google forms will not receive a reply.
         </p>
-        <p>Any tutoring ideas or questions should be directed to Margaret Wong (National Honor Society
+        <p id="formsAndLinksJump">Any tutoring ideas or questions should be directed to Margaret Wong (National Honor Society
           Vice President of Tutoring) at wongm@bxscience.edu.
         </p>
       </div>
@@ -241,7 +253,7 @@ COLOR SCHEME:
                     <br><br>
                   </li>
                   <li><b>I requested a tutor but haven’t heard back yet, what do I do?</b>
-                    <br>Please be patient. If it has been more than a week, and you still don't have a tutor, then you may email Samita Rahaman (VP of Tutoring) to inquire about your request.
+                    <br>Please be patient. If it has been more than a week, and you still don't have a tutor, then you may email Margaret Wong (VP of Tutoring) to inquire about your request.
                     <br><br>
                   </li>
                   <li><b>I am a parent. How do I sign my child up for a tutor?</b>
@@ -273,7 +285,7 @@ COLOR SCHEME:
               <div class="card-body">
                 <ol>
                   <li><b>I am an NHS member who signed up to become a tutor, but my tutee is not responding. What do I do?</b>
-                    <br>Email them again, and be sure to Cc Samita. It is your responsibility to keep track of your tutoring assignments. If the student still doesn't respond, please notify Samita and she will inform Mr. DeSilva, who will then take further action to contact the student.
+                    <br>Email them again, and be sure to CC Maggie. It is your responsibility to keep track of your tutoring assignments. If the student still doesn't respond, please notify Maggie and she will inform Mr. DeSilva, who will then take further action to contact the student.
                     <br><br>
                   </li>
                   <li><b>How many tutoring hours can I do outside of school?</b>
@@ -339,8 +351,6 @@ COLOR SCHEME:
       <div class="col" style="border-left: 1px solid #FFDE00;">
         <h3>Uploading Instructions</h3>
         <hr>
-        <p>Please upload out-of-school activity documentation (applicants and members), tutoring forms (members), and NHS Contracts (members) only!
-        </p>
         <ol>
           <li>
             Scan your file in pdf format and save as "your last name, your first name."  For example, "DeSilva, Paul." Do not include the quotation marks.
@@ -373,14 +383,70 @@ COLOR SCHEME:
 
   <div class="container-fluid text-center" id="contact">
     <h2>Contact Us</h2>
+    <p>Click the headshots on the left for position descriptions and contact information!</p>
     <hr class="light">
     <div class="row">
-      <div class="col">
-        <img src="assets/hexagon.png" class="img-fluid" alt="hexagon">
+      <div class="col mx-auto" style="border-right: 1px solid #FFF;">
+        <div class="row mx-auto">
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <a data-toggle="collapse" href="#chris" role="button" aria-expanded="false" aria-controls="chris"><img class="headshot rounded-circle" src="assets/contactUs/chris.jpg" width = "84%"></a>
+            <p>Chris Yeung<br><small>President</small></p>
+          </div>
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <a data-toggle="collapse" href="#maggie" role="button" aria-expanded="false" aria-controls="maggie"><img class="headshot rounded-circle" src="assets/contactUs/maggie.jpg" width = "84%"></a>
+            <p>Maggie Wong<br><small>Vice President of Tutoring</small></p>
+          </div>
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <a data-toggle="collapse" href="#sunny" role="button" aria-expanded="false" aria-controls="sunny"><img class="headshot rounded-circle" src="assets/contactUs/sunny.jpg" width = "84%"></a>
+            <p>Sunny Jaang<br><small>Vice President of Organization</small></p>
+          </div>
+        </div>
+        <div class="row mx-auto">
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <a data-toggle="collapse" href="#alex" role="button" aria-expanded="false" aria-controls="alex"><img class="headshot rounded-circle" src="assets/contactUs/alex.jpg" width = "84%"></a>
+            <p>Alex Chen<br><small>Vice President of Technology</small></p>
+          </div>
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <a data-toggle="collapse" href="#desilva" role="button" aria-expanded="false" aria-controls="desilva"><img class="headshot rounded-circle" src="assets/contactUs/desilva.jpg" width = "84%"></a>
+            <p>Paul DeSilva<br><small>Faculty Advisor</small></p>
+          </div>
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <a data-toggle="collapse" href="#nhs" role="button" aria-expanded="false" aria-controls="nhs"><img class="headshot rounded-circle" src="assets/contactUs/nhs.jpg" width = "84%"></a>
+            <p>NHS<br><small>Trusty Email Account</small></p>
+          </div>
+        </div>
       </div>
-      <div class="col">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+      <div class="col" style="border-left: 1px solid #FFF;">
+        <div class="collapse" id="chris" style="color: #000;">
+          <div class="card card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </div>
+        </div>
+        <div class="collapse" id="maggie" style="color: #000;">
+          <div class="card card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </div>
+        </div>
+        <div class="collapse" id="sunny" style="color: #000;">
+          <div class="card card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </div>
+        </div>
+        <div class="collapse" id="alex" style="color: #000;">
+          <div class="card card-body">
+            Hi, I'm Alex! Feel free to ask me about anything related to technology (NHS website, forms, etc.) or NHS in general. My email is chena@bxscience.edu. I like running, programming, and big dogs.
+          </div>
+        </div>
+        <div class="collapse" id="desilva" style="color: #000;">
+          <div class="card card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+          </div>
+        </div>
+        <div class="collapse" id="nhs" style="color: #000;">
+          <div class="card card-body">
+            Hi, I'm the NHS email account! Please email nhs@bxscience.edu for any general questions or concerns whose answers you cannot find in the FAQs.
+            My hobbies include painting, philosophy, and personal introspection.
+          </div>
         </div>
       </div>
     </div>
@@ -394,19 +460,20 @@ COLOR SCHEME:
       <button v-on:click="reverseMessage">Reverse Message</button>
     </div> -->
 
-
+    <div class="container-fluid text-center page-footer font-small" id="footer">
+      <div class="row">
+        <div class="col">
+          <small>Website designed by Alex Chen © 2018.</small>
+        </div>
+      </div>
+    </div>
 
 </div>
 
-    <!-- Footer -->
-<footer class="page-footer font-small">
-
-</footer>
-<!-- Footer -->
-
-    <!-- Optional JavaScript -->
+    <!-- Other JavaScript -->
     <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
     <script src="js/javascript.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

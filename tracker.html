@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title of page -->
+    <title>Bronx Science NHS</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <!-- Vue.js -->
+    <script src="js/vue.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--
+    //REFERENCE: http://www.firewatchgame.com/ is really nice
+//REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
+
+//TODO: Add in the new application processes for the prospective applicants
+//TODO: Change references to procedures to website-based things.
+//TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
+//TODO: There's no tutoring form upload link or outside tutoring verification link
+//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
+//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
+//TODO: Implement Google Analytics code
+//TODO: For contacts, use https://getbootstrap.com/docs/4.0/components/collapse/
+
+/*
+COLOR SCHEME:
+- NHS Dark Blue (#05376A)
+- White (#FFFFFF)
+- BxSci Green (#037164)
+- Dark BxSci Green (#013a2b)
+- Darker BxSci Green (#001910)
+- BxSci Yellow (#FFDE00)
+*/
+
+-->
+
+  </head>
+
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="https://bxsciencenhs.tech/">Bronx Science National Honor Society</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.html#welcomeJump">Welcome</a>
+          <a class="dropdown-item" href="index.html#tutoringJump">Tutoring</a>
+          <a class="dropdown-item" href="index.html#formsAndLinksJump">Forms and Links</a>
+          <a class="dropdown-item" href="index.html#contact">Contact Us</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Prospective Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Underclassman Applications</a>
+          <a class="dropdown-item" href="#">Junior and Senior Applications</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="prospective.html#processJump">Application Process</a>
+          <a class="dropdown-item" href="prospective.html#FAQJump">FAQ</a>
+          <a class="dropdown-item" href="prospective.html#creditJump">Credit Table</a>
+          <a class="dropdown-item" href="prospective.html#volunteerJump">Volunteer Opportunities</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Current Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Credit Tracker</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#calendarJump">Calendar</a>
+          <a class="dropdown-item" href="#membershipJump">Maintaining Membership</a>
+          <a class="dropdown-item" href="#">Photo Gallery</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">
+
+<div class="mainBody" id="calendarJump">
+
+  <div class="container-fluid text-center" id="currentTop">
+    <div class="row">
+      <div class="col">
+        <h2>We're so glad you're here!</h2>
+        <hr class="light">
+        <p>As an NHS member, the work that you do feeds back directly into the
+          communities you care about, whether that be Bronx Science or otherwise.
+          You may track your credits and plan for the rest of the year using the
+          Credit Tracker <a href="#">here</a>.
+        </p>
+        <p>
+          On the right is a tentative calendar
+          of important NHS events for the 2018-2019 school year. Please plan your
+          time accordingly. You may use it in conjunction with the <a href="#">Credit Tracker</a>
+          to plan your credits.
+        </p>
+        <p id="membershipJump">
+          Please make sure to check your Bronx Science email regularly. All important information and deadlines
+          will be distributed by email.
+      </div>
+      <div class="col">
+        <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=bxscience.edu_4qhbrm10id0a415j0td05itvdk%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- just testing
+    <div id="test">
+      <h1>Hello, world!</h1>
+      <h1>{{ message }}</h1>
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div> -->
+
+    <div class="container-fluid text-center page-footer font-small" id="footer">
+      <div class="row">
+        <div class="col">
+          <small>Website designed by Alex Chen © 2018.</small>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="js/javascript.js"></script>
+
+    <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
+
+  </body>
+</html>

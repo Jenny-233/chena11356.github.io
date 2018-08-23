@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Title of page -->
+    <title>Bronx Science NHS</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <!-- Vue.js -->
+    <script src="js/vue.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!--
+    //REFERENCE: http://www.firewatchgame.com/ is really nice
+//REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
+
+//TODO: Add in the new application processes for the prospective applicants
+//TODO: Change references to procedures to website-based things.
+//TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
+//TODO: There's no tutoring form upload link or outside tutoring verification link
+//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
+//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
+//TODO: Implement Google Analytics code
+//TODO: For contacts, use https://getbootstrap.com/docs/4.0/components/collapse/
+
+/*
+COLOR SCHEME:
+- NHS Dark Blue (#05376A)
+- White (#FFFFFF)
+- BxSci Green (#037164)
+- Dark BxSci Green (#013a2b)
+- Darker BxSci Green (#001910)
+- BxSci Yellow (#FFDE00)
+*/
+
+-->
+
+  </head>
+
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="https://bxsciencenhs.tech/">Bronx Science National Honor Society</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.html#welcomeJump">Welcome</a>
+          <a class="dropdown-item" href="index.html#tutoringJump">Tutoring</a>
+          <a class="dropdown-item" href="index.html#formsAndLinksJump">Forms and Links</a>
+          <a class="dropdown-item" href="index.html#contact">Contact Us</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Prospective Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Underclassman Applications</a>
+          <a class="dropdown-item" href="#">Junior and Senior Applications</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="prospective.html#processJump">Application Process</a>
+          <a class="dropdown-item" href="prospective.html#FAQJump">FAQ</a>
+          <a class="dropdown-item" href="prospective.html#creditJump">Credit Table</a>
+          <a class="dropdown-item" href="prospective.html#volunteerJump">Volunteer Opportunities</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          For Current Members
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Credit Tracker</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#calendarJump">Calendar</a>
+          <a class="dropdown-item" href="#membershipJump">Maintaining Membership</a>
+          <a class="dropdown-item" href="#">Photo Gallery</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">
+
+<div class="mainBody" id="calendarJump">
+
+  <div class="container-fluid text-center" id="currentTop">
+    <div class="row">
+      <div class="col">
+        <h2>We're so glad you're here!</h2>
+        <hr class="light">
+        <p>As an NHS member, the work that you do feeds back directly into the
+          communities you care about, whether that be Bronx Science or otherwise.
+          You may track your credits and plan for the rest of the year using the
+          Credit Tracker <a href="#">here</a>.
+        </p>
+        <p>
+          On the right is a tentative calendar
+          of important NHS events for the 2018-2019 school year. Please plan your
+          time accordingly. You may use it in conjunction with the <a href="#">Credit Tracker</a>
+          to plan your credits.
+        </p>
+        <p id="membershipJump">
+          Please make sure to check your Bronx Science email regularly. All important information and deadlines
+          will be distributed by email.
+      </div>
+      <div class="col">
+        <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=bxscience.edu_4qhbrm10id0a415j0td05itvdk%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center" id="membership">
+    <h2 class="dark">Maintaining Membership</h2>
+    <hr class="green">
+    <div class="row">
+      <div class="col-4">
+        <img src="assets/photos/subway.jpg" class="img-fluid" alt="subway">
+        <img src="assets/photos/walking.jpg" class="img-fluid" alt="walking">
+        <img src="assets/photos/locker.jpg" class="img-fluid" alt="locker">
+      </div>
+      <div class="col">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Requirements Each Semester
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <ul>
+                  <li>
+                    Scholarship: You must maintain a 90 or above average.
+                  </li>
+                  <li>
+                    Tutoring: You must tutor 20 hours. First-semester seniors only need to tutor 15 hours.
+                  </li>
+                  <li>
+                    Character: A teacher approval email will be sent out to your teachers.
+                  </li>
+                  <li>
+                    Service: You must have 5 credits.
+                  </li>
+                  <li>
+                    Projects: You must compete a total of 3 projects per semester.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Probation System
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <p>There are three levels of probation. If you exceed three levels, you will be dismissed from NHS. Below you will find the number of probation levels imposed for specific infractions.</p>
+                <h4 class="dark">One Level</h4>
+                <ul>
+                  <li>Failure to answer an email sent by an NHS Officer, Mr. DeSilva, or another faculty member.</li>
+                  <li>Failure to sign up for a mandatory project before a deadline.</li>
+                  <li>Failure to attend a project for which you volunteered without notifying an NHS Officer or Mr. DeSilva in advance.</li>
+                  <li>2 excused absences from meetings (each additional absence beyond this equals one level).</li>
+                  <li>Submitting a late absence note. Please note that absence notes received after the next meeting will not be considered.</li>
+                </ul>
+                <h4 class="dark">Two Levels</h4>
+                <ul>
+                  <li>Not attending a mandatory project (unless you have been cleared by the officers)</li>
+                  <li>One unexcused absence.  If you have two, you will be dismissed.</li>
+                </ul>
+                <h4 class="dark">Removing Levels of Probation</h4>
+                <p>To be removed from one level of probation, you may complete an extra project <i>after</i>
+                you have completed your other project requirements.</p>
+                <p>
+                  <i>Example 1:</i> An NHS member decides to skip an NHS meeting without submitting an absence note and is assigned two levels of probation. Later in the semester, the same NHS member completes two additional projects and is removed from probation.
+                </p>
+                <p>
+                  <i>Example 2:</i> An NHS member misses two meetings (excused absences) and is given one level of probation. The following week, they fail to attend a mandatory project and are given two additional levels of probation. If they get one more level of probation, they will be dismissed from NHS.
+                </p>
+                <p>
+                  <i>Example 3:</i> An NHS member decides to skip a project for which they volunteered and is given one level of probation.  The following week, they decide to skip a meeting without providing an absence note and receive two additional levels of probation.  Finally, they fail to sign up for a mandatory project before a given deadline and are dismissed from NHS because they have exceeded three levels of probation.
+                </p>
+                <p><b>Stay on top of your responsibilities and don't let this happen to you!</b></p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Attendance Policy
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <i>Excused Absence (per semester):</i> You are allowed one excused absence per semester. After that, any more excused absences will give you one level of probation.
+                  </li>
+                  <li>
+                    <i>Unexcused Absence (per semester):</i> Your first unexcused absence will give you two levels of probation. After that, any more unexcused absences will result in dismissal from NHS.
+                  </li>
+                  <li>
+                    <i>Late Absence Note:</i> If you submit an absence note late, you will receive 1 level of probation. Any absence notes received after the next NHS meeting will not be considered. Submit a picture or scanned copy of your absence notes at <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">this link</a>. No paper absence notes will be accepted.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Absence Notes
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                <ol>
+                  <li>
+                    Absence notes must be submitted no later than one week after the NHS meeting that you missed.
+                  </li>
+                  <li>
+                    Click <a href="http://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Absence%20Form.pdf" target="_blank">here</a> to download and absence note, fill it out completely, and obtain the appropriate signature(s).
+                  </li>
+                  <li>
+                    Click <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">here</a> to upload your absence note to Dropbox.
+                  </li>
+                  <li>
+                    Absence notes that are submitted by hand or placed in Mr. DeSilva's mailbox will not be accepted. You must upload your absence note to Dropbox.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingFive">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  Attendance and Project Records
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+              <div class="card-body">
+                <p>It is the responsibility of every NHS member to verify that his/her attendance and project records are accurate and up-to-date. You must be logged in to your Bronx Science email in order to view these documents. If you have any questions about the attendance policy, your personal attendance record, or your personal project record, please contact NHS Vice President of Organization, Margarent Wong, at wongm@bxscience.edu.</p>
+                <p>For junior and senior attendance records, click <a href="https://docs.google.com/spreadsheets/d/1Fk79WNKW9TnQ395ZISULiJ0c7a3JoRfMMEPhY-QHgzo/edit#gid=0" target="_blank">here</a>.
+                  For junior project records, click <a href="https://docs.google.com/a/bxscience.edu/spreadsheets/d/1ZePvsSupz5QTrl7waKOI6VXDa1XKL6TDITIoCbG7RR4/edit?usp=sharing" target="_blank">here</a>.
+                  For senior project records, click <a href="https://docs.google.com/spreadsheets/d/1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s/edit" target="_blank">here</a>.
+                </p>
+                <p>
+                  If you believe there is an error regarding your credits, please fill out <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">this form</a> instead of emailing NHS.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingSix">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                  Event Sign-Up Forms and Permission Slips
+                </button>
+              </h5>
+            </div>
+            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+              <div class="card-body">
+                <p>
+                  Please note that NHS will notify members of upcoming events via email; this list is not exhaustive.
+                  If you sign up for an event, you must download, print, and deliver a permission slip (if required) for that event.
+                  Sign-up forms will only accept responses within a reasonable time frame preceding each event. Please click on the name of the event to access a sign up for that event.
+                  You may download a permission slips below for any current sign up form that has been posted.
+                </p>
+                <p>
+                  If you have questions about events or projects, please email NHS Vice President of Organization, Margaret Wong, at wongm@bxscience.edu.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--<div class="card">
+            <div class="card-header" id="headingSeven">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                  Can I receive credit for a musical group (orchestra, band, chorus)?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+              <div class="card-body">
+                Service credit can be awarded on the basis of one credit per week for participation as a librarian for any school music ensemble. However, no credit will be awarded for participation in a musical performance (winter/spring concert).
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingEight">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                  How does the electronic credit system work?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+              <div class="card-body">
+                bleh blah bleh
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingNine">
+              <h5 class="mb-0">
+                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                  Is there any part of the credit system that is not electronic?
+                </button>
+              </h5>
+            </div>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+              <div class="card-body">
+                Yes. Applications must be submitted in paper form as well. After it is fully signed, upload a scanned copy to Dropbox. You do not need a Dropbox account for this to work. You can find uploading instructions here.
+    For out-of-school volunteer activities, you must get your supervisor to sign a letter of verification, and then upload to Dropbox as well.
+    Current NHS members must also scan copies of their signed tutoring credit sheets and upload them to Dropbox.
+              </div>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- just testing
+    <div id="test">
+      <h1>Hello, world!</h1>
+      <h1>{{ message }}</h1>
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div> -->
+
+    <div class="container-fluid text-center page-footer font-small" id="footer">
+      <div class="row">
+        <div class="col">
+          <small>Website designed by Alex Chen © 2018.</small>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="js/javascript.js"></script>
+
+    <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
+
+  </body>
+</html>
