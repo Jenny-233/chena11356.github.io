@@ -34,7 +34,6 @@
 //TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
 //TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
 //TODO: Implement Google Analytics code
-//TODO: For contacts, use https://getbootstrap.com/docs/4.0/components/collapse/
 
 /*
 COLOR SCHEME:
@@ -103,7 +102,9 @@ COLOR SCHEME:
       <!--
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <div class="g-signin2" data-onsuccess="onSignIn" id="signInLink"></div>
+      <p id="greeting"></p>
+      <a href="#" onclick="signOut();" style="visibility:hidden;" id="signOutLink">Sign out</a>
     </form>
   </div>
 </nav>
@@ -398,7 +399,7 @@ COLOR SCHEME:
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#sunny" role="button" aria-expanded="false" aria-controls="sunny"><img class="headshot rounded-circle" src="assets/contactUs/sunny.jpg" width = "84%"></a>
-            <p>Sunny Jaang<br><small>Vice President of Organization</small></p>
+            <p>Sunny Jang<br><small>Vice President of Organization</small></p>
           </div>
         </div>
         <div class="row mx-auto">
@@ -474,6 +475,7 @@ COLOR SCHEME:
     <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
     <script src="js/javascript.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 
     <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
