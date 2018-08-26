@@ -12,10 +12,19 @@ function main(){
   })*/
 }
 
+function parseName(name){
+  if (name.length>1){
+    name = name.charAt(0)+name.slice(1).toLowerCase();
+  }
+  return name;
+}
+
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  document.getElementById("greeting").innerHTML = "Hi, "+profile.getGivenName();
   document.getElementById("signInLink").style.visibility = "hidden";
+  //change the greeting
+  $('.greeting').append("<h5 class='my-2 my-lg-0 px-1' style='color: #B8BAB9;'>Hi, "+parseName(profile.getGivenName())+".</h5>");
+  //make sign-out link visible
   document.getElementById("signOutLink").style.visibility = "visible";
 }
 
@@ -32,17 +41,30 @@ function signOut() {
 function init() {
   Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/1yWsQtQbs6Uf3xxqj8TjBLg9cKm7dDf9jkCE6zxbFVE8/edit?usp=sharing',
                    callback: showInfo,
-                   simpleSheet: true } )
+                   parseNumbers: true,
+                   //simpleSheet: true
+                  } )
 }
 function showInfo(data, tabletop) {
-  alert('Successfully processed! '+data)
+  alert('Successfully processed!');
+  data = tabletop.sheets("main").toArray();
+  //so now data is a 2D array
 
+
+  //console.log(tabletop.sheets("main").toArray()[0][0]);
   /*
+  data = tabletop.sheets("main").toArray();
+  //all data sent into a 1D array, so convert that into a 2D array
+  //5 variables --> given name, family name, email, grade, probations
+
+
+
   var test = "";
   for (var i = 0; i < data.length; i++){
     test+=data[i];
   }
-  console.log(test);*/
+  console.log(test);
+  */
 
 }
 window.addEventListener('DOMContentLoaded', init)

@@ -47,11 +47,11 @@ div#accordion {
 }
 
 div#accordion a {
-  color: #037164;
+  color: #037164 !important;
 }
 
 div#accordion a:hover {
-  color: #FFDE00;
+  color: #FFDE00 !important;
 }
 
 div#formsAndLinks ol, div#formsAndLinks ul {
@@ -79,6 +79,15 @@ h4.dark,
 h5.dark,
 h6.dark {
   color: #000;
+}
+
+h1.green,
+h2.green,
+h3.green,
+h4.green,
+h5.green,
+h6.green {
+  color: #037164;
 }
 
 button#applyNow{
