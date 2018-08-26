@@ -13,10 +13,13 @@ function main(){
 }
 
 function parseName(name){
-  if (name.length>1){
-    name = name.charAt(0)+name.slice(1).toLowerCase();
+  var array1 = name.split(' ');
+  var newarray1 = [];
+
+  for(var x = 0; x < array1.length; x++){
+      newarray1.push(array1[x].charAt(0).toUpperCase()+array1[x].slice(1));
   }
-  return name;
+  return newarray1.join(' ');
 }
 
 function onSignIn(googleUser) {
@@ -33,7 +36,7 @@ function signOut() {
   auth2.signOut().then(function () {
     console.log('User signed out.');
   });
-  $( ".greetingText" ).remove();
+  $(".greetingText").remove();
   document.getElementById("signInLink").style.visibility = "visible";
   document.getElementById("signOutLink").style.visibility = "hidden";
 }
