@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-site-verification" content="mupefnKMODrLKYs9BWb5U_7ln-K98u6Yk7VoahFDj_Q" />
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com">
 
@@ -37,6 +38,7 @@
 //TODO: Get rid of .html with https://www.htmlgoodies.com/tutorials/getting_started/article.php/3479371/So-You-Dont-Want-html-Huh.htm
 //TODO: Add fade in parallax with https://stackoverflow.com/questions/26694385/fade-in-on-scroll-down-fade-out-on-scroll-up-based-on-element-position-in-win
 //TODO: Replace monocolor containers with really nice pictures and stuff
+//TODO: Verify app with https://support.google.com/cloud/answer/7454865?authuser=2
 
 /*
 COLOR SCHEME:
@@ -142,7 +144,7 @@ COLOR SCHEME:
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+      var SCOPES = "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets";
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
