@@ -34,6 +34,9 @@
 //TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
 //TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
 //TODO: Implement Google Analytics code
+//TODO: Get rid of .html with https://www.htmlgoodies.com/tutorials/getting_started/article.php/3479371/So-You-Dont-Want-html-Huh.htm
+//TODO: Add fade in parallax with https://stackoverflow.com/questions/26694385/fade-in-on-scroll-down-fade-out-on-scroll-up-based-on-element-position-in-win
+//TODO: Replace monocolor containers with really nice pictures and stuff
 
 /*
 COLOR SCHEME:
@@ -76,8 +79,8 @@ COLOR SCHEME:
           For Prospective Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Underclassman Applications</a>
-          <a class="dropdown-item" href="#">Junior and Senior Applications</a>
+          <a class="dropdown-item" href="underclassman.html">Underclassman Applications</a>
+          <a class="dropdown-item" href="upperclassman.html">Junior and Senior Applications</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="prospective.html#processJump">Application Process</a>
           <a class="dropdown-item" href="prospective.html#FAQJump">FAQ</a>
@@ -90,7 +93,7 @@ COLOR SCHEME:
           For Current Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Credit Tracker</a>
+          <a class="dropdown-item" href="tracker.html">Credit Tracker</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="current.html#calendarJump">Calendar</a>
           <a class="dropdown-item" href="current.html#membershipJump">Maintaining Membership</a>
@@ -120,6 +123,130 @@ COLOR SCHEME:
       </div>
     </div>
   </div>
+
+  <p>Google Sheets API Quickstart</p>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content"></pre>
+
+    <script type="text/javascript">
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '1058472710733-h26avqn1bqhu5tgn1949b2i06757u61v.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyCBL6g4WUbDZCSScitz7VYBzXTFsCMgNfg';
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+
+      var authorizeButton = document.getElementById('authorize_button');
+      var signoutButton = document.getElementById('signout_button');
+
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        });
+      }
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          listMajors();
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('content');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+      /**
+       * Print the names and majors of students in a sample spreadsheet:
+       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+       */
+      function listMajors() {
+        gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+          range: 'Class Data!A2:E',
+        }).then(function(response) {
+          var range = response.result;
+          if (range.values.length > 0) {
+            appendPre('Name, Major:');
+            for (i = 0; i < range.values.length; i++) {
+              var row = range.values[i];
+              // Print columns A and E, which correspond to indices 0 and 4.
+              appendPre(row[0] + ', ' + row[4]);
+            }
+          } else {
+            appendPre('No data found.');
+          }
+        }, function(response) {
+          appendPre('Error: ' + response.result.error.message);
+        });
+      }
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
 
   <div class="container-fluid text-center" id="welcomeTop">
     <div class="row">
@@ -347,6 +474,9 @@ COLOR SCHEME:
           <li>
             <a href="https://www.dropbox.com/request/MsLdbqEyTWg55kZy2dWZ" target="_blank">Link to Submit NHS Contract</a> - for members
           </li>
+          <li>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">Credit Correction Form</a> - for members
+          </li>
         </ul>
       </div>
       <div class="col" style="border-left: 1px solid #FFDE00;">
@@ -391,36 +521,36 @@ COLOR SCHEME:
         <div class="row mx-auto">
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#chris" role="button" aria-expanded="false" aria-controls="chris"><img class="headshot rounded-circle" src="assets/contactUs/chris.jpg" width = "84%"></a>
-            <p>Chris Yeung<br><small>President</small></p>
+            <p style="line-height: 1.2;">Chris Yeung<br><small>President</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#maggie" role="button" aria-expanded="false" aria-controls="maggie"><img class="headshot rounded-circle" src="assets/contactUs/maggie.jpg" width = "84%"></a>
-            <p>Maggie Wong<br><small>Vice President of Tutoring</small></p>
+            <p style="line-height: 1.2;">Maggie Wong<br><small>Vice President of Tutoring</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#sunny" role="button" aria-expanded="false" aria-controls="sunny"><img class="headshot rounded-circle" src="assets/contactUs/sunny.jpg" width = "84%"></a>
-            <p>Sunny Jang<br><small>Vice President of Organization</small></p>
+            <p style="line-height: 1.2;">Sunny Jang<br><small>Vice President of Organization</small></p>
           </div>
         </div>
         <div class="row mx-auto">
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#alex" role="button" aria-expanded="false" aria-controls="alex"><img class="headshot rounded-circle" src="assets/contactUs/alex.jpg" width = "84%"></a>
-            <p>Alex Chen<br><small>Vice President of Technology</small></p>
+            <p style="line-height: 1.2;">Alex Chen<br><small>Vice President of Technology</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#desilva" role="button" aria-expanded="false" aria-controls="desilva"><img class="headshot rounded-circle" src="assets/contactUs/desilva.jpg" width = "84%"></a>
-            <p>Paul DeSilva<br><small>Faculty Advisor</small></p>
+            <p style="line-height: 1.2;">Paul DeSilva<br><small>Faculty Advisor</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
             <a data-toggle="collapse" href="#nhs" role="button" aria-expanded="false" aria-controls="nhs"><img class="headshot rounded-circle" src="assets/contactUs/nhs.jpg" width = "84%"></a>
-            <p>NHS<br><small>Trusty Email Account</small></p>
+            <p style="line-height: 1.2;">NHS<br><small>Trusty Email Account</small></p>
           </div>
         </div>
       </div>
       <div class="col" style="border-left: 1px solid #FFF;">
         <div class="collapse" id="chris" style="color: #000;">
           <div class="card card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+            Hello! My name is Chris and I am so honored to be your NHS president! Feel free to ask me all your general questions about NHS, including the application process and maintaining membership. You can contact me at yeungc@bxscience.edu. I love listening to your concerns and I love listening to KPOP 🙂
           </div>
         </div>
         <div class="collapse" id="maggie" style="color: #000;">
@@ -435,7 +565,7 @@ COLOR SCHEME:
         </div>
         <div class="collapse" id="alex" style="color: #000;">
           <div class="card card-body">
-            Hi, I'm Alex! Feel free to ask me about anything related to technology (NHS website, forms, etc.) or NHS in general. My email is chena@bxscience.edu. I like running, programming, and big dogs.
+            Hi, I'm Alex! Feel free to ask me about anything related to technology (NHS website, forms, etc.) or NHS in general. My email is chena@bxscience.edu. I like running, programming, and Pokemon.
           </div>
         </div>
         <div class="collapse" id="desilva" style="color: #000;">

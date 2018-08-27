@@ -125,8 +125,12 @@ div#tutoring a, div#formsAndLinks a, div#volunteer a, div#FAQ a, div#currentTop 
   background-color: #037164; //bxSci green
 }
 
-#apply, #formsAndLinks, #volunteer{
+#formsAndLinks, #volunteer{
   background-color: #001910; //bxSci green dark
+}
+
+#apply {
+  background-image: radial-gradient(#037164, #001910, #000);
 }
 
 li{
@@ -161,6 +165,15 @@ a[aria-expanded*="true"] img {
   box-shadow: 0px 0px 15px 3px rgba(255,222,0,0.5);
   -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
+}
+
+ul.nav-pills {
+
+}
+
+ul.nav-pills a.active {
+  color: #FFF;
+  background-color: #037164 !important;
 }
 
 </style>

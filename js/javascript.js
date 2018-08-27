@@ -12,7 +12,7 @@ function main(){
   })*/
 }
 
-function parseName(name){
+/*function parseName(name){
   var array1 = name.split(' ');
   var newarray1 = [];
 
@@ -20,15 +20,22 @@ function parseName(name){
       newarray1.push(array1[x].charAt(0).toUpperCase()+array1[x].slice(1));
   }
   return newarray1.join(' ');
-}
+}*/
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  document.getElementById("signInLink").style.visibility = "hidden";
-  //change the greeting
-  $('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+parseName(profile.getGivenName())+"TESTING.</h5>");
-  //make sign-out link visible
-  document.getElementById("signOutLink").style.visibility = "visible";
+  //make sure it is a Bronx Science account
+  if (profile.getEmail().indexof("@bxscience.edu")<0){
+    alert("Please sign in with a Bronx Science email.");
+    signOut();
+  }
+  else {
+    document.getElementById("signInLink").style.visibility = "hidden";
+    //change the greeting
+    $('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
+    //make sign-out link visible
+    document.getElementById("signOutLink").style.visibility = "visible";
+  }
 }
 
 function signOut() {
@@ -49,7 +56,6 @@ function init() {
                   } )
 }
 function showInfo(data, tabletop) {
-  alert('Successfully processed!');
   data = tabletop.sheets("main").toArray();
   //so now data is a 2D array
 
