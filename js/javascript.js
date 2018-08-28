@@ -121,10 +121,10 @@ function main(){
 function onSignIn(googleUser) {
   var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   //make sure it is a Bronx Science account
-  if (profile.getEmail().indexof("@bxscience.edu")<0){
+  /*if (profile.getEmail().indexof("@bxscience.edu")<0){
     alert("Please sign in with a Bronx Science email.");
     signOut();
-  }
+  }*/
   else {
     document.getElementById("signInLink").style.visibility = "hidden";
     //change the greeting
