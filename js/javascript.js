@@ -125,14 +125,14 @@ function onSignIn(googleUser) {
     alert("Please sign in with a Bronx Science email.");
     signOut();
   }*/
-  else {
+  //else {
     document.getElementById("signInLink").style.visibility = "hidden";
     //change the greeting
     //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
     document.getElementById("greetingText").innerHTML = "Hi, "++profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.visibility = "visible";
-  }
+  //}
 }
 
 function signOut() {
