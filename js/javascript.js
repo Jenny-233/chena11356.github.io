@@ -119,7 +119,7 @@ function main(){
 }*/
 
 function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
+  var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   //make sure it is a Bronx Science account
   if (profile.getEmail().indexof("@bxscience.edu")<0){
     alert("Please sign in with a Bronx Science email.");
