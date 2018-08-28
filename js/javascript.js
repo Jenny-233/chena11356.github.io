@@ -128,7 +128,8 @@ function onSignIn(googleUser) {
   else {
     document.getElementById("signInLink").style.visibility = "hidden";
     //change the greeting
-    $('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
+    //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
+    document.getElementById("greetingText").innerHTML = "Hi, "++profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.visibility = "visible";
   }
@@ -139,7 +140,7 @@ function signOut() {
   auth2.signOut().then(function () {
     console.log('User signed out.');
   });
-  $(".greetingText").remove();
+  document.getElementById("greetingText").innerHTML = "";
   document.getElementById("signInLink").style.visibility = "visible";
   document.getElementById("signOutLink").style.visibility = "hidden";
 }
