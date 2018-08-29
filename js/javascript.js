@@ -107,6 +107,67 @@ function signOut() {
   document.getElementById("signOutLink").style.visibility = "hidden";
 }
 
+//makes service activity visible; if all visible, then get rid of add service link
+function addService(){
+  if (document.getElementById("serviceForm4").style.display == "block"){
+    document.getElementById("serviceForm5").style.display = "block";
+    document.getElementById("addActivity").style.visibility = "hidden";
+  }
+  else if (document.getElementById("serviceForm3").style.display == "block"){
+    document.getElementById("serviceForm4").style.display = "block";
+  }
+  else if (document.getElementById("serviceForm2").style.display == "block"){
+    document.getElementById("serviceForm3").style.display = "block";
+  }
+  else {
+    document.getElementById("serviceForm2").style.display = "block";
+  }
+
+}
+
+//makes leadership/citizenship activity visible; if all visible, then get rid of add leadership link
+function addLeadership(){
+  if (document.getElementById("leadershipForm9").style.display == "block"){
+    document.getElementById("leadershipForm10").style.display = "block";
+    document.getElementById("laddActivity").style.visibility = "hidden";
+  }
+  else if (document.getElementById("leadershipForm8").style.display == "block"){
+    document.getElementById("leadershipForm9").style.display = "block";
+  }
+  else if (document.getElementById("leadershipForm7").style.display == "block"){
+    document.getElementById("leadershipForm8").style.display = "block";
+  }
+  else if (document.getElementById("leadershipForm6").style.display == "block"){
+    document.getElementById("leadershipForm7").style.display = "block";
+  }
+  else if (document.getElementById("leadershipForm5").style.display == "block"){
+    document.getElementById("leadershipForm6").style.display = "block";
+  }
+  else if (document.getElementById("leadershipForm4").style.display == "block"){
+    document.getElementById("leadershipForm5").style.display = "block";
+  }
+  else if (document.getElementById("leadershipForm3").style.display == "block"){
+    document.getElementById("leadershipForm4").style.display = "block";
+  }
+  else if (document.getElementById("leadershipForm2").style.display == "block"){
+    document.getElementById("leadershipForm3").style.display = "block";
+  }
+  else {
+    document.getElementById("leadershipForm2").style.display = "block";
+  }
+
+}
+
+//directs user to link if signed in; otherwise, alerts user to sign in
+function redirectIfSignedIn(link){
+  if (gapi.auth2.getAuthInstance().isSignedIn.get()){
+    window.location.href = link;
+  }
+  else{
+    alert('To use this service, please sign in using your bxscience.edu email.')
+  }
+}
+
 /*function init() {
   Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/1yWsQtQbs6Uf3xxqj8TjBLg9cKm7dDf9jkCE6zxbFVE8/edit?usp=sharing',
                    callback: showInfo,
