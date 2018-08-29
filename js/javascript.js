@@ -12,6 +12,8 @@ var SCOPES = "https://www.googleapis.com/auth/drive.file https://www.googleapis.
 var authorizeButton = document.getElementById('signInLink');
 var signoutButton = document.getElementById('signOutLink');
 
+var auth2;
+
 /**
  *  On load, called to load the auth2 library and API client library.
  */
@@ -24,6 +26,26 @@ function handleClientLoad() {
  *  listeners.
  */
 function initClient() {
+
+  auth2 = gapi.auth2.init({
+    client_id: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin', /** Default value **/
+    scope: 'profile' });                /** Base scope **/
+
+  var options = new gapi.auth2.SigninOptionsBuilder(
+    {'scope': 'email https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets'});
+
+  googleUser = auth2.currentUser.get();
+  googleUser.grant(options).then(
+      function(success){
+        console.log(JSON.stringify({message: "success", value: success}));
+      },
+      function(fail){
+        alert(JSON.stringify({message: "fail", value: fail}));
+      });
+
+
+
   gapi.client.init({
     apiKey: API_KEY,
     clientId: CLIENT_ID,
@@ -38,6 +60,10 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
   });
+
+
+
+
 }
 
 /**
