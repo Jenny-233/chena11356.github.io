@@ -18,7 +18,7 @@ var status = "status";
                 apiKey: 'AIzaSyCBL6g4WUbDZCSScitz7VYBzXTFsCMgNfg',
                 clientId: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com',
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-                scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"
+                scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets"
               });
             }
 
@@ -218,6 +218,7 @@ function initializeApplication(){
 
 //initialize application materials IF page is application
 window.onload = function () {
+  gapi.load('client:auth2', initClient);
   if (window.location.href.indexOf("classman")>=0){
     initializeApplication();
   }
