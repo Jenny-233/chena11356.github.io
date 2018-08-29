@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-site-verification" content="mupefnKMODrLKYs9BWb5U_7ln-K98u6Yk7VoahFDj_Q" />
-    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets">
     <meta name="google-signin-client_id" content="1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com">
 
     <!-- Title of page -->
@@ -108,13 +108,13 @@ COLOR SCHEME:
         </a>
       </li>
     </ul>
+    <h5 class='my-2 my-lg-0 px-1' id="greetingText" style='color: #B8BAB9;'></h5>
     <form class="form-inline my-2 my-lg-0">
       <!--
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
       <div class="g-signin2" data-onsuccess="onSignIn" id="signInLink"></div>
     </form>
-    <h5 class='my-2 my-lg-0 px-1' id="greetingText" style='color: #B8BAB9;'></h5>
     <a href="#" class="my-2 my-lg-0 px-1" onclick="signOut();" style="visibility:hidden;" id="signOutLink">Sign out</a>
   </div>
 </nav>
@@ -130,10 +130,6 @@ COLOR SCHEME:
       </div>
     </div>
   </div>
-
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" style="display: none;">Authorize</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
 
     <pre id="content"></pre>
 
