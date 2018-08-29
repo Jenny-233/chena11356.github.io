@@ -94,7 +94,6 @@ function onSignIn(googleUser) {
     //make sign-out link visible
     document.getElementById("signOutLink").style.visibility = "visible";
   //}
-  handleClientLoad();
   listMajors();
 }
 
@@ -108,15 +107,16 @@ function signOut() {
   document.getElementById("signOutLink").style.visibility = "hidden";
 }
 
-function init() {
+/*function init() {
   Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/1yWsQtQbs6Uf3xxqj8TjBLg9cKm7dDf9jkCE6zxbFVE8/edit?usp=sharing',
                    callback: showInfo,
                    parseNumbers: true,
                    //simpleSheet: true
                   } )
-}
-function showInfo(data, tabletop) {
-  data = tabletop.sheets("main").toArray();
+}*/
+
+//function showInfo(data, tabletop) {
+  //data = tabletop.sheets("main").toArray();
   //so now data is a 2D array
 
 
@@ -135,8 +135,8 @@ function showInfo(data, tabletop) {
   console.log(test);
   */
 
-}
-window.addEventListener('DOMContentLoaded', init)
+//}
+//window.addEventListener('DOMContentLoaded', init)
 
 /*var auth2 = gapi.auth2.getAuthInstance();
   if (auth2.isSignedIn.get()) {
@@ -148,5 +148,3 @@ window.addEventListener('DOMContentLoaded', init)
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
 } */
-
-window.onload = main();
