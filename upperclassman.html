@@ -111,7 +111,7 @@ COLOR SCHEME:
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
       <div class="g-signin2" data-onsuccess="onSignIn" id="signInLink"></div>
     </form>
-    <a href="#" class="my-2 my-lg-0 mx-auto" onclick="signOut();" style="visibility:hidden;" id="signOutLink">Sign out</a>
+    <a href="#" class="my-2 my-lg-0 mx-auto" onclick="signOut();" style="display:none;" id="signOutLink">Sign out</a>
   </div>
 </nav>
 
@@ -1116,6 +1116,9 @@ COLOR SCHEME:
   onload="this.onload=function(){};handleClientLoad()"
   onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
+
+<!--Find user (if there), retrieve their information, put it down into the forms, allow saving, etc.-->
+<script src="js/application.js"></script>
 
     <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
