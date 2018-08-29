@@ -87,14 +87,13 @@ function onSignIn(googleUser) {
     signOut();
   }*/
   //else {
-    document.getElementById("signInLink").style.visibility = "hidden";
+    document.getElementById("signInLink").style.display = "none";
     //change the greeting
     //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
-    document.getElementById("signOutLink").style.visibility = "visible";
+    document.getElementById("signOutLink").style.display = "block";
   //}
-  listMajors();
 }
 
 function signOut() {
@@ -103,15 +102,15 @@ function signOut() {
     console.log('User signed out.');
   });
   document.getElementById("greetingText").innerHTML = "";
-  document.getElementById("signInLink").style.visibility = "visible";
-  document.getElementById("signOutLink").style.visibility = "hidden";
+  document.getElementById("signInLink").style.display = "block";
+  document.getElementById("signOutLink").style.display = "none";
 }
 
 //makes service activity visible; if all visible, then get rid of add service link
 function addService(){
   if (document.getElementById("serviceForm4").style.display == "block"){
     document.getElementById("serviceForm5").style.display = "block";
-    document.getElementById("addActivity").style.visibility = "hidden";
+    document.getElementById("addActivity").style.display = "none";
   }
   else if (document.getElementById("serviceForm3").style.display == "block"){
     document.getElementById("serviceForm4").style.display = "block";
@@ -129,7 +128,7 @@ function addService(){
 function addLeadership(){
   if (document.getElementById("leadershipForm9").style.display == "block"){
     document.getElementById("leadershipForm10").style.display = "block";
-    document.getElementById("laddActivity").style.visibility = "hidden";
+    document.getElementById("laddActivity").style.display = "none";
   }
   else if (document.getElementById("leadershipForm8").style.display == "block"){
     document.getElementById("leadershipForm9").style.display = "block";
