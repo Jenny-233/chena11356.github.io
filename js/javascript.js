@@ -82,18 +82,18 @@ function main(){
 function onSignIn(googleUser) {
   var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   //make sure it is a Bronx Science account
-  /*if (profile.getEmail().indexof("@bxscience.edu")<0){
+  if (profile.getEmail().indexof("@bxscience.edu")<0){
     alert("Please sign in with a Bronx Science email.");
     signOut();
-  }*/
-  //else {
+  }
+  else {
     document.getElementById("signInLink").style.display = "none";
     //change the greeting
     //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-  //}
+  }
 }
 
 function signOut() {
