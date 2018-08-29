@@ -214,6 +214,13 @@ function initializeApplication(){
   }
 }
 
+//initialize application materials IF page is application
+window.onload = function () {
+  if (window.location.href.indexOf("classman")>=0){
+    initializeApplication();
+  }
+}
+
 /*function init() {
   Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/1yWsQtQbs6Uf3xxqj8TjBLg9cKm7dDf9jkCE6zxbFVE8/edit?usp=sharing',
                    callback: showInfo,
