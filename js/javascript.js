@@ -74,6 +74,7 @@ function onSignIn(googleUser) {
     //make sign-out link visible
     document.getElementById("signOutLink").style.visibility = "visible";
   //}
+  listMajors();
 }
 
 function signOut() {
