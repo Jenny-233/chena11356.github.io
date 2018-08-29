@@ -81,8 +81,8 @@ COLOR SCHEME:
           For Prospective Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="underclassman.html">Underclassman Applications</a>
-          <a class="dropdown-item" href="upperclassman.html">Junior and Senior Applications</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('underclassman.html');">Underclassman Applications</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('upperclassman.html');">Junior and Senior Applications</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="prospective.html#processJump">Application Process</a>
           <a class="dropdown-item" href="prospective.html#FAQJump">FAQ</a>
@@ -95,7 +95,7 @@ COLOR SCHEME:
           For Current Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="tracker.html">Credit Tracker</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('tracker.html');">Credit Tracker</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="current.html#calendarJump">Calendar</a>
           <a class="dropdown-item" href="current.html#membershipJump">Maintaining Membership</a>
@@ -108,14 +108,14 @@ COLOR SCHEME:
         </a>
       </li>
     </ul>
+    <h5 class='my-2 my-lg-0 mx-auto px-1' id="greetingText" style='color: #B8BAB9;'></h5>
     <form class="form-inline my-2 my-lg-0">
       <!--
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
       <div class="g-signin2" data-onsuccess="onSignIn" id="signInLink"></div>
     </form>
-    <div class="greeting"></div>
-    <a href="#" class="my-2 my-lg-0 px-1" onclick="signOut();" style="visibility:hidden;" id="signOutLink">Sign out</a>
+    <a href="#" class="my-2 my-lg-0 mx-auto" onclick="signOut();" style="visibility:hidden;" id="signOutLink">Sign out</a>
   </div>
 </nav>
 
