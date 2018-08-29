@@ -4,7 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-site-verification" content="mupefnKMODrLKYs9BWb5U_7ln-K98u6Yk7VoahFDj_Q" />
+    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets">
     <meta name="google-signin-client_id" content="1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com">
 
     <!-- Title of page -->
@@ -124,7 +125,7 @@ COLOR SCHEME:
     <div class="row">
       <div class="col">
         <p>Welcome to the NHS application portal for juniors and seniors! You may work on your
-          application (autosaved) and upload verification materials as necessary. We will
+          application (autosaved to Google Drive) and upload verification materials as necessary. We will
           review your application once the application deadline arrives.
         </p>
         <p>
@@ -185,10 +186,53 @@ COLOR SCHEME:
           </div>
         </div>
       </div>
+      <!--now create a column for application settings (grade, etc.) -->
       <div class="col-4">
-        <p>
-          placeholder
-        </p>
+        <!--row to toggle junior or senior-->
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-success btn-lg btn-block">Junior</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-outline-success btn-lg btn-block">Senior</button>
+          </div>
+        </div>
+        <!--row for checkbox-->
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="enteredAsSoph">
+              <label class="form-check-label" for="enteredAsSoph">
+                Entered Bronx Science as a sophomore
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--row for credit requirements-->
+        <br>
+        <div class="row">
+          <div class="col" id="requirements" style="color: #037164; border-radius: 25px; padding-top: 1em; border: 1px solid #037164;">
+            <ul>
+              <li>
+                <b>Scholarship</b>: You must have a 90 or above average.
+              </li>
+              <li>
+                <b>Service</b>: You have inputted <b><span id="serviceInput" class="varCredit">x</span></b>/<b><span id="serviceNeeded" class="varCredit">x</span></b> credits.
+              </li>
+              <li>
+                <b>Leadership and Citizenship</b>: You have inputted <b><span id="leadershipInput" class="varCredit">x</span></b>/<b><span id="leadershipNeeded" class="varCredit">x</span></b> credits.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--row for deleting your application-->
+        <br>
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete Your Application</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -209,11 +253,15 @@ COLOR SCHEME:
 
 </div>
 
-    <!-- Other JavaScript -->
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
-    <script src="js/javascript.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<!-- Other JavaScript -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+<script src="js/javascript.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<script async defer src="https://apis.google.com/js/api.js"
+  onload="this.onload=function(){};handleClientLoad()"
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
 
     <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
