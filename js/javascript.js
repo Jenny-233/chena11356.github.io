@@ -60,6 +60,19 @@ function updateSigninStatus(isSignedIn) {
  */
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
+  var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+  //make sure it is a Bronx Science account
+  /*if (profile.getEmail().indexof("@bxscience.edu")<0){
+    alert("Please sign in with a Bronx Science email.");
+    signOut();
+  }*/
+  //else {
+    document.getElementById("signInLink").style.visibility = "hidden";
+    //change the greeting
+    //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
+    document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
+    //make sign-out link visible
+    document.getElementById("signOutLink").style.visibility = "visible";
 }
 
 /**
@@ -67,6 +80,9 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
   gapi.auth2.getAuthInstance().signOut();
+  document.getElementById("greetingText").innerHTML = "";
+  document.getElementById("signInLink").style.visibility = "visible";
+  document.getElementById("signOutLink").style.visibility = "hidden";
 }
 
 /**
