@@ -1112,7 +1112,11 @@ COLOR SCHEME:
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 <script async defer src="https://apis.google.com/js/api.js"
-  onload="this.onload=function(){};handleClientLoad()"
+  onload="this.onload=function(){};handleClientLoad().then(function){
+    if (window.location.href.indexOf("classman")>=0){
+      initializeApplication();
+    }
+  }"
   onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 

@@ -98,7 +98,6 @@ function onSignIn(googleUser) {
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-    listMajors();
   }
 }
 
@@ -214,13 +213,6 @@ function initializeApplication(){
   }
   else {
     window.location.href = "index.html";
-  }
-}
-
-//initialize application materials IF page is application
-window.onload = function () {
-  if (window.location.href.indexOf("classman")>=0){
-    initializeApplication();
   }
 }
 
