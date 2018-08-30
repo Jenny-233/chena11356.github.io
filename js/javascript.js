@@ -123,6 +123,10 @@ function onSignIn(googleUser) {
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
+    //set global variables
+    givenName = profile.getGivenName();
+    familyName = profile.getFamilyName();
+    email = profile.getEmail();
   }
 }
 
@@ -134,6 +138,11 @@ function signOut() {
   document.getElementById("greetingText").innerHTML = "";
   document.getElementById("signInLink").style.display = "block";
   document.getElementById("signOutLink").style.display = "none";
+  //set global variables
+  givenName = "givenName";
+  familyName = "familyName";
+  email = "email";
+  status = "status";
 }
 
 //makes service activity visible; if all visible, then get rid of add service link
@@ -213,10 +222,8 @@ function findStatus(emailAddress){
           appendPre('found alex');
           return row[4];
         }*/
-        for (var j = 0; j < row.length; j++){
-          appendPre(row[j]);
-        }
-        if (row[3].indexOf("chena@bxscience.edu")>=0){
+        appendPre(row[3]);
+        if (row[2].indexOf("chena@bxscience.edu")>=0){
           appendPre('found alex!')
         }
       }
