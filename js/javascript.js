@@ -203,7 +203,7 @@ function redirectIfSignedIn(link){
 }
 
 //finds status of user given email address
-function findStatus(emailAddress){
+function findStatus(email){
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1!A:D',
@@ -213,7 +213,7 @@ function findStatus(emailAddress){
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
-        if (row[2].indexOf(emailAddress)>=0){
+        if (row[2].indexOf(email)>=0){
           return row[3];
         }
       }
@@ -228,17 +228,10 @@ function findStatus(emailAddress){
 }
 
 function appendNewPerson(){
-  var values = [
-  [
-    // Cell values ...
-  ],
-  // Additional rows ...
-];
 var body = {
   "majorDimension": "ROWS",
   "values": [
-    ["Pines", "Mabel", "pinesm@bxscience.edu", "juniorProspective"],
-    ["Pines", "Dipper", "pinesd@bxscience.edu", "juniorProspective"],
+    [familyName, givenName, email, "juniorProspective"],
   ],
 };
 gapi.client.sheets.spreadsheets.values.append({
@@ -269,6 +262,7 @@ function initializeApplication(){
     if (status.indexOf("N/A")>=0){
       //if person cannot be found in current nhs records, create new record for them
       appendNewPerson();
+      //then, if they do decide to apply and save their application, make record for them in appropriate spreadsheet
     }
     else if (status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0){
       //if person is current junior/senior, alert that they are juniors/seniors on record and do not show application
@@ -278,6 +272,7 @@ function initializeApplication(){
     else {
       //if person is prospective, access their records and initialize application information with their
       //already-inputted information
+      if (status.indexOf(""))
     }
 }
 
