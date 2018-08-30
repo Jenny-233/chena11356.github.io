@@ -17,6 +17,7 @@ var auth2;
        */
       function handleClientLoad() {
         initializeGlobal();
+        $(document).bind('function_a_complete', initializeApplicationHelper);
         gapi.load('client:auth2', initClient);
       }
 
@@ -226,10 +227,12 @@ function findStatus(email){
           status = row[3]+"";
           appendPre("Status found: "+row[3]);
           document.getElementById("temp").innerHTML = row[3];
+          $(document).trigger('function_a_complete');
           return;
         }
       }
       status = "N/A";
+      $(document).trigger('function_a_complete');
     }
   });
 }
@@ -266,33 +269,32 @@ function initializeApplication(){
     appendPre("User email: "+email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
-    $.ajax({
-      url:findStatus(email),
-      success:function(){
-        appendPre("Result of findStatus: "+status);
-        status = document.getElementById("temp").innerHTML;
-        appendPre("Can you even set a global variable from here?: "+status);
-        if (status.indexOf("N/A")>=0){
-          //if person cannot be found in current nhs records, create new record for them
-          appendNewPerson();
-          //then, if they do decide to apply and save their application, make record for them in appropriate spreadsheet
-        }
-        else if (status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0){
-          //if person is current junior/senior, alert that they are juniors/seniors on record and do not show application
-          alert("It seems that you are a current NHS member. If this is incorrect, please contact nhs@bxscience.edu.");
-          document.getElementById("application").style.display = "none";
-        }
-        else if (status.indexOf("freshman")>=0||status.indexOf("sophomore")>=0) {
-          //if person is current underclassman, alert them that and still show application and get app info
-          alert("It seems that you are in our records as an underclassman. If you are ready, you may start your application as a junior or senior. All information will transfer over.");
+    findStatus(email)
+}
 
-        }
-        else {
-          //if person is prospective junior or senior, access their records and initialize application information with their
-          //already-inputted information
-        }
-      }
-    })
+function initializeApplicationHelper(){
+  appendPre("Result of findStatus: "+status);
+  status = document.getElementById("temp").innerHTML;
+  appendPre("Can you even set a global variable from here?: "+status);
+  if (status.indexOf("N/A")>=0){
+    //if person cannot be found in current nhs records, create new record for them
+    appendNewPerson();
+    //then, if they do decide to apply and save their application, make record for them in appropriate spreadsheet
+  }
+  else if (status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0){
+    //if person is current junior/senior, alert that they are juniors/seniors on record and do not show application
+    alert("It seems that you are a current NHS member. If this is incorrect, please contact nhs@bxscience.edu.");
+    document.getElementById("application").style.display = "none";
+  }
+  else if (status.indexOf("freshman")>=0||status.indexOf("sophomore")>=0) {
+    //if person is current underclassman, alert them that and still show application and get app info
+    alert("It seems that you are in our records as an underclassman. If you are ready, you may start your application as a junior or senior. All information will transfer over.");
+
+  }
+  else {
+    //if person is prospective junior or senior, access their records and initialize application information with their
+    //already-inputted information
+  }
 }
 
 /*function init() {
