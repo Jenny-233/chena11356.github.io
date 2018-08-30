@@ -30,7 +30,14 @@ var auth2;
             }
 
             function onSuccess(){
-              initializeApplication();
+              //if user is signed in and on an application page, initialize application info
+              if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
+                initializeApplication();
+              }
+              //if user is not signed in and on an application page, redirect to homepage
+              if (!(gapi.auth2.getAuthInstance().isSignedIn.get())&&window.location.href.indexOf("classman")>=0){
+                window.location.href = "index.html";
+              }
             }
 
             function onFailure(){
@@ -113,14 +120,6 @@ function onSignIn(googleUser) {
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-    //if user is signed in and on an application page, initialize application info
-    if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
-      initializeApplication();
-    }
-    //if user is not signed in and on an application page, redirect to homepage
-    if (!(gapi.auth2.getAuthInstance().isSignedIn.get())&&window.location.href.indexOf("classman")>=0){
-      window.location.href = "index.html";
-    }
   }
 }
 
