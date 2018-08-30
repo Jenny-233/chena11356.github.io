@@ -292,6 +292,7 @@ function initializeApplication(){
           //already-inputted information
         }
       }
+    })
 }
 
 /*function init() {
