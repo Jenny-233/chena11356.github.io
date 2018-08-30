@@ -244,7 +244,7 @@ var body = {
 gapi.client.sheets.spreadsheets.values.append({
    spreadsheetId: "1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc",
    range: "Sheet1",
-   valueInputOption: USER_ENTERED,
+   valueInputOption: "USER_ENTERED",
    resource: body
 }).then((response) => {
   var result = response.result;
