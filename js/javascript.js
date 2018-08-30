@@ -216,7 +216,7 @@ function findStatus(emailAddress){
         for (var j = 0; j < row.length; j++){
           appendPre(row[j]);
         }
-        if (row[3].trim()=="chena@bxscience.edu"){
+        if (row[3].indexOf("chena@bxscience.edu")>=0){
           appendPre('found alex!')
         }
       }
