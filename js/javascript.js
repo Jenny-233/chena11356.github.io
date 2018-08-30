@@ -298,53 +298,122 @@ function initializeApplicationHelper(){
   else {
     //if person is prospective junior or senior, access their records and initialize application information
     if (status.indexOf("juniorProspective")>=0){
-      appendPre('Status found as juniorPropective');
-      gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E',
-      range: 'Applications',
-      }).then(function(response) {
-        appendPre('Accessed juniorPropective spreadsheet');
-        var range = response.result;
-        if (range.values.length > 0) {
-          for (i = 1; i < range.values.length; i++) {
-            var row = range.values[i];
-            appendPre('Found email: '+row[3]);
-            //row is array of arrays of application info
-            if ((row[3]+"").indexOf(email)>=0){ //when applicant is found
-              appendPre('Found applicant');
-              document.getElementById("lastNameInput").value = row[1]; //set last name
-              document.getElementById("firstNameInput").value = row[2]; //set first name
-              document.getElementById("osisInput").value = row[4]; //set osis
-              document.getElementById("offInput").value = row[5]; //set official class
-              document.getElementById("averageInput").value = row[6]; //set average
-              if (row[7].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
-                document.getElementById("failedInput").checked = true;
-                document.getElementById("failedInput2").checked = false;
-              }
-              else {
-                document.getElementById("failedInput").checked = false;
-                document.getElementById("failedInput2").checked = true;
-              }
-              if (row[8].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
-                document.getElementById("suspendedInput").checked = true;
-                document.getElementById("suspendedInput2").checked = false;
-              }
-              else {
-                document.getElementById("suspendedInput").checked = false;
-                document.getElementById("suspendedInput2").checked = true;
-              }
-              if (row[9].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
-                document.getElementById("enteredAsSoph").checked = false;
-              }
-              else {
-                document.getElementById("enteredAsSoph").checked = true;
-              }
+      retrieveJuniorApp();
+    }
+  }
+}
 
+function retrieveJuniorApp(){
+  appendPre('Status found as juniorPropective');
+  gapi.client.sheets.spreadsheets.values.get({
+  spreadsheetId: '1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E',
+  range: 'Applications',
+  }).then(function(response) {
+    appendPre('Accessed juniorPropective spreadsheet');
+    var range = response.result;
+    if (range.values.length > 0) {
+      for (i = 1; i < range.values.length; i++) {
+        var row = range.values[i];
+        appendPre('Found email: '+row[3]);
+        //row is array of arrays of application info
+        if ((row[3]+"").indexOf(email)>=0){ //when applicant is found
+          appendPre('Found applicant');
+          document.getElementById("lastNameInput").value = row[1]; //set last name
+          document.getElementById("firstNameInput").value = row[2]; //set first name
+          document.getElementById("osisInput").value = row[4]; //set osis
+          document.getElementById("offInput").value = row[5]; //set official class
+          document.getElementById("averageInput").value = row[6]; //set average
+          if (row[7].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
+            document.getElementById("failedInput").checked = true;
+            document.getElementById("failedInput2").checked = false;
+          }
+          else {
+            document.getElementById("failedInput").checked = false;
+            document.getElementById("failedInput2").checked = true;
+          }
+          if (row[8].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
+            document.getElementById("suspendedInput").checked = true;
+            document.getElementById("suspendedInput2").checked = false;
+          }
+          else {
+            document.getElementById("suspendedInput").checked = false;
+            document.getElementById("suspendedInput2").checked = true;
+          }
+          if (row[9].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
+            document.getElementById("enteredAsSoph").checked = false;
+          }
+          else {
+            document.getElementById("enteredAsSoph").checked = true;
+          }
+
+          var activityNum = 1;
+          //make activities visible if the name is not empty
+          for (var m = 10; m<=34; m=m+6){
+            if ((row[m]+"").trim().length>0&&m>10){ //add activity if not empty and not #1
+              addService();
+            }
+            if ((row[m]+"").trim().length>0){ //add information if not empty
+              document.getElementById("serviceNameInput"+activityNum).value = row[m];
+              document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
+              document.getElementById("creditInput"+activityNum).value = row[m+3];
+              document.getElementById("facultyInput"+activityNum).value = row[m+4];
+              document.getElementById("emailInput"+activityNum).value = row[m+5];
+              activityNum++;
             }
           }
+          activityNum = 1;
+          for (var n = 40; n<=94; n=n+6){
+            if ((row[m]+"").trim().length>0&&n>40){ //add activity if not empty and not #1
+              addLeadership();
+            }
+            if ((row[m]+"").trim().length>0){ //add information if not empty
+              document.getElementById("leadershipNameInput"+activityNum).value = row[m];
+              document.getElementById("lcode"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
+              document.getElementById("lcreditInput"+activityNum).value = row[m+3];
+              document.getElementById("lfacultyInput"+activityNum).value = row[m+4];
+              document.getElementById("lemailInput"+activityNum).value = row[m+5];
+              activityNum++;
+            }
+          }
+          document.getElementById("additionalInput").value = row[100]; //set additional information
+          document.getElementById("electronicInput").value = row[101]; //set electronic signature
+
         }
-      });
+      }
     }
+  });
+}
+
+function getSelectedIndex(code){
+  if (code.indexOf("S1")>=0||code.indexOf("L1")>=0){
+    return 0;
+  }
+  else if (code.indexOf("S2")>=0||code.indexOf("L2")>=0){
+    return 1;
+  }
+  else if (code.indexOf("S3")>=0||code.indexOf("L3")>=0){
+    return 2;
+  }
+  else if (code.indexOf("S4")>=0||code.indexOf("L4")>=0){
+    return 3;
+  }
+  else if (code.indexOf("S5")>=0||code.indexOf("L5")>=0){
+    return 4;
+  }
+  else if (code.indexOf("C1")>=0){
+    return 5;
+  }
+  else if (code.indexOf("C2")>=0){
+    return 6;
+  }
+  else if (code.indexOf("C3")>=0){
+    return 7;
+  }
+  else if (code.indexOf("C4")>=0){
+    return 8;
+  }
+  else {
+    return -1;
   }
 }
 
