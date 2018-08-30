@@ -204,7 +204,6 @@ function redirectIfSignedIn(link){
 
 //finds status of user given email address
 function findStatus(email){
-  var res = "N/A";
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1!A:D',
@@ -216,14 +215,14 @@ function findStatus(email){
         appendPre("row[2] includes: "+row[2]);
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
-          res = row[3]+"";
+          status = row[3]+"";
           appendPre("Status found: "+row[3]);
-          return res;
+          return;
         }
       }
+      status = "N/A";
     }
   });
-  return res;
 }
 
 function appendNewPerson(){
@@ -258,7 +257,7 @@ function initializeApplication(){
     appendPre("User email: "+email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
-    status = findStatus(email);
+    findStatus(email);
     appendPre("Result of findStatus: "+status);
     if (status.indexOf("N/A")>=0){
       //if person cannot be found in current nhs records, create new record for them
