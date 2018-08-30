@@ -3,6 +3,8 @@ var familyName = "familyName";
 var email = "email";
 var status = "status";
 
+var auth2;
+
 /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -20,6 +22,19 @@ var status = "status";
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
                 scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"
               });
+              auth2 = gapi.auth2.init({
+                client_id: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com'
+              });
+              // Attach the click handler to the sign-in button
+              auth2.attachClickHandler('signInLink', {}, onSuccess, onFailure);
+            }
+
+            function onSuccess(){
+              initializeApplication();
+            }
+
+            function onFailure(){
+              alert('Click handler fail');
             }
 
 
