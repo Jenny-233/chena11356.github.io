@@ -308,16 +308,16 @@ function initializeApplicationHelper(){
         if (range.values.length > 0) {
           for (i = 1; i < range.values.length; i++) {
             var row = range.values[i];
-            appendPre('Found email: '+row[2]);
+            appendPre('Found email: '+row[3]);
             //row is array of arrays of application info
-            if ((row[2]+"").indexOf(email)>=0){ //when applicant is found
+            if ((row[3]+"").indexOf(email)>=0){ //when applicant is found
               appendPre('Found applicant');
-              document.getElementById("lastNameInput").value = row[0]; //set last name
-              document.getElementById("firstNameInput").value = row[1]; //set first name
-              document.getElementById("osisInput").value = row[3]; //set osis
-              document.getElementById("offInput").value = row[4]; //set official class
-              document.getElementById("averageInput").value = row[5]; //set official class
-              if (row[5].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
+              document.getElementById("lastNameInput").value = row[1]; //set last name
+              document.getElementById("firstNameInput").value = row[2]; //set first name
+              document.getElementById("osisInput").value = row[4]; //set osis
+              document.getElementById("offInput").value = row[5]; //set official class
+              document.getElementById("averageInput").value = row[6]; //set average
+              if (row[7].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
                 document.getElementById("failedInput").checked = true;
                 document.getElementById("failedInput2").checked = false;
               }
@@ -325,7 +325,7 @@ function initializeApplicationHelper(){
                 document.getElementById("failedInput").checked = false;
                 document.getElementById("failedInput2").checked = true;
               }
-              if (row[6].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
+              if (row[8].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
                 document.getElementById("suspendedInput").checked = true;
                 document.getElementById("suspendedInput2").checked = false;
               }
@@ -333,7 +333,7 @@ function initializeApplicationHelper(){
                 document.getElementById("suspendedInput").checked = false;
                 document.getElementById("suspendedInput2").checked = true;
               }
-              if (row[7].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
+              if (row[9].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
                 document.getElementById("enteredAsSoph").checked = false;
               }
               else {
