@@ -204,6 +204,7 @@ function redirectIfSignedIn(link){
 
 //finds status of user given email address
 function findStatus(email){
+  res = "N/A";
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1!A:D',
@@ -214,14 +215,14 @@ function findStatus(email){
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
         if (row[2].indexOf(email)>=0){
-          return row[3];
+          res = row[3];
         }
       }
-      return "N/A";
     } else {
       return "No data found.";
     }
-  });
+  })
+  return res;
 }
 
 function appendNewPerson(){
