@@ -229,6 +229,10 @@ function findStatus(emailAddress){
 
 //if user is signed in, initialize everything in application; else, redirect back to the main page
 function initializeApplication(){
+    //get rid of loading stuff and show the application
+    document.getElementById("loadingText").style.display = "none";
+    document.getElementById("loadingImg").style.display = "none";
+    document.getElementById("application").style.display = "block;"
     //get information
     var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     givenName = profile.getGivenName();
