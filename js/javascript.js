@@ -203,10 +203,8 @@ function findStatus(emailAddress){
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1!A:D',
   }).then(function(response) {
-    appendPre('Testing findStatus1');
     var range = response.result;
     if (range.values.length > 0) {
-      appendPre('testing findStatus2');
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
@@ -217,6 +215,9 @@ function findStatus(emailAddress){
         }*/
         for (var j = 0; j < row.length; j++){
           appendPre(row[j]);
+        }
+        if (row[3].trim()=="chena@bxscience.edu"){
+          appendPre('found alex!')
         }
       }
     } else {
@@ -232,7 +233,7 @@ function initializeApplication(){
     //get rid of loading stuff and show the application
     document.getElementById("loadingText").style.display = "none";
     document.getElementById("loadingImg").style.display = "none";
-    document.getElementById("application").style.display = "block;"
+    document.getElementById("application").style.display = "block";
     //get information
     var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     givenName = profile.getGivenName();
