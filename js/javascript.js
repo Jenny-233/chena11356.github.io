@@ -226,7 +226,6 @@ function findStatus(email){
   }, function(response) {
     console.log('Error: ' + response.result.error.message);
   });
-  return "N/A";
 }
 
 function appendNewPerson(){
