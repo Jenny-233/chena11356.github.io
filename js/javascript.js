@@ -203,14 +203,15 @@ function findStatus(emailAddress){
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1!A:D',
   }).then(function(response) {
+    appendPre('Testing findStatus1');
     var range = response.result;
     if (range.values.length > 0) {
-      console.log('testing findStatus');
+      appendPre('testing findStatus2');
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
         if (row[3].trim()=="chena@bxscience.edu"){
-          console.log('found alex');
+          appendPre('found alex');
           return row[4];
         }
       }
@@ -231,7 +232,6 @@ function initializeApplication(){
     email = profile.getEmail();
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
-    listMajors();
     status = findStatus(email);
 }
 
