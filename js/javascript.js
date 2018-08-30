@@ -148,6 +148,10 @@ function signOut() {
   familyName = "familyName";
   email = "email";
   status = "status";
+  //if on an application page, return to front page
+  if (window.location.href.indexOf("classman")>=0){
+    widow.location.href="index.html";
+  }
 }
 
 //makes service activity visible; if all visible, then get rid of add service link
@@ -294,16 +298,20 @@ function initializeApplicationHelper(){
   else {
     //if person is prospective junior or senior, access their records and initialize application information
     if (status.indexOf("juniorProspective")>=0){
+      appendPre('Status found as juniorPropective');
       gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E',
       range: 'Applications',
       }).then(function(response) {
+        appendPre('Accessed juniorPropective spreadsheet');
         var range = response.result;
         if (range.values.length > 0) {
           for (i = 1; i < range.values.length; i++) {
             var row = range.values[i];
+            appendPre('Found email: '+row[2]);
             //row is array of arrays of application info
             if ((row[2]+"").indexOf(email)>=0){ //when applicant is found
+              appendPre('Found applicant');
               document.getElementById("lastNameInput").value = row[0]; //set last name
               document.getElementById("firstNameInput").value = row[1]; //set first name
               document.getElementById("osisInput").value = row[3]; //set osis
