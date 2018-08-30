@@ -22,13 +22,16 @@ var auth2;
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
                 scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"
               });
+              /*
               auth2 = gapi.auth2.init({
                 client_id: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com'
               });
               // Attach the click handler to the sign-in button
-              auth2.attachClickHandler('signInLink', {}, onSuccess, onFailure);
+              auth2.attachClickHandler('signInLink', {}, onSuccess, onFailure);*/
             }
 
+
+            /*
             var onSuccess = function(user){
               //if user is signed in and on an application page, initialize application info
               if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
@@ -42,7 +45,7 @@ var auth2;
 
             var onFailure = function (error){
               alert('Click handler fail');
-            }
+            }*/
 
 
 /**
