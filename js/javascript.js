@@ -291,7 +291,7 @@ function initializeApplication(){
           //if person is prospective junior or senior, access their records and initialize application information with their
           //already-inputted information
         }
-      };
+      }
 }
 
 /*function init() {
