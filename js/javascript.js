@@ -217,14 +217,12 @@ function findStatus(email){
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
           res = row[3]+"";
-          return res;
           appendPre("Status found: "+row[3]);
+          return res;
         }
       }
-    } else {
-      return "No data found.";
     }
-  })
+  });
   return res;
 }
 
