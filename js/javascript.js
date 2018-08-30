@@ -8,6 +8,14 @@ var status = "status";
        */
       function handleClientLoad() {
         gapi.load('client:auth2', initClient);
+        //if user is signed in and on an application page, initialize application info
+        if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
+          initializeApplication();
+        }
+        //if user is not signed in and on an application page, redirect to homepage
+        if (!(gapi.auth2.getAuthInstance().isSignedIn.get())&&window.location.href.indexOf("classman")>=0){
+          window.location.href = "index.html";
+        }
       }
 
       /**
