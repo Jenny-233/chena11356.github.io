@@ -8,14 +8,6 @@ var status = "status";
        */
       function handleClientLoad() {
         gapi.load('client:auth2', initClient);
-        //if user is signed in and on an application page, initialize application info
-        if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
-          initializeApplication();
-        }
-        //if user is not signed in and on an application page, redirect to homepage
-        if (!(gapi.auth2.getAuthInstance().isSignedIn.get())&&window.location.href.indexOf("classman")>=0){
-          window.location.href = "index.html";
-        }
       }
 
       /**
@@ -106,6 +98,14 @@ function onSignIn(googleUser) {
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
+    //if user is signed in and on an application page, initialize application info
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
+      initializeApplication();
+    }
+    //if user is not signed in and on an application page, redirect to homepage
+    if (!(gapi.auth2.getAuthInstance().isSignedIn.get())&&window.location.href.indexOf("classman")>=0){
+      window.location.href = "index.html";
+    }
   }
 }
 
@@ -207,7 +207,6 @@ function findStatus(emailAddress){
 
 //if user is signed in, initialize everything in application; else, redirect back to the main page
 function initializeApplication(){
-  if (gapi.auth2.getAuthInstance().isSignedIn.get()){
     //get information
     var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     givenName = profile.getGivenName();
@@ -217,10 +216,6 @@ function initializeApplication(){
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     listMajors();
     status = findStatus(email);
-  }
-  else {
-    window.location.href = "index.html";
-  }
 }
 
 /*function init() {
