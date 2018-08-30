@@ -260,6 +260,7 @@ function initializeApplication(){
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     status = findStatus(email);
+    appendPre(status);
     if (status.indexOf("N/A")>=0){
       //if person cannot be found in current nhs records, create new record for them
       appendNewPerson();
