@@ -215,8 +215,9 @@ function findStatus(email){
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
         if (row[2].indexOf(email)>=0){
-          res = row[3];
-          appendPre(row[3]);
+          res = row[3]+"";
+          return res;
+          appendPre("Status found: "+row[3]);
         }
       }
     } else {
@@ -255,11 +256,11 @@ function initializeApplication(){
     givenName = profile.getGivenName();
     familyName = profile.getFamilyName();
     email = profile.getEmail();
-    appendPre(email);
+    appendPre("User email: "+email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     status = findStatus(email);
-    appendPre(status);
+    appendPre("Result of findStatus: "+status);
     if (status.indexOf("N/A")>=0){
       //if person cannot be found in current nhs records, create new record for them
       appendNewPerson();
