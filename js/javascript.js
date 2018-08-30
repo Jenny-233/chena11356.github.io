@@ -210,9 +210,13 @@ function findStatus(emailAddress){
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
+        /*
         if (row[3].trim()=="chena@bxscience.edu"){
           appendPre('found alex');
           return row[4];
+        }*/
+        for (var j = 0; j < row.length; j++){
+          appendPre(row[j]);
         }
       }
     } else {
