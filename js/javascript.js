@@ -2,7 +2,8 @@ var givenName;
 var familyName;
 var email;
 var status;
-
+var curStatus; //keep track of current status in records so we can tell if they need to be transferred
+var appIndex;
 var auth2;
 
   function initializeGlobal(){
@@ -10,6 +11,8 @@ var auth2;
     familyName = "familyName";
     email = "email";
     status = "status";
+    curStatus = "status";
+    appIndex = -1;
   }
 
 /**
@@ -229,6 +232,7 @@ function findStatus(email){
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
           status = row[3]+"";
+          curStatus = row[3]+"";
           //appendPre("Status found: "+row[3]);
           $(document).trigger('function_a_complete');
           return;
@@ -277,11 +281,9 @@ function initializeApplication(){
 
 //runs after status is found and defined
 function initializeApplicationHelper(){
-  var appIndex = -1;
-  var appInfo = [];
   //appendPre("Result of findStatus: "+status);
   if (status.indexOf("N/A")>=0){
-    //if person cannot be found in current nhs records, create new record for them
+    //if person cannot be found in current nhs records, create new record for them (and set appIndex)
     appendNewPerson();
     //then, if they do decide to apply and save their application, make record for them in appropriate spreadsheet
   }
@@ -299,6 +301,9 @@ function initializeApplicationHelper(){
     //if person is prospective junior or senior, access their records and initialize application information
     if (status.indexOf("juniorProspective")>=0){
       retrieveJuniorApp();
+    }
+    else {
+      retrieveSeniorApp();
     }
   }
 }
@@ -319,6 +324,7 @@ function retrieveJuniorApp(){
         //row is array of arrays of application info
         if ((row[3]+"").indexOf(email)>=0){ //when applicant is found
           appendPre('Found applicant');
+          appIndex = i;
           document.getElementById("lastNameInput").value = row[1]; //set last name
           document.getElementById("firstNameInput").value = row[2]; //set first name
           document.getElementById("osisInput").value = row[4]; //set osis
@@ -396,6 +402,10 @@ function retrieveJuniorApp(){
   });
 }
 
+function retrieveSeniorApp(){
+
+}
+
 function getSelectedIndex(code){
   if (code.indexOf("S1")>=0||code.indexOf("L1")>=0){
     return 0;
@@ -427,6 +437,232 @@ function getSelectedIndex(code){
   else {
     return -1;
   }
+}
+
+//NOTE: if you changed your status AND decide to save after changing, then transfer app
+
+//changes status to junior and changes spans accordingly
+function changeJunior(){
+  status = "juniorProspective";
+  if (document.getElementById("enteredAsSoph").checked){
+    document.getElementById("serviceNeeded").innerHTML = "8";
+    document.getElementById("leadershipNeeded").innerHTML = "30";
+  }
+  else {
+    document.getElementById("serviceNeeded").innerHTML = "13";
+    document.getElementById("leadershipNeeded").innerHTML = "50";
+  }
+}
+
+function changeSenior(){
+  status = "seniorProspective";
+  if (document.getElementById("enteredAsSoph").checked){
+    document.getElementById("serviceNeeded").innerHTML = "10";
+    document.getElementById("leadershipNeeded").innerHTML = "40";
+  }
+  else {
+    document.getElementById("serviceNeeded").innerHTML = "15";
+    document.getElementById("leadershipNeeded").innerHTML = "60";
+  }
+}
+
+//if sophomore checkbox is checked or unchecked, handle it
+function handleChange(checkbox) {
+    if(checkbox.checked == true){
+        if (status.indexOf("juniorProspective")>=0){ //junior who entered as sophomore
+          document.getElementById("serviceNeeded").innerHTML = "8";
+          document.getElementById("leadershipNeeded").innerHTML = "30";
+        }
+        else{ //senior who entered as sophomore
+          document.getElementById("serviceNeeded").innerHTML = "10";
+          document.getElementById("leadershipNeeded").innerHTML = "40";
+        }
+    }else{
+      if (status.indexOf("juniorProspective")>=0){ //junior who entered as freshman
+        document.getElementById("serviceNeeded").innerHTML = "13";
+        document.getElementById("leadershipNeeded").innerHTML = "50";
+      }
+      else{ //senior who entered as freshman
+        document.getElementById("serviceNeeded").innerHTML = "15";
+        document.getElementById("leadershipNeeded").innerHTML = "60";
+      }
+   }
+}
+
+function saveApp(){
+  if (curStatus.trim().indexOf(status)<0){ //if user changed their status, transfer app
+
+  }
+
+  //recalculate total service and leadership, set into spans and spreadsheet
+  var totalService = 0;
+  var totalLeadership = 0;
+  for (var b = 1; b<=5; b++){
+    totalService += parseInt(document.getElementById("creditInput")+b);
+  }
+  document.getElementById("serviceInput").innerHTML = totalService+"";
+  for (var b = 1; b<=10; b++){
+    totalLeadership += parseInt(document.getElementById("lcreditInput")+b);
+  }
+  document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
+
+  //set the checkbox/radio responses into text
+  var failed;
+  var suspended;
+  var incoming;
+  if (document.getElementById("failedInput2").checked){
+    failed = "No";
+  }
+  else {
+    failed = "Yes";
+  }
+  if (document.getElementById("suspendedInput2").checked){
+    suspended = "No";
+  }
+  else {
+    suspended = "Yes";
+  }
+  if (document.getElementById("enteredAsSoph").checked){
+    incoming = "Sophomore";
+  }
+  else {
+    incoming = "Freshman";
+  }
+
+  if (status.indexOf("juniorProspective")>=0){
+    var body = {
+      "majorDimension": "ROWS",
+      "values": [
+        ["", familyName, givenName, email,
+      document.getElementById("osisInput").value,
+      document.getElementById("offInput").value,
+      document.getElementById("averageInput").value,
+      failed, suspended, incoming,
+      document.getElementById("serviceNameInput1").value,
+      document.getElementById("code1").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("creditInput1").value,
+      document.getElementById("facultyInput1").value,
+      document.getElementById("emailInput1").value,
+      document.getElementById("serviceNameInput2").value,
+      document.getElementById("code2").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("creditInput2").value,
+      document.getElementById("facultyInput2").value,
+      document.getElementById("emailInput2").value,
+      document.getElementById("serviceNameInput3").value,
+      document.getElementById("code3").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("creditInput3").value,
+      document.getElementById("facultyInput3").value,
+      document.getElementById("emailInput3").value,
+      document.getElementById("serviceNameInput4").value,
+      document.getElementById("code4").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("creditInput4").value,
+      document.getElementById("facultyInput4").value,
+      document.getElementById("emailInput4").value,
+      document.getElementById("serviceNameInput5").value,
+      document.getElementById("code5").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("creditInput5").value,
+      document.getElementById("facultyInput5").value,
+      document.getElementById("emailInput5").value,
+      document.getElementById("leadershipNameInput1").value,
+      document.getElementById("lcode1").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput1").value,
+      document.getElementById("lfacultyInput1").value,
+      document.getElementById("lemailInput1").value,
+      document.getElementById("leadershipNameInput2").value,
+      document.getElementById("lcode2").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput2").value,
+      document.getElementById("lfacultyInput2").value,
+      document.getElementById("lemailInput2").value,
+      document.getElementById("leadershipNameInput3").value,
+      document.getElementById("lcode3").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput3").value,
+      document.getElementById("lfacultyInput3").value,
+      document.getElementById("lemailInput3").value,
+      document.getElementById("leadershipNameInput4").value,
+      document.getElementById("lcode4").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput4").value,
+      document.getElementById("lfacultyInput4").value,
+      document.getElementById("lemailInput4").value,
+      document.getElementById("leadershipNameInput5").value,
+      document.getElementById("lcode5").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput5").value,
+      document.getElementById("lfacultyInput5").value,
+      document.getElementById("lemailInput5").value,
+      document.getElementById("leadershipNameInput6").value,
+      document.getElementById("lcode6").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput6").value,
+      document.getElementById("lfacultyInput6").value,
+      document.getElementById("lemailInput6").value,
+      document.getElementById("leadershipNameInput7").value,
+      document.getElementById("lcode7").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput7").value,
+      document.getElementById("lfacultyInput7").value,
+      document.getElementById("lemailInput7").value,
+      document.getElementById("leadershipNameInput8").value,
+      document.getElementById("lcode8").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput8").value,
+      document.getElementById("lfacultyInput8").value,
+      document.getElementById("lemailInput8").value,
+      document.getElementById("leadershipNameInput9").value,
+      document.getElementById("lcode9").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput9").value,
+      document.getElementById("lfacultyInput9").value,
+      document.getElementById("lemailInput9").value,
+      document.getElementById("leadershipNameInput10").value,
+      document.getElementById("lcode10").options[document.getElementById("code1").selectedIndex].text,
+      "",
+      document.getElementById("lcreditInput10").value,
+      document.getElementById("lfacultyInput10").value,
+      document.getElementById("lemailInput10").value,
+      document.getElementById("additionalInput").value,
+      document.getElementById("electronicInput").value,
+      "",
+      "",
+      "",
+      totalService,
+      "",
+      "",
+      totalLeadership
+      ],
+      ],
+    };
+    gapi.client.sheets.spreadsheets.values.update({
+       spreadsheetId: "1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E",
+       range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+       valueInputOption: "USER_ENTERED",
+       resource: body
+    }).then((response) => {
+      var result = response.result;
+      console.log(`${result.updatedCells} cells updated.`);
+    });
+  }
+  else if (status.indexOf("seniorProspective")>=0){
+
+  }
+  else if (status.indexOf("freshman")>=0){
+
+  }
+  else if (status.indexOf("sophomore")>=0){
+
+  }
+}
+
+function deleteApp(){
+
 }
 
 /*function init() {

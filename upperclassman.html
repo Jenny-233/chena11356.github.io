@@ -1059,10 +1059,10 @@ COLOR SCHEME:
         <!--row to toggle junior or senior-->
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">Junior</button>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="changeJunior()">Junior</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">Senior</button>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="changeSenior()">Senior</button>
           </div>
         </div>
         <!--row for checkbox-->
@@ -1070,7 +1070,7 @@ COLOR SCHEME:
         <div class="row">
           <div class="col">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="enteredAsSoph">
+              <input class="form-check-input" type="checkbox" value="" id="enteredAsSoph" onchange='handleChange(this);'>
               <label class="form-check-label" for="enteredAsSoph">
                 Entered Bronx Science as a sophomore
               </label>
@@ -1098,13 +1098,13 @@ COLOR SCHEME:
         <br>
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">Save Your Application</button>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="saveApp()">Save Your Application</button>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete Your Application</button>
+            <button type="button" class="btn btn-outline-danger btn-lg btn-block" onclick="deleteApp()">Delete Your Application</button>
           </div>
         </div>
       </div>
