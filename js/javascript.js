@@ -269,13 +269,12 @@ function initializeApplication(){
     appendPre("User email: "+email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
-    findStatus(email)
+    findStatus(email);
 }
 
+//runs after status is found and defined
 function initializeApplicationHelper(){
   appendPre("Result of findStatus: "+status);
-  status = document.getElementById("temp").innerHTML;
-  appendPre("Can you even set a global variable from here?: "+status);
   if (status.indexOf("N/A")>=0){
     //if person cannot be found in current nhs records, create new record for them
     appendNewPerson();
