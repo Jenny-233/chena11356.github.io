@@ -204,7 +204,7 @@ function redirectIfSignedIn(link){
 
 //finds status of user given email address
 function findStatus(email){
-  res = "N/A";
+  var res = "N/A";
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1!A:D',
