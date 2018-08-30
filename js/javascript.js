@@ -123,10 +123,6 @@ function onSignIn(googleUser) {
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-    //set global variables
-    givenName = profile.getGivenName();
-    familyName = profile.getFamilyName();
-    email = profile.getEmail();
   }
 }
 
@@ -217,22 +213,43 @@ function findStatus(emailAddress){
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
-        /*
-        if (row[3].trim()=="chena@bxscience.edu"){
-          appendPre('found alex');
-          return row[4];
-        }*/
-        appendPre(row[3]);
-        if (row[2].indexOf("chena@bxscience.edu")>=0){
-          appendPre('found alex!')
+        if (row[2].indexOf(emailAddress)>=0){
+          return row[3];
         }
       }
+      return "N/A";
     } else {
       console.log('No data found.');
     }
   }, function(response) {
     console.log('Error: ' + response.result.error.message);
   });
+  return "N/A";
+}
+
+function appendNewPerson(){
+  var values = [
+  [
+    // Cell values ...
+  ],
+  // Additional rows ...
+];
+var body = {
+  "majorDimension": "ROWS",
+  "values": [
+    ["Pines", "Mabel", "pinesm@bxscience.edu", "juniorProspective"],
+    ["Pines", "Dipper", "pinesd@bxscience.edu", "juniorProspective"],
+  ],
+};
+gapi.client.sheets.spreadsheets.values.append({
+   spreadsheetId: "1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc",
+   range: "Sheet1",
+   valueInputOption: USER_ENTERED,
+   resource: body
+}).then((response) => {
+  var result = response.result;
+  console.log(`${result.updates.updatedCells} cells appended.`)
+});
 }
 
 //if user is signed in, initialize everything in application; else, redirect back to the main page
@@ -249,6 +266,19 @@ function initializeApplication(){
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     status = findStatus(email);
+    if (status.indexOf("N/A")>=0){
+      //if person cannot be found in current nhs records, create new record for them
+      appendNewPerson();
+    }
+    else if (status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0){
+      //if person is current junior/senior, alert that they are juniors/seniors on record and do not show application
+      alert("It seems that you are a current NHS member. If this is incorrect, please contact nhs@bxscience.edu.");
+      document.getElementById("application").style.display = "none";
+    }
+    else {
+      //if person is prospective, access their records and initialize application information with their
+      //already-inputted information
+    }
 }
 
 /*function init() {
