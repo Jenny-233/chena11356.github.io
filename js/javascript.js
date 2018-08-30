@@ -225,6 +225,7 @@ function findStatus(email){
         if ((row[2]+"").indexOf(email)>=0){
           status = row[3]+"";
           appendPre("Status found: "+row[3]);
+          document.getElementById("temp").innerHTML = row[3];
           return;
         }
       }
@@ -267,7 +268,7 @@ function initializeApplication(){
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     findStatus(email);
     appendPre("Result of findStatus: "+status);
-    status = "TESTING";
+    status = document.getElementById("temp").innerHTML;
     appendPre("Can you even set a global variable from here?: "+status);
     if (status.indexOf("N/A")>=0){
       //if person cannot be found in current nhs records, create new record for them
