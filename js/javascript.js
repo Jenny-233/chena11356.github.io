@@ -73,7 +73,7 @@ var auth2;
        * Print the names and majors of students in a sample spreadsheet:
        * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
        */
-      function listMajors() {
+      /*function listMajors() {
         gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
           range: 'Class Data!A2:E',
@@ -92,7 +92,7 @@ var auth2;
         }, function(response) {
           appendPre('Error: ' + response.result.error.message);
         });
-      }
+      }*/
 
 function main(){
   /*var app = new Vue({
@@ -221,12 +221,11 @@ function findStatus(email){
     if (range.values.length > 0) {
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
-        appendPre("row[2] includes: "+row[2]);
+        //appendPre("row[2] includes: "+row[2]);
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
           status = row[3]+"";
-          appendPre("Status found: "+row[3]);
-          document.getElementById("temp").innerHTML = row[3];
+          //appendPre("Status found: "+row[3]);
           $(document).trigger('function_a_complete');
           return;
         }
@@ -266,7 +265,7 @@ function initializeApplication(){
     givenName = profile.getGivenName();
     familyName = profile.getFamilyName();
     email = profile.getEmail();
-    appendPre("User email: "+email);
+    //appendPre("User email: "+email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     findStatus(email);
@@ -274,7 +273,9 @@ function initializeApplication(){
 
 //runs after status is found and defined
 function initializeApplicationHelper(){
-  appendPre("Result of findStatus: "+status);
+  var appIndex = -1;
+  var appInfo = [];
+  //appendPre("Result of findStatus: "+status);
   if (status.indexOf("N/A")>=0){
     //if person cannot be found in current nhs records, create new record for them
     appendNewPerson();
@@ -288,11 +289,54 @@ function initializeApplicationHelper(){
   else if (status.indexOf("freshman")>=0||status.indexOf("sophomore")>=0) {
     //if person is current underclassman, alert them that and still show application and get app info
     alert("It seems that you are in our records as an underclassman. If you are ready, you may start your application as a junior or senior. All information will transfer over.");
-
+    //then, if they do decide to save their application as an upperclassman, transfer records into appropriate spreadsheet
   }
   else {
-    //if person is prospective junior or senior, access their records and initialize application information with their
-    //already-inputted information
+    //if person is prospective junior or senior, access their records and initialize application information
+    if (status.indexOf("juniorProspective")>=0){
+      gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: '1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E',
+      range: 'Applications',
+      }).then(function(response) {
+        var range = response.result;
+        if (range.values.length > 0) {
+          for (i = 1; i < range.values.length; i++) {
+            var row = range.values[i];
+            //row is array of arrays of application info
+            if ((row[2]+"").indexOf(email)>=0){ //when applicant is found
+              document.getElementById("lastNameInput").value = row[0]; //set last name
+              document.getElementById("firstNameInput").value = row[1]; //set first name
+              document.getElementById("osisInput").value = row[3]; //set osis
+              document.getElementById("offInput").value = row[4]; //set official class
+              document.getElementById("averageInput").value = row[5]; //set official class
+              if (row[5].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
+                document.getElementById("failedInput").checked = true;
+                document.getElementById("failedInput2").checked = false;
+              }
+              else {
+                document.getElementById("failedInput").checked = false;
+                document.getElementById("failedInput2").checked = true;
+              }
+              if (row[6].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
+                document.getElementById("suspendedInput").checked = true;
+                document.getElementById("suspendedInput2").checked = false;
+              }
+              else {
+                document.getElementById("suspendedInput").checked = false;
+                document.getElementById("suspendedInput2").checked = true;
+              }
+              if (row[7].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
+                document.getElementById("enteredAsSoph").checked = false;
+              }
+              else {
+                document.getElementById("enteredAsSoph").checked = true;
+              }
+
+            }
+          }
+        }
+      });
+    }
   }
 }
 
