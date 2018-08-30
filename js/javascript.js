@@ -216,6 +216,7 @@ function findStatus(email){
         //row is array of arrays of last name, first name, email address, and status
         if (row[2].indexOf(email)>=0){
           res = row[3];
+          appendPre(row[3]);
         }
       }
     } else {
@@ -254,6 +255,7 @@ function initializeApplication(){
     givenName = profile.getGivenName();
     familyName = profile.getFamilyName();
     email = profile.getEmail();
+    appendPre(email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
     status = findStatus(email);
