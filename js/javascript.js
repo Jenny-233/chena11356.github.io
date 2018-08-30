@@ -1,14 +1,22 @@
-var givenName = "givenName";
-var familyName = "familyName";
-var email = "email";
-var status = "status";
+var givenName;
+var familyName;
+var email;
+var status;
 
 var auth2;
+
+  function initializeGlobal(){
+    givenName = "givenName";
+    familyName = "familyName";
+    email = "email";
+    status = "status";
+  }
 
 /**
        *  On load, called to load the auth2 library and API client library.
        */
       function handleClientLoad() {
+        initializeGlobal();
         gapi.load('client:auth2', initClient);
       }
 
