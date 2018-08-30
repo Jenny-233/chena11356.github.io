@@ -213,8 +213,9 @@ function findStatus(email){
     if (range.values.length > 0) {
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
+        appendPre("row[2] includes: "+row[2]);
         //row is array of arrays of last name, first name, email address, and status
-        if (row[2].indexOf(email)>=0){
+        if ((row[2]+"").indexOf(email)>=0){
           res = row[3]+"";
           return res;
           appendPre("Status found: "+row[3]);
