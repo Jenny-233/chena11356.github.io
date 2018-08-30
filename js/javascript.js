@@ -305,6 +305,7 @@ function initializeApplicationHelper(){
 
 function retrieveJuniorApp(){
   appendPre('Status found as juniorPropective');
+  document.getElementById("grade").innerHTML = "Junior";
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E',
   range: 'Applications',
@@ -341,12 +342,18 @@ function retrieveJuniorApp(){
           }
           if (row[9].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
             document.getElementById("enteredAsSoph").checked = false;
+            document.getElementById("serviceNeeded").innerHTML = "13";
+            document.getElementById("leadershipNeeded").innerHTML = "50";
           }
           else {
             document.getElementById("enteredAsSoph").checked = true;
+            document.getElementById("serviceNeeded").innerHTML = "8";
+            document.getElementById("leadershipNeeded").innerHTML = "30";
           }
 
           var activityNum = 1;
+          var totalService = 0;
+          var totalLeadership = 0;
           //make activities visible if the name is not empty
           for (var m = 10; m<=34; m=m+6){
             if ((row[m]+"").trim().length>0&&m>10){ //add activity if not empty and not #1
@@ -356,28 +363,33 @@ function retrieveJuniorApp(){
               document.getElementById("serviceNameInput"+activityNum).value = row[m];
               document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
               document.getElementById("creditInput"+activityNum).value = row[m+3];
+              totalService += parseInt(row[m+3]);
               document.getElementById("facultyInput"+activityNum).value = row[m+4];
               document.getElementById("emailInput"+activityNum).value = row[m+5];
               activityNum++;
             }
           }
+          document.getElementById("serviceInput").innerHTML = totalService+"";
           activityNum = 1;
           for (var n = 40; n<=94; n=n+6){
-            if ((row[m]+"").trim().length>0&&n>40){ //add activity if not empty and not #1
+            if ((row[n]+"").trim().length>0&&n>40){ //add activity if not empty and not #1
               addLeadership();
             }
-            if ((row[m]+"").trim().length>0){ //add information if not empty
-              document.getElementById("leadershipNameInput"+activityNum).value = row[m];
-              document.getElementById("lcode"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
-              document.getElementById("lcreditInput"+activityNum).value = row[m+3];
-              document.getElementById("lfacultyInput"+activityNum).value = row[m+4];
-              document.getElementById("lemailInput"+activityNum).value = row[m+5];
+            if ((row[n]+"").trim().length>0){ //add information if not empty
+              document.getElementById("leadershipNameInput"+activityNum).value = row[n];
+              document.getElementById("lcode"+activityNum).selectedIndex = getSelectedIndex(row[n+1]);
+              document.getElementById("lcreditInput"+activityNum).value = row[n+3];
+              totalLeadership += parseInt(row[n+3]);
+              document.getElementById("lfacultyInput"+activityNum).value = row[n+4];
+              document.getElementById("lemailInput"+activityNum).value = row[n+5];
               activityNum++;
             }
           }
+          document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
           document.getElementById("additionalInput").value = row[100]; //set additional information
           document.getElementById("electronicInput").value = row[101]; //set electronic signature
 
+          break;
         }
       }
     }
