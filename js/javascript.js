@@ -29,7 +29,7 @@ var auth2;
               auth2.attachClickHandler('signInLink', {}, onSuccess, onFailure);
             }
 
-            function onSuccess(){
+            var onSuccess = function(user){
               //if user is signed in and on an application page, initialize application info
               if (gapi.auth2.getAuthInstance().isSignedIn.get()&&window.location.href.indexOf("classman")>=0){
                 initializeApplication();
@@ -40,7 +40,7 @@ var auth2;
               }
             }
 
-            function onFailure(){
+            var onFailure = function (error){
               alert('Click handler fail');
             }
 
