@@ -269,7 +269,8 @@ function changeStatus(email,updatedStatus){
         appendPre("row[2] includes: "+row[2]);
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
-          appendPre('found user in list while updating');
+          appendPre('found user in list while updating at index: '+i);
+          appendPre('so range is going to be '+(userIndex+1));
           userIndex = i;
           break;
         }
@@ -412,13 +413,25 @@ function retrieveApp(currentGrade){
           }
           if (row[9].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
             document.getElementById("enteredAsSoph").checked = false;
-            document.getElementById("serviceNeeded").innerHTML = "13";
-            document.getElementById("leadershipNeeded").innerHTML = "50";
+            if (currentGrade.indexOf("senior")>=0){ //seniors who came as freshmen
+              document.getElementById("serviceNeeded").innerHTML = "15";
+              document.getElementById("leadershipNeeded").innerHTML = "60";
+            }
+            else { //freshman, sophomore, and juniors who came as freshmen
+              document.getElementById("serviceNeeded").innerHTML = "13";
+              document.getElementById("leadershipNeeded").innerHTML = "50";
+            }
           }
           else {
             document.getElementById("enteredAsSoph").checked = true;
-            document.getElementById("serviceNeeded").innerHTML = "8";
-            document.getElementById("leadershipNeeded").innerHTML = "30";
+            if (currentGrade.indexOf("senior")>=0){ //seniors who came as sophomores
+              document.getElementById("serviceNeeded").innerHTML = "10";
+              document.getElementById("leadershipNeeded").innerHTML = "40";
+            }
+            else { //freshman, sophomore, and juniors who came as sophomores
+              document.getElementById("serviceNeeded").innerHTML = "8";
+              document.getElementById("leadershipNeeded").innerHTML = "30";
+            }
           }
 
           var activityNum = 1;
