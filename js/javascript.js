@@ -855,7 +855,7 @@ function saveApp(){
         var result = response.result;
         console.log(`${result.updatedCells} cells updated.`);
       });
-    }, 5000);
+    }, 20000);
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
