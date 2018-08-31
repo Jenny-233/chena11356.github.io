@@ -255,7 +255,7 @@ function changeStatus(email,updatedStatus){
   var changeBody = {
     "majorDimension": "ROWS",
     "values": [
-      [familyName, givenName, email, status],
+      [familyName, givenName, email, updatedStatus],
     ],
   };
   gapi.client.sheets.spreadsheets.values.get({
@@ -270,8 +270,8 @@ function changeStatus(email,updatedStatus){
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
           appendPre('found user in list while updating at index: '+i);
-          appendPre('so range is going to be '+(userIndex+1));
           userIndex = i;
+          appendPre('so range is going to be '+(userIndex));
           break;
         }
       }
@@ -279,7 +279,7 @@ function changeStatus(email,updatedStatus){
   });
   gapi.client.sheets.spreadsheets.values.update({
      spreadsheetId: "1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc",
-     range: ("Sheet1!"+(userIndex+1)+":"+(userIndex+1)),
+     range: ("Sheet1!"+(userIndex)+":"+(userIndex)),
      valueInputOption: "USER_ENTERED",
      resource: changeBody
   }).then((response) => {
