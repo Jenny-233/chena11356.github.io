@@ -498,11 +498,15 @@ function saveApp(){
   var totalService = 0;
   var totalLeadership = 0;
   for (var b = 1; b<=5; b++){
-    totalService += parseInt(document.getElementById("creditInput"+b).value);
+    if (!isNaN(parseInt(document.getElementById("creditInput"+b).value)){
+      totalService += parseInt(document.getElementById("creditInput"+b).value);
+    }
   }
   document.getElementById("serviceInput").innerHTML = totalService+"";
   for (var b = 1; b<=10; b++){
-    totalLeadership += parseInt(document.getElementById("lcreditInput"+b).value);
+    if (!isNaN(parseInt(document.getElementById("lcreditInput"+b).value)){
+      totalLeadership += parseInt(document.getElementById("lcreditInput"+b).value);
+    }
   }
   document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
 
