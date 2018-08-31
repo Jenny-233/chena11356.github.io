@@ -283,13 +283,12 @@ function changeStatus(email,updatedStatus){
   */
   gapi.client.sheets.spreadsheets.values.update({
      spreadsheetId: "1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc",
-     range: ("Sheet1!"+(userIndex)+":"+(userIndex)),
+     range: ("Sheet1!"+(userIndex+1)+":"+(userIndex+1)),
      valueInputOption: "USER_ENTERED",
      resource: changeBody
   }).then((response) => {
     var result = response.result;
     console.log(`${result.updatedCells} cells updated.`);
-    alert('Your application has been saved!');
   });
 }
 
@@ -850,8 +849,7 @@ function saveApp(){
       retrieveApp("Sophomore");
     }
   }
-
-  if (status.indexOf("juniorProspective")>=0){
+  else if (status.indexOf("juniorProspective")>=0){
     //assumes that appIndex has already been identified and is for the junior spreadsheet
     gapi.client.sheets.spreadsheets.values.update({
        spreadsheetId: "1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E",
