@@ -236,13 +236,11 @@ function findStatus(email){
     if (range.values.length > 0) {
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
-        //appendPre("row[2] includes: "+row[2]);
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
           status = row[3]+"";
           curStatus = row[3]+"";
           userIndex = i;
-          //appendPre("Status found: "+row[3]);
           $(document).trigger('function_a_complete');
           return;
         }
@@ -255,7 +253,6 @@ function findStatus(email){
 
 //changes status of user given email address and new status
 function changeStatus(email,updatedStatus){
-  appendPre('this is email: '+email);
   var changeBody = {
     "majorDimension": "ROWS",
     "values": [
@@ -458,8 +455,6 @@ function retrieveApp(currentGrade){
             if ((row[m]+"").trim().length>0){ //add information if not empty
               document.getElementById("serviceNameInput"+activityNum).value = row[m];
               if ((row[m+1]+"").trim().length>0){
-                appendPre("row[m] is: "+row[m]);
-                appendPre("m is "+m+" and this is row[m+1]: "+row[m+1]);
                 document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
               }
               document.getElementById("creditInput"+activityNum).value = row[m+3];
@@ -488,8 +483,12 @@ function retrieveApp(currentGrade){
             }
           }
 
-          document.getElementById("additionalInput").value = row[100]; //set additional information
-          document.getElementById("electronicInput").value = row[101]; //set electronic signature
+          if (!(row[100]===undefined)){
+            document.getElementById("additionalInput").value = row[100]; //set additional information
+          }
+          if (!(row[101]===undefined)){
+            document.getElementById("electronicInput").value = row[101]; //set electronic signature
+          }
 
           var totalService = 0;
           var totalLeadership = 0;
@@ -572,25 +571,33 @@ function changeSenior(){
   }
 }
 
+function changeFreshman(){
+  status = "freshman";
+}
+
+function changeSophomore(){
+  status = "sophomore";
+}
+
 //if sophomore checkbox is checked or unchecked, handle it
 function handleChange(checkbox) {
     if(checkbox.checked == true){
-        if (status.indexOf("juniorProspective")>=0){ //junior who entered as sophomore
-          document.getElementById("serviceNeeded").innerHTML = "8";
-          document.getElementById("leadershipNeeded").innerHTML = "30";
-        }
-        else{ //senior who entered as sophomore
+        if (status.indexOf("seniorProspective")>=0){ //senior who entered as sophomore
           document.getElementById("serviceNeeded").innerHTML = "10";
           document.getElementById("leadershipNeeded").innerHTML = "40";
         }
+        else{ //junior/freshman/sophomore who entered as sophomore
+          document.getElementById("serviceNeeded").innerHTML = "8";
+          document.getElementById("leadershipNeeded").innerHTML = "30";
+        }
     }else{
-      if (status.indexOf("juniorProspective")>=0){ //junior who entered as freshman
-        document.getElementById("serviceNeeded").innerHTML = "13";
-        document.getElementById("leadershipNeeded").innerHTML = "50";
-      }
-      else{ //senior who entered as freshman
+      if (status.indexOf("seniorProspective")>=0){ //senior who entered as freshman
         document.getElementById("serviceNeeded").innerHTML = "15";
         document.getElementById("leadershipNeeded").innerHTML = "60";
+      }
+      else{ //junior/freshman/sophomore who entered as freshman
+        document.getElementById("serviceNeeded").innerHTML = "13";
+        document.getElementById("leadershipNeeded").innerHTML = "50";
       }
    }
 }
@@ -806,9 +813,7 @@ function saveApp(){
         for (i = 1; i < range.values.length; i++) {
           var row = range.values[i];
           if ((row[3]+"").indexOf(email)>=0){
-            appendPre('found update email');
             updateIndex = i;
-            appendPre('Updated, not appended');
             gapi.client.sheets.spreadsheets.values.update({
                spreadsheetId: newSheet,
                range: ("Applications!"+(updateIndex+1)+":"+(updateIndex+1)),
@@ -821,7 +826,6 @@ function saveApp(){
             break;
           }
           if (i==range.values.length-1){
-            appendPre('Appended, not updated');
             gapi.client.sheets.spreadsheets.values.append({
               spreadsheetId: newSheet,
               range: ("Applications!A:DG"),
