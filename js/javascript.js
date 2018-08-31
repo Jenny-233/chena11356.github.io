@@ -136,7 +136,9 @@ function onSignIn(googleUser) {
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
   }
-  $(document).trigger('function_b_complete');
+  if (window.location.href.indexOf("classman")>=0){
+    $(document).trigger('function_b_complete');
+  }
 }
 
 function signOut() {
