@@ -424,7 +424,9 @@ function retrieveApp(currentGrade){
             }
             if ((row[m]+"").trim().length>0){ //add information if not empty
               document.getElementById("serviceNameInput"+activityNum).value = row[m];
-              document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
+              if ((row[m+1]+"").trim().length>0){
+                document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
+              }
               document.getElementById("creditInput"+activityNum).value = row[m+3];
               totalService += parseInt(row[m+3]);
               document.getElementById("facultyInput"+activityNum).value = row[m+4];
@@ -440,7 +442,9 @@ function retrieveApp(currentGrade){
             }
             if ((row[n]+"").trim().length>0){ //add information if not empty
               document.getElementById("leadershipNameInput"+activityNum).value = row[n];
-              document.getElementById("lcode"+activityNum).selectedIndex = getSelectedIndex(row[n+1]);
+              if ((row[n+1]+"").trim().length>0){
+                document.getElementById("lcode"+activityNum).selectedIndex = getSelectedIndex(row[n+1]);
+              }
               document.getElementById("lcreditInput"+activityNum).value = row[n+3];
               totalLeadership += parseInt(row[n+3]);
               document.getElementById("lfacultyInput"+activityNum).value = row[n+4];
