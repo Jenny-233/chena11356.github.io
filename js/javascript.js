@@ -798,6 +798,7 @@ function saveApp(){
     //add info to new sheet, change appIndex (with retrieveApp) and update list of all nhs members and prospects
     //WAIT WE CANT JUST APPEND WE NEED TO SEE IF THEY'RE THERE FIRST, so FIRST read and see if they're
     //in the sheet, and if not, then append, but if they ARE, then update
+    updateIndex = -1;
     gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: newSheet,
     range: 'Applications',
@@ -807,6 +808,7 @@ function saveApp(){
         for (i = 1; i < range.values.length; i++) {
           var row = range.values[i];
           if ((row[3]+"").indexOf(email)>=0){
+            appendPre('found update email');
             updateIndex = i;
             break;
           }
