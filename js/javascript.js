@@ -6,6 +6,7 @@ var curStatus; //keep track of current status in records so we can tell if they 
 var appIndex;
 var auth2;
 var userIndex;
+var updateIndex;
 
   function initializeGlobal(){
     givenName = "givenName";
@@ -15,6 +16,7 @@ var userIndex;
     curStatus = "status";
     appIndex = -1;
     userIndex = -1;
+    updateIndex = -1; //if -1, then append; if not, then update
   }
 
 /**
@@ -796,7 +798,6 @@ function saveApp(){
     //add info to new sheet, change appIndex (with retrieveApp) and update list of all nhs members and prospects
     //WAIT WE CANT JUST APPEND WE NEED TO SEE IF THEY'RE THERE FIRST, so FIRST read and see if they're
     //in the sheet, and if not, then append, but if they ARE, then update
-    var updateIndex = -1; //if -1, then append; if not, then update
     gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: newSheet,
     range: 'Applications',
