@@ -307,6 +307,7 @@ function appendNewPerson(){
   if (window.location.href.indexOf("under")>=0){
     curStatus = "freshman";
     status = "freshman";
+    //add person into specific application spreadsheet
     gapi.client.sheets.spreadsheets.values.append({
        spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
        range: "Applications",
@@ -315,6 +316,14 @@ function appendNewPerson(){
     }).then((response) => {
       var result = response.result;
       console.log(`${result.updates.updatedCells} cells appended.`)
+    });
+    //also set app index
+    gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
+    range: 'Applications',
+    }).then(function(response) {
+      var range = response.result;
+      appIndex = range.values.length;
     });
   }
   else {
@@ -328,6 +337,13 @@ function appendNewPerson(){
     }).then((response) => {
       var result = response.result;
       console.log(`${result.updates.updatedCells} cells appended.`)
+    });
+    gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
+    range: 'Applications',
+    }).then(function(response) {
+      var range = response.result;
+      appIndex = range.values.length;
     });
   }
 var body = {
