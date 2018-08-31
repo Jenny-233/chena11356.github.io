@@ -292,11 +292,48 @@ function changeStatus(email,updatedStatus){
 }
 
 function appendNewPerson(){
-  curStatus="new";
+  var emptyBody = {
+    "majorDimension": "ROWS",
+    "values": [
+      ["", familyName, givenName, email, "", "", "", "", "", "", "", "", "",
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+      "","","","","", "", "","","","","", "", "","","","","", "", "","","","",
+      "", "", "","","","","", "", "","","","","", "", "","","","","", "", "",
+      "","","","", "", "","","","","", "", "","","","","", "", "","","","",
+      "", "", "","","","","", "", "", "", "", "", "", ""
+    ],
+    ],
+  };
+  if (window.location.href.indexOf("under")>=0){
+    curStatus = "freshman";
+    status = "freshman";
+    gapi.client.sheets.spreadsheets.values.append({
+       spreadsheetID: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
+       range: "Applications",
+       valueInputOption: "USER_ENTERED",
+       resource: emptyBody
+    }).then((response) => {
+      var result = response.result;
+      console.log(`${result.updates.updatedCells} cells appended.`)
+    });
+  }
+  else {
+    curStatus = "junior";
+    status = "junior";
+    gapi.client.sheets.spreadsheets.values.append({
+       spreadsheetID: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
+       range: "Applications",
+       valueInputOption: "USER_ENTERED",
+       resource: emptyBody
+    }).then((response) => {
+      var result = response.result;
+      console.log(`${result.updates.updatedCells} cells appended.`)
+    });
+  }
 var body = {
   "majorDimension": "ROWS",
   "values": [
-    [familyName, givenName, email, "juniorProspective"],
+    [familyName, givenName, email, status],
   ],
 };
 gapi.client.sheets.spreadsheets.values.append({
@@ -308,6 +345,12 @@ gapi.client.sheets.spreadsheets.values.append({
   var result = response.result;
   console.log(`${result.updates.updatedCells} cells appended.`)
 });
+if (window.location.href.indexOf("under")>=0){
+  retrieveApp("Freshman");
+}
+else{
+  retrieveApp("Junior");
+}
 }
 
 //if user is signed in, initialize everything in application; else, redirect back to the main page
