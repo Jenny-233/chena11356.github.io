@@ -498,11 +498,11 @@ function saveApp(){
   var totalService = 0;
   var totalLeadership = 0;
   for (var b = 1; b<=5; b++){
-    totalService += parseInt(document.getElementById("creditInput")+b);
+    totalService += parseInt(document.getElementById("creditInput").value+b);
   }
   document.getElementById("serviceInput").innerHTML = totalService+"";
   for (var b = 1; b<=10; b++){
-    totalLeadership += parseInt(document.getElementById("lcreditInput")+b);
+    totalLeadership += parseInt(document.getElementById("lcreditInput").value+b);
   }
   document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
 
@@ -648,6 +648,7 @@ function saveApp(){
     }).then((response) => {
       var result = response.result;
       console.log(`${result.updatedCells} cells updated.`);
+      alert('Your application has been saved!');
     });
   }
   else if (status.indexOf("seniorProspective")>=0){
