@@ -453,7 +453,7 @@ function retrieveApp(currentGrade){
               activityNum++;
             }
           }
-          
+
           document.getElementById("additionalInput").value = row[100]; //set additional information
           document.getElementById("electronicInput").value = row[101]; //set electronic signature
 
@@ -790,7 +790,7 @@ function saveApp(){
     if (updateIndex==-1){
       gapi.client.sheets.spreadsheets.values.append({
         spreadsheetId: newSheet,
-        range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+        range: ("Applications!"),
         valueInputOption: "USER_ENTERED",
         resource: body
       }).then((response) => {
@@ -801,7 +801,7 @@ function saveApp(){
     else{
       gapi.client.sheets.spreadsheets.values.update({
          spreadsheetId: newSheet,
-         range: ("Applications!"+(updateIndex+1)+":"+(updateIndex+1)),
+         range: ("Applications!"+(updateIndex)+":"+(updateIndex)),
          valueInputOption: "USER_ENTERED",
          resource: body
       }).then((response) => {
@@ -882,6 +882,14 @@ function saveApp(){
 function deleteApp(){
 
 }
+
+//disables horizontal scrolling
+var scrollEventHandler = function()
+{
+  window.scroll(0, window.pageYOffset)
+}
+
+window.addEventListener("scroll", scrollEventHandler, false);
 
 /*function init() {
   Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/1yWsQtQbs6Uf3xxqj8TjBLg9cKm7dDf9jkCE6zxbFVE8/edit?usp=sharing',
