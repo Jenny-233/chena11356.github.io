@@ -844,7 +844,7 @@ function saveApp(){
     else if (status.indexOf("sophomore")>=0){
       retrieveApp("Sophomore");
     }
-    $(document).trigger('function_b_complete');
+    $(document).trigger('function_c_complete');
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
