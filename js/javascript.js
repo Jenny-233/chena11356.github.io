@@ -234,7 +234,7 @@ function findStatus(email){
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
-      for (i = 1; i < range.values.length; i++) {
+      for (i = 0; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
@@ -388,7 +388,7 @@ function retrieveApp(currentGrade){
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
-      for (i = 1; i < range.values.length; i++) {
+      for (i = 0; i < range.values.length; i++) {
         var row = range.values[i];
         //row is array of arrays of application info
         if ((row[3]+"").indexOf(email)>=0){ //when applicant is found
@@ -810,7 +810,7 @@ function saveApp(){
     }).then(function(response) {
       var range = response.result;
       if (range.values.length > 0) {
-        for (i = 1; i < range.values.length; i++) {
+        for (i = 0; i < range.values.length; i++) {
           var row = range.values[i];
           if ((row[3]+"").indexOf(email)>=0){
             updateIndex = i;
