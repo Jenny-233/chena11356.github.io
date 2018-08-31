@@ -35,6 +35,9 @@ var auth2;
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
                 scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"
               });
+              /*if (window.location.href.indexOf("classman")>=0){
+                $(document).trigger('function_b_complete');
+              }*/
               /*
               auth2 = gapi.auth2.init({
                 client_id: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com'
@@ -304,9 +307,9 @@ gapi.client.sheets.spreadsheets.values.append({
 //if user is signed in, initialize everything in application; else, redirect back to the main page
 function initializeApplication(){
     //get rid of loading stuff and show the application
-    document.getElementById("loadingText").style.display = "none";
-    document.getElementById("loadingImg").style.display = "none";
-    document.getElementById("application").style.display = "block";
+    document.getElementById("loadingText").style.display = "block";
+    document.getElementById("loadingImg").style.display = "block";
+    document.getElementById("appButton").style.display = "none";
     //get information
     var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     givenName = profile.getGivenName();
@@ -321,6 +324,9 @@ function initializeApplication(){
 //runs after status is found and defined
 function initializeApplicationHelper(){
   //appendPre("Result of findStatus: "+status);
+  document.getElementById("loadingText").style.display = "none";
+  document.getElementById("loadingImg").style.display = "none";
+  document.getElementById("application").style.display = "block";
   if (status.indexOf("N/A")>=0){
     //if person cannot be found in current nhs records, create new record for them (and set appIndex)
     appendNewPerson();

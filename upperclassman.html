@@ -140,14 +140,19 @@ COLOR SCHEME:
           click <a href="prospective.html" target="_blank">here</a>. Please contact
           nhs@bxscience.edu with any concerns or questions regarding the application.
         </p>
-        <p id="loadingText">
+        <p id="loadingText" style="display:none;"> <!--after button is clicked, set loading things and then initialize app-->
           Please wait while application is loading.
         </p>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <img src="assets/loading.gif" id="loadingImg" alt="Application is loading..."></img>
+        <img src="assets/loading.gif" id="loadingImg" alt="Application is loading..." style="display:none;"></img>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button id="appButton" type="button" class="btn btn-dark btn-lg btn-block" onclick="initializeApplication()">Start or Continue Application</button>
       </div>
     </div>
     <div id="application" style="display:none;">
@@ -1153,11 +1158,6 @@ COLOR SCHEME:
     }
   }, 5000);
 </script>-->
-<script async defer>
-$(window).on('load', function() {
- $(document).trigger('function_b_complete');
-})
-</script>
 
     <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
