@@ -398,7 +398,7 @@ function retrieveApp(currentGrade){
           document.getElementById("osisInput").value = row[4]; //set osis
           document.getElementById("offInput").value = row[5]; //set official class
           document.getElementById("averageInput").value = row[6]; //set average
-          if ((row[7]===undefined)&&row[7].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
+          if (!(row[7]===undefined)&&row[7].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
             document.getElementById("failedInput").checked = true;
             document.getElementById("failedInput2").checked = false;
           }
@@ -828,7 +828,7 @@ function saveApp(){
       appendPre('Updated, not appended');
       gapi.client.sheets.spreadsheets.values.update({
          spreadsheetId: newSheet,
-         range: ("Applications!"+(updateIndex)+":"+(updateIndex)),
+         range: ("Applications!"+(updateIndex+1)+":"+(updateIndex+1)),
          valueInputOption: "USER_ENTERED",
          resource: body
       }).then((response) => {
