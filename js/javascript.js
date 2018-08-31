@@ -398,9 +398,15 @@ function retrieveApp(currentGrade){
           appIndex = i;
           document.getElementById("lastNameInput").value = row[1]; //set last name
           document.getElementById("firstNameInput").value = row[2]; //set first name
-          document.getElementById("osisInput").value = row[4]; //set osis
-          document.getElementById("offInput").value = row[5]; //set official class
-          document.getElementById("averageInput").value = row[6]; //set average
+          if (!(row[4]===undefined){
+            document.getElementById("osisInput").value = row[4]; //set osis
+          }
+          if (!(row[5]===undefined){
+            document.getElementById("offInput").value = row[5]; //set official class
+          }
+          if (!(row[6]===undefined){
+            document.getElementById("averageInput").value = row[6]; //set average
+          }
           if (!(row[7]===undefined)&&row[7].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant failed a class
             document.getElementById("failedInput").checked = true;
             document.getElementById("failedInput2").checked = false;
