@@ -7,6 +7,8 @@ var appIndex;
 var auth2;
 var userIndex;
 var updateIndex;
+var oldSheet;
+var emptyBody;
 
   function initializeGlobal(){
     givenName = "givenName";
@@ -742,7 +744,6 @@ function saveApp(){
   };
 
   if (curStatus.trim().indexOf(status)<0){ //if user changed their status, transfer to appropriate spreadsheet
-    var oldSheet;
     var newSheet;
     if (curStatus.indexOf("juniorProspective")>=0){
       oldSheet = "1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E";
@@ -776,7 +777,7 @@ function saveApp(){
       console.log("Error: curStatus is "+curStatus);
       return;
     }
-    var emptyBody = {
+    emptyBody = {
       "majorDimension": "ROWS",
       "values": [
         ["", familyName, givenName, email, "", "", "", "", "", "", "", "", "",
@@ -906,7 +907,7 @@ function deleteApp(){
 
 }
 
-function deleteOldApp(oldSheet,emptyBody){
+function deleteOldApp(){
   //delete info from old sheet (but keep names and emails in case they come back
   //also since multiple people might be using sheet at same time)
   gapi.client.sheets.spreadsheets.values.update({
