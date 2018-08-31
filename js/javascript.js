@@ -5,6 +5,7 @@ var status;
 var curStatus; //keep track of current status in records so we can tell if they need to be transferred
 var appIndex;
 var auth2;
+var userIndex;
 
   function initializeGlobal(){
     givenName = "givenName";
@@ -13,6 +14,7 @@ var auth2;
     status = "status";
     curStatus = "status";
     appIndex = -1;
+    userIndex = -1;
   }
 
 /**
@@ -237,6 +239,7 @@ function findStatus(email){
         if ((row[2]+"").indexOf(email)>=0){
           status = row[3]+"";
           curStatus = row[3]+"";
+          userIndex = i;
           //appendPre("Status found: "+row[3]);
           $(document).trigger('function_a_complete');
           return;
@@ -251,13 +254,13 @@ function findStatus(email){
 //changes status of user given email address and new status
 function changeStatus(email,updatedStatus){
   appendPre('this is email: '+email);
-  var userIndex = -1;
   var changeBody = {
     "majorDimension": "ROWS",
     "values": [
       [familyName, givenName, email, updatedStatus],
     ],
   };
+  /*
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1',
@@ -277,6 +280,7 @@ function changeStatus(email,updatedStatus){
       }
     }
   });
+  */
   gapi.client.sheets.spreadsheets.values.update({
      spreadsheetId: "1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc",
      range: ("Sheet1!"+(userIndex)+":"+(userIndex)),
