@@ -21,6 +21,7 @@ var auth2;
       function handleClientLoad() {
         initializeGlobal();
         $(document).bind('function_a_complete', initializeApplicationHelper);
+        $(document).bind('function_b_complete', initializeApplication);
         gapi.load('client:auth2', initClient);
       }
 
@@ -34,6 +35,9 @@ var auth2;
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
                 scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"
               });
+              if (window.location.href.indexOf("classman")>=0){
+                $(document).trigger('function_b_complete');
+              }
               /*
               auth2 = gapi.auth2.init({
                 client_id: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com'
@@ -135,9 +139,6 @@ function onSignIn(googleUser) {
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-  }
-  if (window.location.href.indexOf("classman")>=0){
-    $(document).trigger('function_b_complete');
   }
 }
 
