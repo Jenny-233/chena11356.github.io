@@ -851,17 +851,15 @@ function saveApp(){
     }
     //delete info from old sheet (but keep names and emails in case they come back
     //also since multiple people might be using sheet at same time)
-    setTimeout(function(){
-      gapi.client.sheets.spreadsheets.values.update({
-         spreadsheetId: oldSheet,
-         range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
-         valueInputOption: "USER_ENTERED",
-         resource: emptyBody
-      }).then((response) => {
-        var result = response.result;
-        console.log(`${result.updatedCells} cells updated.`);
-      });
-    }, 20000);
+    gapi.client.sheets.spreadsheets.values.update({
+       spreadsheetId: oldSheet,
+       range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+       valueInputOption: "USER_ENTERED",
+       resource: emptyBody
+    }).then((response) => {
+      var result = response.result;
+      console.log(`${result.updatedCells} cells updated.`);
+    });
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
@@ -920,7 +918,50 @@ function saveApp(){
 }
 
 function deleteApp(){
-
+  var oldSheet;
+  if (curStatus.indexOf("juniorProspective")>=0){
+    oldSheet = "1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E";
+  }
+  else if (curStatus.indexOf("seniorProspective")>=0){
+    oldSheet = "183eXca8m7Wx0lsGCJ9dfALzU8wyz04S2x7CeKBOj1R0";
+  }
+  else if (curStatus.indexOf("freshman")>=0){
+    oldSheet = "1GgpL8DCmVyRlYMOqN6caWC6z9RtSia84v9cCieSiwww";
+  }
+  else if (curStatus.indexOf("sophomore")>=0){
+    oldSheet = "1ayL7Jk2_XUN1r4JzDLUZX6pyEYhMGWAAMSKJNQU4rsk";
+  }
+  else {
+    console.log("Error: curStatus is "+curStatus);
+    return;
+  }
+  var emptyBody = {
+    "majorDimension": "ROWS",
+    "values": [
+      ["", familyName, givenName, email, "", "", "", "", "", "", "", "", "",
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+      "","","","","", "", "","","","","", "", "","","","","", "", "","","","",
+      "", "", "","","","","", "", "","","","","", "", "","","","","", "", "",
+      "","","","", "", "","","","","", "", "","","","","", "", "","","","",
+      "", "", "","","","","", "", "", "", "", "", "", ""
+    ],
+    ],
+  };
+  //delete info from old sheet (but keep names and emails in case they come back
+  //also since multiple people might be using sheet at same time)
+  gapi.client.sheets.spreadsheets.values.update({
+     spreadsheetId: oldSheet,
+     range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+     valueInputOption: "USER_ENTERED",
+     resource: emptyBody
+  }).then((response) => {
+    var result = response.result;
+    console.log(`${result.updatedCells} cells updated.`);
+  });
+  alert('Your application has been deleted.');
+  document.getElementById("loadingText").innerHTML = "Your application has been deleted."
+  document.getElementById("loadingText").style.display = "none";
+  document.getElementById("application").style.display = "none";
 }
 
 //disables horizontal scrolling
@@ -930,6 +971,16 @@ var scrollEventHandler = function()
 }
 
 window.addEventListener("scroll", scrollEventHandler, false);
+
+//add confirmation for deleteApp
+$(function() {
+    $('.confirm').click(function(e) {
+        e.preventDefault();
+        if (window.confirm("Are you sure? Your application data will be removed from our database.")) {
+            deleteApp();
+        }
+    });
+});
 
 /*function init() {
   Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/1yWsQtQbs6Uf3xxqj8TjBLg9cKm7dDf9jkCE6zxbFVE8/edit?usp=sharing',
