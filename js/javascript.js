@@ -413,8 +413,6 @@ function retrieveApp(currentGrade){
           }
 
           var activityNum = 1;
-          var totalService = 0;
-          var totalLeadership = 0;
           //make activities visible if the name is not empty
           for (var m = 10; m<=34; m=m+6){
             if ((row[m]+"").trim().length>0&&m>10){ //add activity if not empty and not #1
@@ -431,13 +429,11 @@ function retrieveApp(currentGrade){
                 document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
               }
               document.getElementById("creditInput"+activityNum).value = row[m+3];
-              totalService += parseInt(row[m+3]);
               document.getElementById("facultyInput"+activityNum).value = row[m+4];
               document.getElementById("emailInput"+activityNum).value = row[m+5];
               activityNum++;
             }
           }
-          document.getElementById("serviceInput").innerHTML = totalService+"";
           activityNum = 1;
           for (var n = 40; n<=94; n=n+6){
             if ((row[n]+"").trim().length>0&&n>40){ //add activity if not empty and not #1
@@ -452,15 +448,29 @@ function retrieveApp(currentGrade){
                 document.getElementById("lcode"+activityNum).selectedIndex = getSelectedIndex(row[n+1]);
               }
               document.getElementById("lcreditInput"+activityNum).value = row[n+3];
-              totalLeadership += parseInt(row[n+3]);
               document.getElementById("lfacultyInput"+activityNum).value = row[n+4];
               document.getElementById("lemailInput"+activityNum).value = row[n+5];
               activityNum++;
             }
           }
-          document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
+          
           document.getElementById("additionalInput").value = row[100]; //set additional information
           document.getElementById("electronicInput").value = row[101]; //set electronic signature
+
+          var totalService = 0;
+          var totalLeadership = 0;
+          for (var b = 1; b<=5; b++){
+            if (!isNaN(parseInt(document.getElementById("creditInput"+b).value))) {
+              totalService += parseInt(document.getElementById("creditInput"+b).value);
+            }
+          }
+          document.getElementById("serviceInput").innerHTML = totalService+"";
+          for (var b = 1; b<=10; b++){
+            if (!isNaN(parseInt(document.getElementById("lcreditInput"+b).value))) {
+              totalLeadership += parseInt(document.getElementById("lcreditInput"+b).value);
+            }
+          }
+          document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
 
           break;
         }
