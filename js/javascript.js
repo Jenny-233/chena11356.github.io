@@ -308,7 +308,7 @@ function appendNewPerson(){
     curStatus = "freshman";
     status = "freshman";
     gapi.client.sheets.spreadsheets.values.append({
-       spreadsheetID: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
        range: "Applications",
        valueInputOption: "USER_ENTERED",
        resource: emptyBody
@@ -321,7 +321,7 @@ function appendNewPerson(){
     curStatus = "junior";
     status = "junior";
     gapi.client.sheets.spreadsheets.values.append({
-       spreadsheetID: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
        range: "Applications",
        valueInputOption: "USER_ENTERED",
        resource: emptyBody
@@ -337,7 +337,7 @@ var body = {
   ],
 };
 gapi.client.sheets.spreadsheets.values.append({
-   spreadsheetID: CryptoJS.AES.decrypt("U2FsdGVkX19ro83Kul9IRQrVq6oP5LCGhrjTze7hd2eyt8Q6c7LFRUtNZRscAy4+yZX5ocFZn42T3IqK6bGGjQ==", "nhs").toString(CryptoJS.enc.Utf8),
+   spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19ro83Kul9IRQrVq6oP5LCGhrjTze7hd2eyt8Q6c7LFRUtNZRscAy4+yZX5ocFZn42T3IqK6bGGjQ==", "nhs").toString(CryptoJS.enc.Utf8),
    range: "Sheet1",
    valueInputOption: "USER_ENTERED",
    resource: body
