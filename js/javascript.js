@@ -20,6 +20,7 @@ var auth2;
        */
       function handleClientLoad() {
         initializeGlobal();
+        $(document).bind('function_b_complete', initializeApplication);
         $(document).bind('function_a_complete', initializeApplicationHelper);
         gapi.load('client:auth2', initClient);
       }
@@ -136,6 +137,7 @@ function onSignIn(googleUser) {
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
   }
+  $(document).trigger('function_b_complete');
 }
 
 function signOut() {
