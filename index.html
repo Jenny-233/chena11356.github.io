@@ -20,6 +20,9 @@
     <!-- Vue.js -->
     <script src="js/vue.js"></script>
 
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -32,13 +35,13 @@
 //TODO: Change references to procedures to website-based things.
 //TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
 //TODO: There's no tutoring form upload link or outside tutoring verification link
-//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
-//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
 //TODO: Implement Google Analytics code
 //TODO: Get rid of .html with https://www.htmlgoodies.com/tutorials/getting_started/article.php/3479371/So-You-Dont-Want-html-Huh.htm
 //TODO: Add fade in parallax with https://stackoverflow.com/questions/26694385/fade-in-on-scroll-down-fade-out-on-scroll-up-based-on-element-position-in-win
 //TODO: Replace monocolor containers with really nice pictures and stuff
 //TODO: Verify app with https://support.google.com/cloud/answer/7454865?authuser=2
+//TODO: Instead of using timeout to load application, use the listener thingie
+//TODO: IF we decide to merge the credit application questions into one question, change app js
 
 /*
 COLOR SCHEME:
@@ -434,12 +437,12 @@ COLOR SCHEME:
       <div class="col" style="border-left: 1px solid #FFF;">
         <div class="collapse" id="chris" style="color: #000;">
           <div class="card card-body">
-            Hello! My name is Chris and I am so honored to be your NHS president! Feel free to ask me all your general questions about NHS, including the application process and maintaining membership. You can contact me at yeungc@bxscience.edu. I love listening to your concerns and I love listening to KPOP 🙂
+            Hello! My name is Chris and I am so honored to be your NHS president! Feel free to ask me all your general questions about NHS, including the application process and maintaining membership. You can contact me at yeungc@bxscience.edu.
           </div>
         </div>
         <div class="collapse" id="maggie" style="color: #000;">
           <div class="card card-body">
-            Hello, I'm Maggie! I'm here to help you with anything related to NHS tutoring. Please contact me at wongm@bxscience.edu if you have questions about office hours, requesting a tutor, etc. I love dancing, dogs, and Disney!
+            Hello, I'm Maggie! I'm here to help you with anything related to NHS tutoring. Please contact me at wongm@bxscience.edu if you have questions about office hours, requesting a tutor, etc.
           </div>
         </div>
         <div class="collapse" id="sunny" style="color: #000;">
@@ -449,7 +452,7 @@ COLOR SCHEME:
         </div>
         <div class="collapse" id="alex" style="color: #000;">
           <div class="card card-body">
-            Hi, I'm Alex! Feel free to ask me about anything related to technology (NHS website, forms, etc.) or NHS in general. My email is chena@bxscience.edu. I like running, programming, and Pokemon.
+            Hi, I'm Alex! Feel free to ask me about anything related to technology (NHS website, forms, etc.) or NHS in general. My email is chena@bxscience.edu.
           </div>
         </div>
         <div class="collapse" id="desilva" style="color: #000;">
@@ -460,7 +463,6 @@ COLOR SCHEME:
         <div class="collapse" id="nhs" style="color: #000;">
           <div class="card card-body">
             Hi, I'm the NHS email account! Please email nhs@bxscience.edu for any general questions or concerns whose answers you cannot find in the FAQs.
-            My hobbies include painting, philosophy, and personal introspection.
           </div>
         </div>
       </div>
