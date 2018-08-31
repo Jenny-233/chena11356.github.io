@@ -423,6 +423,7 @@ function retrieveApp(currentGrade){
             if ((row[m]+"").trim().length>0){ //add information if not empty
               document.getElementById("serviceNameInput"+activityNum).value = row[m];
               if ((row[m+1]+"").trim().length>0){
+                appendPre("row[m] is: "+row[m]);
                 appendPre("m is "+m+" and this is row[m+1]: "+row[m+1]);
                 document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
               }
