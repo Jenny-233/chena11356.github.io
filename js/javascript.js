@@ -406,7 +406,7 @@ function retrieveApp(currentGrade){
             document.getElementById("failedInput").checked = false;
             document.getElementById("failedInput2").checked = true;
           }
-          if ((row[8]===undefined)&&row[8].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
+          if (!(row[8]===undefined)&&row[8].trim().toLowerCase().indexOf("yes")>=0){ //set whether applicant has suspended privileges
             document.getElementById("suspendedInput").checked = true;
             document.getElementById("suspendedInput2").checked = false;
           }
@@ -414,18 +414,7 @@ function retrieveApp(currentGrade){
             document.getElementById("suspendedInput").checked = false;
             document.getElementById("suspendedInput2").checked = true;
           }
-          if ((row[9]===undefined)&&row[9].trim().toLowerCase().indexOf("freshman")>=0){ //set whether applicant came as freshman/sophomore
-            document.getElementById("enteredAsSoph").checked = false;
-            if (currentGrade.indexOf("senior")>=0){ //seniors who came as freshmen
-              document.getElementById("serviceNeeded").innerHTML = "15";
-              document.getElementById("leadershipNeeded").innerHTML = "60";
-            }
-            else { //freshman, sophomore, and juniors who came as freshmen
-              document.getElementById("serviceNeeded").innerHTML = "13";
-              document.getElementById("leadershipNeeded").innerHTML = "50";
-            }
-          }
-          else {
+          if (!(row[9]===undefined)&&row[9].trim().toLowerCase().indexOf("sophomore")>=0){ //set whether applicant came as freshman/sophomore
             document.getElementById("enteredAsSoph").checked = true;
             if (currentGrade.indexOf("senior")>=0){ //seniors who came as sophomores
               document.getElementById("serviceNeeded").innerHTML = "10";
@@ -434,6 +423,17 @@ function retrieveApp(currentGrade){
             else { //freshman, sophomore, and juniors who came as sophomores
               document.getElementById("serviceNeeded").innerHTML = "8";
               document.getElementById("leadershipNeeded").innerHTML = "30";
+            }
+          }
+          else {
+            document.getElementById("enteredAsSoph").checked = false;
+            if (currentGrade.indexOf("senior")>=0){ //seniors who came as freshmen
+              document.getElementById("serviceNeeded").innerHTML = "15";
+              document.getElementById("leadershipNeeded").innerHTML = "60";
+            }
+            else { //freshman, sophomore, and juniors who came as freshmen
+              document.getElementById("serviceNeeded").innerHTML = "13";
+              document.getElementById("leadershipNeeded").innerHTML = "50";
             }
           }
 
@@ -813,6 +813,7 @@ function saveApp(){
       }
     });
     if (updateIndex==-1){
+      appendPre('Appended, not updated');
       gapi.client.sheets.spreadsheets.values.append({
         spreadsheetId: newSheet,
         range: ("Applications"),
@@ -824,6 +825,7 @@ function saveApp(){
       });
     }
     else{
+      appendPre('Updated, not appended');
       gapi.client.sheets.spreadsheets.values.update({
          spreadsheetId: newSheet,
          range: ("Applications!"+(updateIndex)+":"+(updateIndex)),
