@@ -365,6 +365,7 @@ function initializeApplicationHelper(){
     }
     else {
       retrieveApp("Senior");
+      changeSenior();
     }
   }
 }
@@ -839,18 +840,7 @@ function saveApp(){
     });
     curStatus = status;
     changeStatus(email,status); //changes status in list of all nhs members and prospects
-    if (status.indexOf("juniorProspective")>=0){
-      retrieveApp("Junior");
-    }
-    else if (status.indexOf("seniorProspective")>=0){
-      retrieveApp("Senior");
-    }
-    else if (status.indexOf("freshman")>=0){
-      retrieveApp("Freshman");
-    }
-    else if (status.indexOf("sophomore")>=0){
-      retrieveApp("Sophomore");
-    }
+    initializeApplication();
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
