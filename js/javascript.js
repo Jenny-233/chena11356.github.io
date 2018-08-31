@@ -20,7 +20,6 @@ var auth2;
        */
       function handleClientLoad() {
         initializeGlobal();
-        $(document).bind('function_b_complete', initializeApplication);
         $(document).bind('function_a_complete', initializeApplicationHelper);
         gapi.load('client:auth2', initClient);
       }
