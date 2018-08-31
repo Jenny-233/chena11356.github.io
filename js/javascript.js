@@ -819,18 +819,18 @@ function saveApp(){
               console.log(`${result.updatedCells} cells updated.`);
             });
             break;
-            if (i==range.values.length-1){
-              appendPre('Appended, not updated');
-              gapi.client.sheets.spreadsheets.values.append({
-                spreadsheetId: newSheet,
-                range: ("Applications!A:DG"),
-                valueInputOption: "USER_ENTERED",
-                resource: body
-              }).then((response) => {
-                var result = response.result;
-                console.log(`${result.updates.updatedCells} cells appended.`)
-              });
-            }
+          }
+          if (i==range.values.length-1){
+            appendPre('Appended, not updated');
+            gapi.client.sheets.spreadsheets.values.append({
+              spreadsheetId: newSheet,
+              range: ("Applications!A:DG"),
+              valueInputOption: "USER_ENTERED",
+              resource: body
+            }).then((response) => {
+              var result = response.result;
+              console.log(`${result.updates.updatedCells} cells appended.`)
+            });
           }
         }
       }
@@ -958,10 +958,10 @@ function deleteApp(){
     var result = response.result;
     console.log(`${result.updatedCells} cells updated.`);
   });
-  alert('Your application has been deleted.');
   document.getElementById("loadingText").innerHTML = "Your application has been deleted."
-  document.getElementById("loadingText").style.display = "none";
+  document.getElementById("loadingText").style.display = "block";
   document.getElementById("application").style.display = "none";
+  alert('Your application has been deleted.');
 }
 
 //disables horizontal scrolling
