@@ -292,6 +292,7 @@ function changeStatus(email,updatedStatus){
 }
 
 function appendNewPerson(){
+  curStatus="new";
 var body = {
   "majorDimension": "ROWS",
   "values": [
