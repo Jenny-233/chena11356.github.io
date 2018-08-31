@@ -810,35 +810,33 @@ function saveApp(){
           if ((row[3]+"").indexOf(email)>=0){
             appendPre('found update email');
             updateIndex = i;
+            appendPre('Updated, not appended');
+            gapi.client.sheets.spreadsheets.values.update({
+               spreadsheetId: newSheet,
+               range: ("Applications!"+(updateIndex+1)+":"+(updateIndex+1)),
+               valueInputOption: "USER_ENTERED",
+               resource: body
+            }).then((response) => {
+              var result = response.result;
+              console.log(`${result.updatedCells} cells updated.`);
+            });
             break;
+            if (i==range.values.length-1){
+              appendPre('Appended, not updated');
+              gapi.client.sheets.spreadsheets.values.append({
+                spreadsheetId: newSheet,
+                range: ("Applications!A:DG"),
+                valueInputOption: "USER_ENTERED",
+                resource: body
+              }).then((response) => {
+                var result = response.result;
+                console.log(`${result.updates.updatedCells} cells appended.`)
+              });
+            }
           }
         }
       }
     });
-    if (updateIndex==-1){
-      appendPre('Appended, not updated');
-      gapi.client.sheets.spreadsheets.values.append({
-        spreadsheetId: newSheet,
-        range: ("Applications!A:DG"),
-        valueInputOption: "USER_ENTERED",
-        resource: body
-      }).then((response) => {
-        var result = response.result;
-        console.log(`${result.updates.updatedCells} cells appended.`)
-      });
-    }
-    else{
-      appendPre('Updated, not appended');
-      gapi.client.sheets.spreadsheets.values.update({
-         spreadsheetId: newSheet,
-         range: ("Applications!"+(updateIndex+1)+":"+(updateIndex+1)),
-         valueInputOption: "USER_ENTERED",
-         resource: body
-      }).then((response) => {
-        var result = response.result;
-        console.log(`${result.updatedCells} cells updated.`);
-      });
-    }
     curStatus = status;
     changeStatus(email,status); //changes status in list of all nhs members and prospects
     if (status.indexOf("juniorProspective")>=0){
@@ -907,6 +905,7 @@ function saveApp(){
       alert('Your application has been saved!');
     });
   }
+  handleChange(document.getElementById("enteredAsSoph"));
 }
 
 function deleteApp(){
