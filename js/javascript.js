@@ -7,8 +7,6 @@ var appIndex;
 var auth2;
 var userIndex;
 var updateIndex;
-var oldSheet;
-var emptyBody;
 
   function initializeGlobal(){
     givenName = "givenName";
@@ -28,7 +26,6 @@ var emptyBody;
         initializeGlobal();
         $(document).bind('function_a_complete', initializeApplicationHelper);
         $(document).bind('function_b_complete', initializeApplication);
-        $(document).bind('function_c_complete', deleteOldApp);
         gapi.load('client:auth2', initClient);
       }
 
@@ -744,6 +741,7 @@ function saveApp(){
   };
 
   if (curStatus.trim().indexOf(status)<0){ //if user changed their status, transfer to appropriate spreadsheet
+    var oldSheet;
     var newSheet;
     if (curStatus.indexOf("juniorProspective")>=0){
       oldSheet = "1T9iLfuDqvOz45ViN8Flqfyr6Kg4R-TO9ytXg_4AzV-E";
@@ -777,7 +775,7 @@ function saveApp(){
       console.log("Error: curStatus is "+curStatus);
       return;
     }
-    emptyBody = {
+    var emptyBody = {
       "majorDimension": "ROWS",
       "values": [
         ["", familyName, givenName, email, "", "", "", "", "", "", "", "", "",
@@ -845,7 +843,19 @@ function saveApp(){
     else if (status.indexOf("sophomore")>=0){
       retrieveApp("Sophomore");
     }
-    $(document).trigger('function_c_complete');
+    //delete info from old sheet (but keep names and emails in case they come back
+    //also since multiple people might be using sheet at same time)
+    setTimeout(function(){
+      gapi.client.sheets.spreadsheets.values.update({
+         spreadsheetId: oldSheet,
+         range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+         valueInputOption: "USER_ENTERED",
+         resource: emptyBody
+      }).then((response) => {
+        var result = response.result;
+        console.log(`${result.updatedCells} cells updated.`);
+      });
+    }, 5000);
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
@@ -905,20 +915,6 @@ function saveApp(){
 
 function deleteApp(){
 
-}
-
-function deleteOldApp(){
-  //delete info from old sheet (but keep names and emails in case they come back
-  //also since multiple people might be using sheet at same time)
-  gapi.client.sheets.spreadsheets.values.update({
-     spreadsheetId: oldSheet,
-     range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
-     valueInputOption: "USER_ENTERED",
-     resource: emptyBody
-  }).then((response) => {
-    var result = response.result;
-    console.log(`${result.updatedCells} cells updated.`);
-  });
 }
 
 //disables horizontal scrolling
