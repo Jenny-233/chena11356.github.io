@@ -420,6 +420,9 @@ function retrieveApp(currentGrade){
             if ((row[m]+"").trim().length>0&&m>10){ //add activity if not empty and not #1
               addService();
             }
+            if ((row[m]+"").trim().length<=0||row[m].indexOf("undefined")>=0||row[m]===undefined){
+              break;
+            }
             if ((row[m]+"").trim().length>0){ //add information if not empty
               document.getElementById("serviceNameInput"+activityNum).value = row[m];
               if ((row[m+1]+"").trim().length>0){
@@ -439,6 +442,9 @@ function retrieveApp(currentGrade){
           for (var n = 40; n<=94; n=n+6){
             if ((row[n]+"").trim().length>0&&n>40){ //add activity if not empty and not #1
               addLeadership();
+            }
+            if ((row[n]+"").trim().length<=0||row[n].indexOf("undefined")>=0||row[n]===undefined){
+              break;
             }
             if ((row[n]+"").trim().length>0){ //add information if not empty
               document.getElementById("leadershipNameInput"+activityNum).value = row[n];
