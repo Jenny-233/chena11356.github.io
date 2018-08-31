@@ -377,10 +377,8 @@ function retrieveApp(currentGrade){
     if (range.values.length > 0) {
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
-        appendPre('Found email: '+row[3]);
         //row is array of arrays of application info
         if ((row[3]+"").indexOf(email)>=0){ //when applicant is found
-          appendPre('Found applicant');
           appIndex = i;
           document.getElementById("lastNameInput").value = row[1]; //set last name
           document.getElementById("firstNameInput").value = row[2]; //set first name
@@ -425,6 +423,7 @@ function retrieveApp(currentGrade){
             if ((row[m]+"").trim().length>0){ //add information if not empty
               document.getElementById("serviceNameInput"+activityNum).value = row[m];
               if ((row[m+1]+"").trim().length>0){
+                appendPre("m is "+m+" and this is row[m+1]: "+row[m+1]);
                 document.getElementById("code"+activityNum).selectedIndex = getSelectedIndex(row[m+1]);
               }
               document.getElementById("creditInput"+activityNum).value = row[m+3];
