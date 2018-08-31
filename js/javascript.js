@@ -816,7 +816,7 @@ function saveApp(){
       appendPre('Appended, not updated');
       gapi.client.sheets.spreadsheets.values.append({
         spreadsheetId: newSheet,
-        range: ("Applications"),
+        range: ("Applications!A:DG"),
         valueInputOption: "USER_ENTERED",
         resource: body
       }).then((response) => {
