@@ -785,17 +785,6 @@ function saveApp(){
       ],
       ],
     };
-    //delete info from old sheet (but keep names and emails in case they come back
-    //also since multiple people might be using sheet at same time)
-    gapi.client.sheets.spreadsheets.values.update({
-       spreadsheetId: oldSheet,
-       range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
-       valueInputOption: "USER_ENTERED",
-       resource: emptyBody
-    }).then((response) => {
-      var result = response.result;
-      console.log(`${result.updatedCells} cells updated.`);
-    });
     //add info to new sheet, change appIndex (with retrieveApp) and update list of all nhs members and prospects
     //WAIT WE CANT JUST APPEND WE NEED TO SEE IF THEY'RE THERE FIRST, so FIRST read and see if they're
     //in the sheet, and if not, then append, but if they ARE, then update
@@ -840,7 +829,29 @@ function saveApp(){
     });
     curStatus = status;
     changeStatus(email,status); //changes status in list of all nhs members and prospects
-    initializeApplication();
+    if (status.indexOf("juniorProspective")>=0){
+      retrieveApp("Junior");
+    }
+    else if (status.indexOf("seniorProspective")>=0){
+      retrieveApp("Senior");
+    }
+    else if (status.indexOf("freshman")>=0){
+      retrieveApp("Freshman");
+    }
+    else if (status.indexOf("sophomore")>=0){
+      retrieveApp("Sophomore");
+    }
+    //delete info from old sheet (but keep names and emails in case they come back
+    //also since multiple people might be using sheet at same time)
+    gapi.client.sheets.spreadsheets.values.update({
+       spreadsheetId: oldSheet,
+       range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+       valueInputOption: "USER_ENTERED",
+       resource: emptyBody
+    }).then((response) => {
+      var result = response.result;
+      console.log(`${result.updatedCells} cells updated.`);
+    });
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
