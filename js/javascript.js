@@ -26,6 +26,7 @@ var updateIndex;
         initializeGlobal();
         $(document).bind('function_a_complete', initializeApplicationHelper);
         $(document).bind('function_b_complete', initializeApplication);
+        $(document).bind('function_c_complete', deleteOldApp);
         gapi.load('client:auth2', initClient);
       }
 
@@ -499,7 +500,9 @@ function retrieveApp(currentGrade){
             }
           }
           document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
-
+          if (currentGrade.indexOf("Senior")>=0){
+            changeSenior();
+          }
           break;
         }
       }
@@ -841,17 +844,7 @@ function saveApp(){
     else if (status.indexOf("sophomore")>=0){
       retrieveApp("Sophomore");
     }
-    //delete info from old sheet (but keep names and emails in case they come back
-    //also since multiple people might be using sheet at same time)
-    gapi.client.sheets.spreadsheets.values.update({
-       spreadsheetId: oldSheet,
-       range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
-       valueInputOption: "USER_ENTERED",
-       resource: emptyBody
-    }).then((response) => {
-      var result = response.result;
-      console.log(`${result.updatedCells} cells updated.`);
-    });
+    $(document).trigger('function_b_complete');
     alert('Your application has been saved!');
   }
   else if (status.indexOf("juniorProspective")>=0){
@@ -911,6 +904,20 @@ function saveApp(){
 
 function deleteApp(){
 
+}
+
+function deleteOldApp(oldSheet,emptyBody){
+  //delete info from old sheet (but keep names and emails in case they come back
+  //also since multiple people might be using sheet at same time)
+  gapi.client.sheets.spreadsheets.values.update({
+     spreadsheetId: oldSheet,
+     range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+     valueInputOption: "USER_ENTERED",
+     resource: emptyBody
+  }).then((response) => {
+    var result = response.result;
+    console.log(`${result.updatedCells} cells updated.`);
+  });
 }
 
 //disables horizontal scrolling
