@@ -5,6 +5,7 @@ html {
   height: 100%;
   overflow-x:hidden;
   max-width: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -109,8 +110,16 @@ button#applyNow:hover{
   background-color: #FFF;
 }
 
-#welcomeTop, #contact, #infoThree, #footer {
+#contact, #infoThree, #footer {
   background-color: #000; //black
+}
+
+#welcomeTop{
+  background: url('../assets/photos/walkingBlack.jpg') no-repeat   center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 }
 
 #info, #creditTable, #membership {
@@ -124,6 +133,18 @@ div#tutoring a, div#formsAndLinks a, div#volunteer a, div#FAQ a, div#currentTop 
 
 #tutoring, #FAQ, #currentTop {
   background-color: #037164; //bxSci green
+}
+
+#tutoring {
+  background: url('../assets/photos/mathGreen.png') no-repeat   center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+#tutoring p {
+  color: #FFF !important;
 }
 
 #formsAndLinks, #volunteer{
@@ -175,6 +196,35 @@ ul.nav-pills {
 ul.nav-pills a.active {
   color: #FFF;
   background-color: #037164 !important;
+}
+
+div.bg {
+  background: url('../assets/photos/subwayYellow.png') no-repeat   center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+text-align:center;
+height:100vh;
+}
+
+div.bg .text {
+    margin: 0 auto;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    text-shadow: 0 0 5px #000;
+}
+
+#arrowSVG {
+  height: 10%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
 }
 
 </style>
