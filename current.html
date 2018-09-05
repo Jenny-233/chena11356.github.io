@@ -29,6 +29,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
 
     <!--
     //REFERENCE: http://www.firewatchgame.com/ is really nice
@@ -122,11 +123,16 @@ COLOR SCHEME:
   </div>
 </nav>
 
-<img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">
+<div class="currentIntro bg">
+  <div class="text">
+    <h1 style="font-family: 'Shadows Into Light', cursive; font-size: 4em;">Dear NHS Member...</h1>
+  </div>
+  <img src="assets/arrow.svg" alt="arrow" id="arrowSVG">
+</div>
 
 <div class="mainBody" id="calendarJump">
 
-  <div class="container-fluid text-center" id="currentTop">
+  <div class="container-fluid text-center" id="currentTop" style="border: 20px solid #001910;">
     <div class="row">
       <div class="col">
         <h2>We're so glad you're here!</h2>
@@ -145,6 +151,7 @@ COLOR SCHEME:
         <p id="membershipJump">
           Please make sure to check your Bronx Science email regularly. All important information and deadlines
           will be distributed by email.
+        </p>
       </div>
       <div class="col">
         <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=bxscience.edu_4qhbrm10id0a415j0td05itvdk%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
@@ -156,11 +163,6 @@ COLOR SCHEME:
     <h2 class="dark">Maintaining Membership</h2>
     <hr class="green">
     <div class="row">
-      <div class="col-4">
-        <img src="assets/photos/subway.jpg" class="img-fluid" alt="subway">
-        <img src="assets/photos/walking.jpg" class="img-fluid" alt="walking">
-        <img src="assets/photos/locker.jpg" class="img-fluid" alt="locker">
-      </div>
       <div class="col">
         <div id="accordion">
           <div class="card">
@@ -383,6 +385,16 @@ COLOR SCHEME:
       <h1>{{ message }}</h1>
       <button v-on:click="reverseMessage">Reverse Message</button>
     </div> -->
+
+    <div class="container-fluid text-center" id="photoGallery">
+      <h2>Photo Gallery</h2>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <p>Coming soon!</p>
+        </div>
+      </div>
+    </div>
 
     <div class="container-fluid text-center page-footer font-small" id="footer">
       <div class="row">

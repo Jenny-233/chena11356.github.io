@@ -110,7 +110,7 @@ button#applyNow:hover{
   background-color: #FFF;
 }
 
-#contact, #infoThree, #footer {
+#contact, #infoThree, #footer, #trackerTop, #photoGallery {
   background-color: #000; //black
 }
 
@@ -133,14 +133,6 @@ div#tutoring a, div#formsAndLinks a, div#volunteer a, div#FAQ a, div#currentTop 
 
 #tutoring, #FAQ, #currentTop {
   background-color: #037164; //bxSci green
-}
-
-#tutoring {
-  background: url('../assets/photos/mathGreen.png') no-repeat   center center fixed;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
 }
 
 #tutoring p {
@@ -208,6 +200,30 @@ text-align:center;
 height:100vh;
 }
 
+div.currentIntro {
+  background: url('../assets/photos/trophyYellow.gif') no-repeat   center center fixed;
+}
+
+div.welcomeIntro {
+  background: url('../assets/photos/subwayYellow.png') no-repeat   center center fixed;
+}
+
+div.trackerIntro {
+  background: url('../assets/photos/sky.gif') no-repeat   center center fixed;
+}
+
+div.prospectiveIntro {
+  background: url('../assets/photos/city.gif') no-repeat   center center fixed;
+}
+
+div.underclassmanIntro {
+  background: url('../assets/photos/tree.gif') no-repeat   center center fixed;
+}
+
+div.upperclassmanIntro {
+  background: url('../assets/photos/park.gif') no-repeat   center center fixed;
+}
+
 div.bg .text {
     margin: 0 auto;
     font-weight: 600;
@@ -216,7 +232,7 @@ div.bg .text {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -70%);
-    text-shadow: 0 0 5px #000;
+    text-shadow: 0 0 5px #000, 0 0 2px #000;
 }
 
 #arrowSVG {
