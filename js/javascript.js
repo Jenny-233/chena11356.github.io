@@ -37,7 +37,7 @@ var updateIndex;
                 apiKey: CryptoJS.AES.decrypt("U2FsdGVkX1/S8edWarSrmB53PvEMUMsK0tR5R8AURw/OjmOz7CjeZ1pNJKcJfNd6PpEKTTQbXhX1/tQMnSFVCQ==", "nhs").toString(CryptoJS.enc.Utf8),
                 clientId: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com',
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-                scope: "profile email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"
+                scope: "profile email"
               });
               /*if (window.location.href.indexOf("classman")>=0){
                 $(document).trigger('function_b_complete');
@@ -327,8 +327,8 @@ function appendNewPerson(){
     });
   }
   else {
-    curStatus = "junior";
-    status = "junior";
+    curStatus = "juniorProspective";
+    status = "juniorProspective";
     gapi.client.sheets.spreadsheets.values.append({
        spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
        range: "Applications",
@@ -406,24 +406,47 @@ function initializeApplicationHelper(){
     //if person is current underclassman, alert them that and still show application and get app info
     if (window.location.href.indexOf("upperclassman")>=0){
       alert("It seems that you are in our records as an underclassman. If you are ready, you may start your application as a junior or senior. All information will transfer over.");
-    }
-    //then, if they do decide to save their application as an upperclassman, transfer records into appropriate spreadsheet
-    if (status.indexOf("freshman")>=0){
-      retrieveApp("Freshman");
+      if (status.indexOf("freshman")>=0){
+        retrieveApp("Freshman");
+      }
+      else{
+        retrieveApp("Sophomore");
+      }
+      changeJunior();
+      //if person then decides to save as upperclassman, then transfer info to appropriate spreadsheet
     }
     else{
-      retrieveApp("Sophomore");
+      if (status.indexOf("freshman")>=0){
+        retrieveApp("Freshman");
+      }
+      else{
+        retrieveApp("Sophomore");
+      }
     }
   }
   else {
     //if person is prospective junior or senior, access their records and initialize application information
-    if (status.indexOf("juniorProspective")>=0){
-      retrieveApp("Junior");
+    if (window.location.href.indexOf("underclassman")>=0){
+      alert("It seems that you are in our records as an upperclassman. If you started an upperclassman application by mistake, you may continue your pre-application as a freshman or sophomore. All information will transfer over.");
+      if (status.indexOf("juniorProspective")>=0){
+        retrieveApp("Junior");
+      }
+      else{
+        retrieveApp("Senior");
+      }
+      changeFreshman();
+      //if person then decides to save as underclassman, then transfer info to appropriate spreadsheet
     }
-    else {
-      retrieveApp("Senior");
-      changeSenior();
+    else{
+      if (status.indexOf("juniorProspective")>=0){
+        retrieveApp("Junior");
+      }
+      else {
+        retrieveApp("Senior");
+        changeSenior();
+      }
     }
+
   }
 }
 
