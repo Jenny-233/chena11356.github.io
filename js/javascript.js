@@ -37,7 +37,7 @@ var updateIndex;
                 apiKey: CryptoJS.AES.decrypt("U2FsdGVkX1/S8edWarSrmB53PvEMUMsK0tR5R8AURw/OjmOz7CjeZ1pNJKcJfNd6PpEKTTQbXhX1/tQMnSFVCQ==", "nhs").toString(CryptoJS.enc.Utf8),
                 clientId: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com',
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-                scope: "profile email"
+                scope: "profile email https://www.googleapis.com/auth/spreadsheets"
               });
               /*if (window.location.href.indexOf("classman")>=0){
                 $(document).trigger('function_b_complete');
