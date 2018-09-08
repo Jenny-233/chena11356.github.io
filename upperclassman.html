@@ -130,7 +130,7 @@ COLOR SCHEME:
 </div>
 
 <div class="mainBody">
-  <div class="container-fluid text-center" id="membership" style="color: #000;">
+  <div class="container-fluid text-center" id="upperclassmanTop" style="color: #000;">
     <h1 class="dark">"Knowing is not enough; we must apply."</h1>
     <hr class="green">
     <div class="row">
@@ -167,9 +167,66 @@ COLOR SCHEME:
     </div>
     <div id="application" style="display:none;">
     <br>
+    <!--move side material down here if mobile-->
+    <div class="row" id="showMobile5">
+      <div class="col">
+        <!--row to toggle junior or senior-->
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="changeJunior()">Junior</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="changeSenior()">Senior</button>
+          </div>
+        </div>
+        <!--row for checkbox-->
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="enteredAsSoph2" onchange='handleChange(this);'>
+              <label class="form-check-label" for="enteredAsSoph">
+                Entered Bronx Science as a sophomore
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--row for credit requirements-->
+        <br>
+        <div class="row">
+          <div class="col" id="requirements2" style="color: #037164; border-radius: 25px; padding-top: 1em; border: 1px solid #037164;">
+            <ul>
+              <li>
+                <b>Scholarship</b>: You must have a 90 or above average.
+              </li>
+              <li>
+                <b>Service</b>: You have inputted <b><span id="serviceInput2" class="varCredit">x</span></b>/<b><span id="serviceNeeded2" class="varCredit">x</span></b> credits.
+              </li>
+              <li>
+                <b>Leadership and Citizenship</b>: You have inputted <b><span id="leadershipInput2" class="varCredit">x</span></b>/<b><span id="leadershipNeeded2" class="varCredit">x</span></b> credits.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--rows for saving/deleting your application-->
+        <br>
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="saveApp()" id="saveButton2">Save Your Application</button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-danger btn-lg btn-block confirm" id="deleteButton2">Delete Your Application</button>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="pills-overview-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview" aria-selected="true">Overview</a>
           </li>
@@ -189,7 +246,7 @@ COLOR SCHEME:
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
             <h4 class="dark">
-              NHS 2018-2019 <span id="grade">x</span> Application
+              NHS 2018-2019 <span id="grade">Upperclassman</span> Application
             </h4>
             <hr class="green">
             <form>
@@ -1073,7 +1130,7 @@ COLOR SCHEME:
         </div>
       </div>
       <!--now create a column for application settings (grade, etc.) -->
-      <div class="col-4">
+      <div class="col-4" id="noShowMobile5">
         <!--row to toggle junior or senior-->
         <div class="row">
           <div class="col">
@@ -1116,15 +1173,21 @@ COLOR SCHEME:
         <br>
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="saveApp()">Save Your Application</button>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="saveApp()" id="saveButton">Save Your Application</button>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col">
-            <button type="button" class="btn btn-outline-danger btn-lg btn-block confirm">Delete Your Application</button>
+            <button type="button" class="btn btn-outline-danger btn-lg btn-block confirm" id="deleteButton">Delete Your Application</button>
           </div>
         </div>
+      </div>
+    </div>
+    <br>
+    <div class="row" id="showMobile6">
+      <div class="col">
+        <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="saveApp()" id="saveButton3">Save Your Application</button>
       </div>
     </div>
   </div>

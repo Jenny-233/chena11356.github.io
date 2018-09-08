@@ -1,4 +1,14 @@
 <style>
+/* Supposed to help with mobile design, but makes landing page text fixed for some reason
+@viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+}
+@-ms-viewport {
+  width: device-width ;
+}
+*/
+
  body,
 html {
   width: 100%;
@@ -110,19 +120,19 @@ button#applyNow:hover{
   background-color: #FFF;
 }
 
-#contact, #infoThree, #footer, #trackerTop, #photoGallery {
+#contact, #contact2, #infoThree, #footer, #trackerTop, #photoGallery {
   background-color: #000; //black
 }
 
 #welcomeTop{
-  background: url('../assets/photos/walkingBlack.jpg') no-repeat   center center fixed;
+  background: url('../assets/photos/walkingBlack.jpg') repeat-y   center center fixed;
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
 }
 
-#info, #creditTable, #membership {
+#info, #creditTable, #membership, #upperclassmanTop, #underclassmanTop {
   background-color: #FFF; //white
   color: #001910;
 }
@@ -164,15 +174,12 @@ img.headshot {
   filter: grayscale(100%);
   -webkit-transition: filter 0.2s; /* Safari */
   transition: filter 0.2s;
+  padding-bottom: 0.7em;
 }
 
 img.headshot:hover {
   -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
-}
-
-img.headshot:active{
-  /*box-shadow: 0px 0px 15px 3px rgba(255,222,0,0.5);*/
 }
 
 a[aria-expanded*="true"] img {
@@ -191,27 +198,27 @@ ul.nav-pills a.active {
 }
 
 div.currentIntro {
-  background: url('../assets/photos/trophyYellow.gif') no-repeat   center center fixed;
+  background: url('../assets/photos/trophyYellow.gif') repeat-y   center center fixed;
 }
 
 div.welcomeIntro {
-  background: url('../assets/photos/subwayYellow.png') no-repeat   center center fixed;
+  background: url('../assets/photos/subwayYellow.png') repeat-y   center center fixed;
 }
 
 div.trackerIntro {
-  background: url('../assets/photos/sky.gif') no-repeat   center center fixed;
+  background: url('../assets/photos/sky.gif') repeat-y   center center fixed;
 }
 
 div.prospectiveIntro {
-  background: url('../assets/photos/city.gif') no-repeat   center center fixed;
+  background: url('../assets/photos/city.gif') repeat-y   center center fixed;
 }
 
 div.underclassmanIntro {
-  background: url('../assets/photos/tree.gif') no-repeat   center center fixed;
+  background: url('../assets/photos/tree.gif') repeat-y   center center fixed;
 }
 
 div.upperclassmanIntro {
-  background: url('../assets/photos/park.gif') no-repeat   center center fixed;
+  background: url('../assets/photos/park.gif') repeat-y   center center fixed;
 }
 
 div.bg .text {
@@ -241,6 +248,123 @@ width: 100%;
   left: 50%;
   transform: translateX(-50%);
   bottom: 5%;
+}
+
+.embed-responsive-1by1, .showMobile{
+  display:none;
+}
+
+#noShowMobile1{
+  display:block !important;
+}
+
+/*For video*/
+@media screen and (max-width: 1023px) {
+  #welcomeTop .embed-responsive-16by9{
+    display:none;
+  }
+  #welcomeTop .embed-responsive-1by1{
+    display:block;
+  }
+}
+
+#contact, #noShowMobile4, #noShowMobile5{
+  display:block !important;
+}
+
+#contact2, #showMobile4, #showMobile5, #showMobile6{
+  display:none !important;
+}
+
+/*For general mobile*/
+@media screen and (max-width: 792px) {
+  div.bg{
+    display:none !important;
+  }
+  #apply, #currentTop, #trackerTop, #upperclassmanTop, #underclassmanTop{
+    margin-top: 3em;
+  }
+  .showMobile, #contact2, #showMobile4, #showMobile5, #showMobile6{
+    display: block !important;
+  }
+  .noShowMobile, #noShowMobile1, #contact, #noShowMobile4, #noShowMobile5{
+    display:none !important;
+  }
+}
+
+#noShowMobile2, #noShowMobile3{
+  display: block !important;
+}
+#showMobile2, #showMobile3{
+  display: none !important;
+}
+
+/*For tutoring*/
+@media screen and (max-width: 868px) {
+  #noShowMobile2, #noShowMobile3{
+    display: none !important;
+  }
+  #showMobile2, #showMobile3{
+    display: block !important;
+  }
+}
+@media screen and (max-width: 515px) {
+  #tutoring #accordion .btn{
+    font-size: 0.6em;
+  }
+}
+@media screen and (max-width: 427px) {
+  #tutoring #accordion .btn{
+    font-size: 0.45em;
+  }
+}
+
+/*For border columns, like info*/
+@media screen and (max-width: 480px) {
+  #info .col{
+    border-style: none !important;
+  }
+}
+@media screen and (max-width: 711px) {
+  #infoThree .col{
+    border-style: none !important;
+  }
+}
+@media screen and (max-width: 460px) {
+  #volunteer .col{
+    border-style: none !important;
+  }
+}
+
+/*For prospective FAQ*/
+@media screen and (max-width: 618px) {
+  #FAQ #accordion .btn{
+    font-size: 0.6em;
+  }
+}
+@media screen and (max-width: 488px) {
+  #FAQ #accordion .btn{
+    font-size: 0.45em;
+  }
+}
+
+/*For current*/
+@media screen and (max-width: 445px) {
+  #membership #accordion .btn{
+    font-size: 0.6em;
+  }
+}
+@media screen and (max-width: 371px) {
+  #membership #accordion .btn{
+    font-size: 0.45em;
+  }
+}
+
+/*For application*/
+@media screen and (max-width: 888px) {
+  #deleteButton, #saveButton{
+    font-size: 1em;
+  }
 }
 
 </style>

@@ -505,24 +505,34 @@ function retrieveApp(currentGrade){
           }
           if (!(row[9]===undefined)&&row[9].trim().toLowerCase().indexOf("sophomore")>=0){ //set whether applicant came as freshman/sophomore
             document.getElementById("enteredAsSoph").checked = true;
+            document.getElementById("enteredAsSoph2").checked = true;
             if (currentGrade.indexOf("senior")>=0){ //seniors who came as sophomores
               document.getElementById("serviceNeeded").innerHTML = "10";
+              document.getElementById("serviceNeeded2").innerHTML = "10";
               document.getElementById("leadershipNeeded").innerHTML = "40";
+              document.getElementById("leadershipNeeded2").innerHTML = "40";
             }
             else { //freshman, sophomore, and juniors who came as sophomores
               document.getElementById("serviceNeeded").innerHTML = "8";
+              document.getElementById("serviceNeeded2").innerHTML = "8";
               document.getElementById("leadershipNeeded").innerHTML = "30";
+              document.getElementById("leadershipNeeded2").innerHTML = "30";
             }
           }
           else {
             document.getElementById("enteredAsSoph").checked = false;
+            document.getElementById("enteredAsSoph2").checked = false;
             if (currentGrade.indexOf("senior")>=0){ //seniors who came as freshmen
               document.getElementById("serviceNeeded").innerHTML = "15";
+              document.getElementById("serviceNeeded2").innerHTML = "15";
               document.getElementById("leadershipNeeded").innerHTML = "60";
+              document.getElementById("leadershipNeeded2").innerHTML = "60";
             }
             else { //freshman, sophomore, and juniors who came as freshmen
               document.getElementById("serviceNeeded").innerHTML = "13";
+              document.getElementById("serviceNeeded2").innerHTML = "13";
               document.getElementById("leadershipNeeded").innerHTML = "50";
+              document.getElementById("leadershipNeeded2").innerHTML = "50";
             }
           }
 
@@ -581,12 +591,14 @@ function retrieveApp(currentGrade){
             }
           }
           document.getElementById("serviceInput").innerHTML = totalService+"";
+          document.getElementById("serviceInput2").innerHTML = totalService+"";
           for (var b = 1; b<=10; b++){
             if (!isNaN(parseInt(document.getElementById("lcreditInput"+b).value))) {
               totalLeadership += parseInt(document.getElementById("lcreditInput"+b).value);
             }
           }
           document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
+          document.getElementById("leadershipInput2").innerHTML = totalLeadership+"";
           if (currentGrade.indexOf("Senior")>=0){
             changeSenior();
           }
@@ -632,25 +644,33 @@ function getSelectedIndex(code){
 
 function changeJunior(){
   status = "juniorProspective";
-  if (document.getElementById("enteredAsSoph").checked){
+  if (document.getElementById("enteredAsSoph").checked||document.getElementById("enteredAsSoph2").checked){
     document.getElementById("serviceNeeded").innerHTML = "8";
+    document.getElementById("serviceNeeded2").innerHTML = "8";
     document.getElementById("leadershipNeeded").innerHTML = "30";
+    document.getElementById("leadershipNeeded2").innerHTML = "30";
   }
   else {
     document.getElementById("serviceNeeded").innerHTML = "13";
+    document.getElementById("serviceNeeded2").innerHTML = "13";
     document.getElementById("leadershipNeeded").innerHTML = "50";
+    document.getElementById("leadershipNeeded2").innerHTML = "50";
   }
 }
 
 function changeSenior(){
   status = "seniorProspective";
-  if (document.getElementById("enteredAsSoph").checked){
+  if (document.getElementById("enteredAsSoph").checked||document.getElementById("enteredAsSoph2").checked){
     document.getElementById("serviceNeeded").innerHTML = "10";
+    document.getElementById("serviceNeeded2").innerHTML = "10";
     document.getElementById("leadershipNeeded").innerHTML = "40";
+    document.getElementById("leadershipNeeded2").innerHTML = "40";
   }
   else {
     document.getElementById("serviceNeeded").innerHTML = "15";
+    document.getElementById("serviceNeeded2").innerHTML = "15";
     document.getElementById("leadershipNeeded").innerHTML = "60";
+    document.getElementById("leadershipNeeded2").innerHTML = "60";
   }
 }
 
@@ -667,20 +687,28 @@ function handleChange(checkbox) {
     if(checkbox.checked == true){
         if (status.indexOf("seniorProspective")>=0){ //senior who entered as sophomore
           document.getElementById("serviceNeeded").innerHTML = "10";
+          document.getElementById("serviceNeeded2").innerHTML = "10";
           document.getElementById("leadershipNeeded").innerHTML = "40";
+          document.getElementById("leadershipNeeded2").innerHTML = "40";
         }
         else{ //junior/freshman/sophomore who entered as sophomore
           document.getElementById("serviceNeeded").innerHTML = "8";
+          document.getElementById("serviceNeeded2").innerHTML = "8";
           document.getElementById("leadershipNeeded").innerHTML = "30";
+          document.getElementById("leadershipNeeded2").innerHTML = "30";
         }
     }else{
       if (status.indexOf("seniorProspective")>=0){ //senior who entered as freshman
         document.getElementById("serviceNeeded").innerHTML = "15";
+        document.getElementById("serviceNeeded2").innerHTML = "15";
         document.getElementById("leadershipNeeded").innerHTML = "60";
+        document.getElementById("leadershipNeeded2").innerHTML = "60";
       }
       else{ //junior/freshman/sophomore who entered as freshman
         document.getElementById("serviceNeeded").innerHTML = "13";
+        document.getElementById("serviceNeeded2").innerHTML = "13";
         document.getElementById("leadershipNeeded").innerHTML = "50";
+        document.getElementById("leadershipNeeded2").innerHTML = "50";
       }
    }
 }
@@ -695,12 +723,14 @@ function saveApp(){
     }
   }
   document.getElementById("serviceInput").innerHTML = totalService+"";
+  document.getElementById("serviceInput2").innerHTML = totalService+"";
   for (var b = 1; b<=10; b++){
     if (!isNaN(parseInt(document.getElementById("lcreditInput"+b).value))) {
       totalLeadership += parseInt(document.getElementById("lcreditInput"+b).value);
     }
   }
   document.getElementById("leadershipInput").innerHTML = totalLeadership+"";
+  document.getElementById("leadershipInput2").innerHTML = totalLeadership+"";
 
   //set the checkbox/radio responses into text
   var failed;
@@ -718,7 +748,7 @@ function saveApp(){
   else {
     suspended = "Yes";
   }
-  if (document.getElementById("enteredAsSoph").checked){
+  if (document.getElementById("enteredAsSoph").checked||document.getElementById("enteredAsSoph2").checked){
     incoming = "Sophomore";
   }
   else {
@@ -1002,6 +1032,7 @@ function saveApp(){
     });
   }
   handleChange(document.getElementById("enteredAsSoph"));
+  handleChange(document.getElementById("enteredAsSoph2"));
 }
 
 function deleteApp(){
