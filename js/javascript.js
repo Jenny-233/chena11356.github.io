@@ -399,7 +399,7 @@ function initializeApplicationHelper(){
   }
   else if (status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0){
     //if person is current junior/senior, alert that they are juniors/seniors on record and do not show application
-    alert("It seems that you are a current NHS member. If this is incorrect, please contact nhs@bxscience.edu.");
+    alert("It seems that you are a current NHS member. If this is incorrect, please contact chena@bxscience.edu.");
     document.getElementById("application").style.display = "none";
   }
   else if (status.indexOf("freshman")>=0||status.indexOf("sophomore")>=0) {
@@ -1031,8 +1031,8 @@ function saveApp(){
       alert('Your application has been saved!');
     });
   }
-  handleChange(document.getElementById("enteredAsSoph"));
-  handleChange(document.getElementById("enteredAsSoph2"));
+  /*handleChange(document.getElementById("enteredAsSoph"));
+  handleChange(document.getElementById("enteredAsSoph2"));*/
 }
 
 function deleteApp(){
