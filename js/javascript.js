@@ -261,7 +261,6 @@ function changeStatus(email,updatedStatus){
       [familyName, givenName, email, updatedStatus],
     ],
   };
-  /*
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1',
@@ -270,18 +269,13 @@ function changeStatus(email,updatedStatus){
     if (range.values.length > 0) {
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
-        appendPre("row[2] includes: "+row[2]);
-        //row is array of arrays of last name, first name, email address, and status
         if ((row[2]+"").indexOf(email)>=0){
-          appendPre('found user in list while updating at index: '+i);
           userIndex = i;
-          appendPre('so range is going to be '+(userIndex));
           break;
         }
       }
     }
   });
-  */
   gapi.client.sheets.spreadsheets.values.update({
      spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1+TP7NKOInXJu1+3Gt9V3ACgPbivHWK7dM8t9GqfcmAuA79KdTkjUTamWGVbZ2/wAg4lBvnut/vRw==", "nhs").toString(CryptoJS.enc.Utf8),
      range: ("Sheet1!"+(userIndex+1)+":"+(userIndex+1)),
