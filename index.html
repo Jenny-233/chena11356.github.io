@@ -83,12 +83,12 @@ COLOR SCHEME:
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="./prospective" title="prospective">Application Process</a>
-          <a class="dropdown-item" href="prospective.html#FAQJump">FAQ</a>
-          <a class="dropdown-item" href="prospective.html#creditJump">Credit Table</a>
-          <a class="dropdown-item" href="prospective.html#volunteerJump">Volunteer Opportunities</a>
+          <a class="dropdown-item" href="./prospective#FAQJump">FAQ</a>
+          <a class="dropdown-item" href="./prospective#creditJump">Credit Table</a>
+          <a class="dropdown-item" href="./prospective#volunteerJump">Volunteer Opportunities</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:redirectIfSignedIn('underclassman.html');">Underclassman Applications</a>
-          <a class="dropdown-item" href="javascript:redirectIfSignedIn('upperclassman.html');">Junior and Senior Applications</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('./underclassman');">Underclassman Applications</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('./upperclassman');">Junior and Senior Applications</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -96,15 +96,15 @@ COLOR SCHEME:
           For Current Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="current.html#">Calendar</a>
-          <a class="dropdown-item" href="current.html#membershipJump">Maintaining Membership</a>
-          <a class="dropdown-item" href="#">Photo Gallery</a>
+          <a class="dropdown-item" href="./current">Calendar</a>
+          <a class="dropdown-item" href="./current#membershipJump">Maintaining Membership</a>
+          <a class="dropdown-item" href="javascript:alert('Coming soon!');">Photo Gallery</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:redirectIfSignedIn('tracker.html');">Credit Tracker</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('./tracker');">Credit Tracker</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="privacy.html">
+        <a class="nav-link" href="./privacy">
           Privacy Policy
         </a>
       </li>
@@ -134,7 +134,7 @@ COLOR SCHEME:
   <div class="container-fluid text-center" id="apply" style="padding:0em;">
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-light" id="applyNow" onclick="redirectIfSignedIn('upperclassman.html')">Apply now!</button>
+        <button type="button" class="btn btn-light" id="applyNow" onclick="redirectIfSignedIn('./upperclassman')">Apply now!</button>
         <hr id="welcomeJump">
       </div>
     </div>
@@ -186,8 +186,8 @@ COLOR SCHEME:
           Applications will be completed through this web app.
           Application deadlines will be announced in advance and publicized widely
           throughout Bronx Science. For information about the application process
-          and requirements, please click <a href="prospective.html">here</a>. To start or complete an
-          application, please click <a href="upperclassman.html">here</a>.
+          and requirements, please click <a href="./prospective">here</a>. To start or complete an
+          application, please click <a href="./upperclassman">here</a>.
         </p>
         <p id="tutoringJump">
           Once you've submitted an application, you will receive notification of
@@ -202,8 +202,8 @@ COLOR SCHEME:
         <p>Congratulations for making it into NHS! This is a huge accomplishment
           and you should be proud of yourself for all the work that you have put into
           your community and academics. For upcoming events, membership maintenance requirements,
-          and more, please click <a href="current.html">here</a>. To review your credits,
-          please click <a href="tracker.html">here</a>.
+          and more, please click <a href="./current">here</a>. To review your credits,
+          please click <a href="./tracker">here</a>.
         </p>
         <a href="https://bxscience.edu/" target="_blank"><img border="0" alt="atom" src="assets/atomTransparent.png" width="200" height="200">
         </a>
