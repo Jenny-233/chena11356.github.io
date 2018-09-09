@@ -26,6 +26,7 @@ var updateIndex;
         initializeGlobal();
         $(document).bind('function_a_complete', initializeApplicationHelper);
         $(document).bind('function_b_complete', initializeApplication);
+        $(document).bind('function_c_complete', changeStatusHelper);
         gapi.load('client:auth2', initClient);
       }
 
@@ -255,12 +256,6 @@ function findStatus(email){
 
 //changes status of user given email address and new status
 function changeStatus(email,updatedStatus){
-  var changeBody = {
-    "majorDimension": "ROWS",
-    "values": [
-      [familyName, givenName, email, updatedStatus],
-    ],
-  };
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1',
@@ -277,8 +272,18 @@ function changeStatus(email,updatedStatus){
           break;
         }
       }
+      $(document).trigger('function_c_complete');
     }
   });
+}
+
+function changeStatusHelper(){
+  var changeBody = {
+    "majorDimension": "ROWS",
+    "values": [
+      [familyName, givenName, email, updatedStatus],
+    ],
+  };
   gapi.client.sheets.spreadsheets.values.update({
      spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1+TP7NKOInXJu1+3Gt9V3ACgPbivHWK7dM8t9GqfcmAuA79KdTkjUTamWGVbZ2/wAg4lBvnut/vRw==", "nhs").toString(CryptoJS.enc.Utf8),
      range: ("Sheet1!"+(userIndex+1)+":"+(userIndex+1)),
@@ -287,6 +292,7 @@ function changeStatus(email,updatedStatus){
   }).then((response) => {
     var result = response.result;
     console.log(`${result.updatedCells} cells updated.`);
+    console.log("Userindex is "+userIndex);
   });
 }
 
