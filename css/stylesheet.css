@@ -268,7 +268,7 @@ width: 100%;
   }
 }
 
-#contact, #noShowMobile4, #noShowMobile5{
+#contact, #noShowMobile4, #noShowMobile5, #noShowMobile6{
   display:block !important;
 }
 
@@ -287,7 +287,7 @@ width: 100%;
   .showMobile, #contact2, #showMobile4, #showMobile5, #showMobile6{
     display: block !important;
   }
-  .noShowMobile, #noShowMobile1, #contact, #noShowMobile4, #noShowMobile5{
+  .noShowMobile, #noShowMobile1, #contact, #noShowMobile4, #noShowMobile5, #noShowMobile6{
     display:none !important;
   }
 }
