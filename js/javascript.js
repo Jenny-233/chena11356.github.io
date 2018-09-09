@@ -255,7 +255,7 @@ function findStatus(email){
 }
 
 //changes status of user given email address and new status
-function changeStatus(email,updatedStatus){
+function changeStatus(){
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: '1FrHVeXNWCjov5MtHM4h8pNfQ007PiHReK07VSeTbbAc',
   range: 'Sheet1',
@@ -281,7 +281,7 @@ function changeStatusHelper(){
   var changeBody = {
     "majorDimension": "ROWS",
     "values": [
-      [familyName, givenName, email, updatedStatus],
+      [familyName, givenName, email, status],
     ],
   };
   gapi.client.sheets.spreadsheets.values.update({
@@ -958,7 +958,6 @@ function saveApp(){
       }
     });
     curStatus = status;
-    changeStatus(email,status); //changes status in list of all nhs members and prospects
     if (status.indexOf("juniorProspective")>=0){
       retrieveApp("Junior");
     }
