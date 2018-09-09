@@ -268,11 +268,11 @@ width: 100%;
   }
 }
 
-#contact, #noShowMobile4, #noShowMobile5, #noShowMobile6{
+#contact, #noShowMobile4, #noShowMobile5, #noShowMobile6, #noShowMobile7{
   display:block !important;
 }
 
-#contact2, #showMobile4, #showMobile5, #showMobile6{
+#contact2, #showMobile4, #showMobile5, #showMobile6, #showMobile7{
   display:none !important;
 }
 
@@ -284,11 +284,14 @@ width: 100%;
   #apply, #currentTop, #trackerTop, #upperclassmanTop, #underclassmanTop{
     margin-top: 3em;
   }
-  .showMobile, #contact2, #showMobile4, #showMobile5, #showMobile6{
+  .showMobile, #contact2, #showMobile4, #showMobile5, #showMobile6, #showMobile7{
     display: block !important;
   }
-  .noShowMobile, #noShowMobile1, #contact, #noShowMobile4, #noShowMobile5, #noShowMobile6{
+  .noShowMobile, #noShowMobile1, #contact, #noShowMobile4, #noShowMobile5, #noShowMobile6, #noShowMobile7{
     display:none !important;
+  }
+  #formsAndLinks .col, #formsAndLinks .col-4{
+    border-style: none !important;
   }
 }
 
@@ -332,11 +335,6 @@ width: 100%;
 }
 @media screen and (max-width: 460px) {
   #volunteer .col{
-    border-style: none !important;
-  }
-}
-@media screen and (max-width: 345px) {
-  #formsAndLinks .col, #formsAndLinks .col-4{
     border-style: none !important;
   }
 }
