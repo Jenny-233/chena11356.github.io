@@ -958,6 +958,7 @@ function saveApp(){
       }
     });
     curStatus = status;
+    changeStatus();
     if (status.indexOf("juniorProspective")>=0){
       retrieveApp("Junior");
     }
