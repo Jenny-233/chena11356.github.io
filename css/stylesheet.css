@@ -335,6 +335,11 @@ width: 100%;
     border-style: none !important;
   }
 }
+@media screen and (max-width: 345px) {
+  #formsAndLinks .col, #formsAndLinks .col-4{
+    border-style: none !important;
+  }
+}
 
 /*For prospective FAQ*/
 @media screen and (max-width: 618px) {
