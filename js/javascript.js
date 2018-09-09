@@ -373,12 +373,12 @@ else{
 
 //if user is signed in, initialize everything in application; else, redirect back to the main page
 function initializeApplication(){
-    //get rid of loading stuff and show the application
-    document.getElementById("loadingText").style.display = "block";
-    document.getElementById("loadingImg").style.display = "block";
-    document.getElementById("appButton").style.display = "none";
     //make sure user is signed in
     if (gapi.auth2.getAuthInstance().isSignedIn.get()){
+      //get rid of loading stuff and show the application
+      document.getElementById("loadingText").style.display = "block";
+      document.getElementById("loadingImg").style.display = "block";
+      document.getElementById("appButton").style.display = "none";
       //get information
       var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
       givenName = profile.getGivenName();
