@@ -133,20 +133,20 @@ function main(){
 function onSignIn(googleUser) {
   var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   //make sure it is a Bronx Science account
-  /*
+
   if (profile.getEmail().indexOf("@bxscience.edu")<0){
     alert("Please sign in with a Bronx Science email. You have been signed out.");
     signOut();
   }
-  */
-  //else {
+
+  else {
     document.getElementById("signInLink").style.display = "none";
     //change the greeting
     //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-  //}
+  }
 }
 
 function signOut() {
@@ -377,15 +377,21 @@ function initializeApplication(){
     document.getElementById("loadingText").style.display = "block";
     document.getElementById("loadingImg").style.display = "block";
     document.getElementById("appButton").style.display = "none";
-    //get information
-    var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-    givenName = profile.getGivenName();
-    familyName = profile.getFamilyName();
-    email = profile.getEmail();
-    //appendPre("User email: "+email);
-    //look for user in main spreadsheet and get status:
-    //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
-    findStatus(email);
+    //make sure user is signed in
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()){
+      //get information
+      var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+      givenName = profile.getGivenName();
+      familyName = profile.getFamilyName();
+      email = profile.getEmail();
+      //appendPre("User email: "+email);
+      //look for user in main spreadsheet and get status:
+      //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
+      findStatus(email);
+    }
+    else{
+      alert("To use this service, please sign in using your bxscience.edu email.")
+    }
 }
 
 //runs after status is found and defined

@@ -45,10 +45,7 @@
 //TODO: Replace monocolor containers with really nice pictures and stuff
 //TODO: Verify app with https://support.google.com/cloud/answer/7454865?authuser=2
 //TODO: Instead of using timeout to load application, use the listener thingie
-//TODO: IF we decide to merge the credit application questions into one question, change app js
-//TODO: Make sure everyone can access the spreadsheets, but ideally also not share it with everyone
-//maybe use https://stackoverflow.com/questions/18279141/javascript-string-encryption-and-decryption
-//if so, then get rid of the extra authorizations at sign-in
+//TODO: Changed credit question to semester and keeping it, so write Apps Script to calculate it
 
 /*
 COLOR SCHEME:
@@ -187,13 +184,16 @@ COLOR SCHEME:
       <div class="col" style="border-right: 1px solid #037164;">
         <h2 class="dark">Information for Prospective NHS Applicants</h2>
         <hr class="green">
+        <p>
+          <strong>Senior applications will close September 21st, 2018.</strong>
+        </p>
         <p>Applications to the National Honor Society are accepted twice a year:
           Seniors apply during fall semester and Juniors apply during spring semester.
           Applications will be completed through this web app.
           Application deadlines will be announced in advance and publicized widely
           throughout Bronx Science. For information about the application process
-          and requirements, please click <a href="#">here</a>. To start or complete an
-          application, please click <a href="#">here</a>.
+          and requirements, please click <a href="prospective.html">here</a>. To start or complete an
+          application, please click <a href="upperclassman.html">here</a>.
         </p>
         <p id="tutoringJump">
           Once you've submitted an application, you will receive notification of
@@ -208,8 +208,8 @@ COLOR SCHEME:
         <p>Congratulations for making it into NHS! This is a huge accomplishment
           and you should be proud of yourself for all the work that you have put into
           your community and academics. For upcoming events, membership maintenance requirements,
-          and more, please click <a href="#">here</a>. To review your credits and plan
-          for the future, please click <a href="#">here</a>.
+          and more, please click <a href="current.html">here</a>. To review your credits,
+          please click <a href="tracker.html">here</a>.
         </p>
         <a href="https://bxscience.edu/" target="_blank"><img border="0" alt="atom" src="assets/atomTransparent.png" width="200" height="200">
         </a>
@@ -225,7 +225,10 @@ COLOR SCHEME:
         <p>Part of the responsibilities of NHS include tutoring individuals who may
           want extra help with a subject. Please use the appropriate google forms
           (links provided on right) to submit all tutoring requests.
-          To document tutoring hours, use <a href="http://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">this form</a>.
+          To document tutoring hours, use <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">this form</a>.
+          Then, towards the end of the semester, if you are a current member, upload the form <a href="https://www.dropbox.com/request/kQkhVAISjn0sgy4C6xlC" target="_blank">here</a>.
+          If you are a prospective applicant seeking credit, upload the form <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">here</a> before the application deadline,
+          unless you obtain a signature from a faculty member on your physical application, in which case you do not need to upload another form.
         </p>
         <p><b>Office Hours Tutoring:</b> NHS Members will be available throughout
           the day in the library multipurpose room and the guidance office.
@@ -241,7 +244,10 @@ COLOR SCHEME:
         <p>Part of the responsibilities of NHS include tutoring individuals who may
           want extra help with a subject. Please use the appropriate google forms
           (links provided on right) to submit all tutoring requests.
-          To document tutoring hours, use <a href="http://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">this form</a>.
+          To document tutoring hours, use <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">this form</a>.
+          Then, towards the end of the semester, if you are a current member, upload the form <a href="https://www.dropbox.com/request/kQkhVAISjn0sgy4C6xlC" target="_blank">here</a>.
+          If you are a prospective applicant seeking credit, upload the form <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">here</a> before the application deadline,
+          unless you obtain a signature from a faculty member on your physical application, in which case you do not need to upload another form. 
         </p>
         <p><b>Office Hours Tutoring:</b> NHS Members will be available throughout
           the day in the library multipurpose room and the guidance office.
@@ -351,7 +357,8 @@ COLOR SCHEME:
                   <li><b>I am a student who would like to tutor for NHS, even though I am not a member. How can I register?</b>
                     <br>Fill out the <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdv_9BbLASGFYaNmMquVqXcIGGI-5MBpBcTV8NnO6zNVizOng/viewform" target="_blank">Underclassmen Tutoring Registration Form</a>.
                     Then, ask a teacher to verify that you are qualified to tutor, using <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">this form</a>.
-                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">NHS Tutoring Form</a>.
+                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">NHS Tutoring Form</a>,
+                    and upload the form <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">here</a> before the application deadline.
                     Also, although you may receive up to two assignments, please realize that you may not get an assignment right away.
                   </li>
                 </ol>
@@ -458,7 +465,7 @@ COLOR SCHEME:
                   <li><b>I am a student who would like to tutor for NHS, even though I am not a member. How can I register?</b>
                     <br>Fill out the <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdv_9BbLASGFYaNmMquVqXcIGGI-5MBpBcTV8NnO6zNVizOng/viewform" target="_blank">Underclassmen Tutoring Registration Form</a>.
                     Then, ask a teacher to verify that you are qualified to tutor, using <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">this form</a>.
-                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">NHS Tutoring Form</a>.
+                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">NHS Tutoring Form</a>.
                     Also, although you may receive up to two assignments, please realize that you may not get an assignment right away.
                   </li>
                 </ol>
@@ -492,7 +499,13 @@ COLOR SCHEME:
             <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeyjRcRfL13OwiIX94_SfjTqsf3K9vdkeYprVpDBrNfS6nEhQ/viewform" target="_blank">Tutoring Request Form</a> - for faculty seeking assistance during SGI
           </li>
           <li>
-            <a href="http://www.bxscience.edu/ourpages/auto/2014/4/24/65108071/NHS%20Tutoring%20Form%202017-2018.pdf" target="_blank">Tutoring Record Form</a> - for members to fill out as they tutor
+            <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">Tutoring Record Form</a> - for members to fill out as they tutor
+          </li>
+          <li>
+            <a href="https://www.dropbox.com/request/kQkhVAISjn0sgy4C6xlC" target="_blank">Link to submit tutoring forms (current members)</a> - for current members to upload tutoring forms towards the end of the semester
+          </li>
+          <li>
+            <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">Link to submit tutoring forms (prospective applicants)</a> - for prospective applicants to upload tutoring forms for credit
           </li>
           <li>
             <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">Qualifying a Tutor</a> - for teachers to fill out on behalf of a non-NHS student wishing to tutor
@@ -605,29 +618,29 @@ COLOR SCHEME:
       <div class="col mx-auto" style="border-right: 1px solid #FFF;">
         <div class="row mx-auto">
           <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#chris" role="button" aria-expanded="false" aria-controls="chris"><img class="headshot rounded-circle" src="assets/contactUs/chris.jpg" width = "84%"></a>
+            <a data-toggle="collapse" href="#chris" role="button" aria-expanded="false" aria-controls="chris"><img class="headshot rounded-circle img-thumbnail" src="assets/contactUs/chris.jpg" width = "84%"></a>
             <p style="line-height: 1.2;">Chris Yeung<br><small>President</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#maggie" role="button" aria-expanded="false" aria-controls="maggie"><img class="headshot rounded-circle" src="assets/contactUs/maggie.jpg" width = "84%"></a>
+            <a data-toggle="collapse" href="#maggie" role="button" aria-expanded="false" aria-controls="maggie"><img class="headshot rounded-circle img-thumbnail" src="assets/contactUs/maggie.jpg" width = "84%"></a>
             <p style="line-height: 1.2;">Maggie Wong<br><small>Vice President of Tutoring</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#sunny" role="button" aria-expanded="false" aria-controls="sunny"><img class="headshot rounded-circle" src="assets/contactUs/sunny.jpg" width = "84%"></a>
+            <a data-toggle="collapse" href="#sunny" role="button" aria-expanded="false" aria-controls="sunny"><img class="headshot rounded-circle img-thumbnail" src="assets/contactUs/sunny.jpg" width = "84%"></a>
             <p style="line-height: 1.2;">Sunny Jang<br><small>Vice President of Organization</small></p>
           </div>
         </div>
         <div class="row mx-auto">
           <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#alex" role="button" aria-expanded="false" aria-controls="alex"><img class="headshot rounded-circle" src="assets/contactUs/alex.jpg" width = "84%"></a>
+            <a data-toggle="collapse" href="#alex" role="button" aria-expanded="false" aria-controls="alex"><img class="headshot rounded-circle img-thumbnail" src="assets/contactUs/alex.jpg" width = "84%"></a>
             <p style="line-height: 1.2;">Alex Chen<br><small>Vice President of Technology</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#desilva" role="button" aria-expanded="false" aria-controls="desilva"><img class="headshot rounded-circle" src="assets/contactUs/desilva.jpg" width = "84%"></a>
+            <a data-toggle="collapse" href="#desilva" role="button" aria-expanded="false" aria-controls="desilva"><img class="headshot rounded-circle img-thumbnail" src="assets/contactUs/desilva.jpg" width = "84%"></a>
             <p style="line-height: 1.2;">Paul DeSilva<br><small>Faculty Advisor</small></p>
           </div>
           <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#nhs" role="button" aria-expanded="false" aria-controls="nhs"><img class="headshot rounded-circle" src="assets/contactUs/nhs.jpg" width = "84%"></a>
+            <a data-toggle="collapse" href="#nhs" role="button" aria-expanded="false" aria-controls="nhs"><img class="headshot rounded-circle img-thumbnail" src="assets/contactUs/nhs.jpg" width = "84%"></a>
             <p style="line-height: 1.2;">NHS<br><small>Trusty Email Account</small></p>
           </div>
         </div>
