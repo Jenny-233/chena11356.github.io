@@ -269,8 +269,11 @@ function changeStatus(email,updatedStatus){
     if (range.values.length > 0) {
       for (i = 1; i < range.values.length; i++) {
         var row = range.values[i];
+        appendPre(row);
         if ((row[2]+"").indexOf(email)>=0){
+          appendPre('found user in list while updating at index: '+i);
           userIndex = i;
+          appendPre('so userindex range is going to be '+(userIndex));
           break;
         }
       }
