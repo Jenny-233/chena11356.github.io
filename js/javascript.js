@@ -138,14 +138,14 @@ function onSignIn(googleUser) {
     signOut();
   }
   */
-  else {
+  //else {
     document.getElementById("signInLink").style.display = "none";
     //change the greeting
     //$('.greeting').append("<h5 class='my-2 my-lg-0 px-1 greetingText' style='color: #B8BAB9;'>Hi, "+profile.getGivenName()+".</h5>");
     document.getElementById("greetingText").innerHTML = "Hi, "+profile.getGivenName()+".</h5>";
     //make sign-out link visible
     document.getElementById("signOutLink").style.display = "block";
-  }
+  //}
 }
 
 function signOut() {
