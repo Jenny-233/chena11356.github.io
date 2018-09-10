@@ -162,8 +162,8 @@ function signOut() {
   familyName = "familyName";
   email = "email";
   status = "status";
-  //if on an application page, return to front page
-  if (window.location.href.indexOf("classman")>=0){
+  //if on an application/tracking page, return to front page
+  if (window.location.href.indexOf("classman")>=0||window.location.href.indexOf("tracker")>=0){
     window.location.href="../";
   }
 }
