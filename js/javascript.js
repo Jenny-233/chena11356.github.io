@@ -164,7 +164,7 @@ function signOut() {
   status = "status";
   //if on an application page, return to front page
   if (window.location.href.indexOf("classman")>=0){
-    window.location.href="index.html";
+    window.location.href="../";
   }
 }
 
