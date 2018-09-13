@@ -974,6 +974,22 @@ function saveApp(){
     else if (status.indexOf("sophomore")>=0){
       retrieveApp("Sophomore");
     }
+
+    //temp fix for a bug
+    if (status.indexOf("seniorProspective")>=0){
+      //assumes that appIndex has already been identified and is for the senior spreadsheet
+      gapi.client.sheets.spreadsheets.values.update({
+         spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8),
+         range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
+         valueInputOption: "USER_ENTERED",
+         resource: body
+      }).then((response) => {
+        var result = response.result;
+        console.log(`${result.updatedCells} cells updated.`);
+        alert('Your application has been saved!');
+      });
+    }
+
     //delete info from old sheet (but keep names and emails in case they come back
     //also since multiple people might be using sheet at same time)
     gapi.client.sheets.spreadsheets.values.update({
