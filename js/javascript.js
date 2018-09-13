@@ -986,7 +986,6 @@ function saveApp(){
       }).then((response) => {
         var result = response.result;
         console.log(`${result.updatedCells} cells updated.`);
-        alert('Your application has been saved!');
       });
     }
 
