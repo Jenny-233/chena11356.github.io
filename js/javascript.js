@@ -949,7 +949,7 @@ function saveApp(){
           if (i==range.values.length-1){
             gapi.client.sheets.spreadsheets.values.append({
               spreadsheetId: newSheet,
-              range: ("Applications!A:DG"),
+              range: ("Applications"),
               valueInputOption: "USER_ENTERED",
               resource: body
             }).then((response) => {
