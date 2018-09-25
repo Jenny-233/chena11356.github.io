@@ -388,7 +388,7 @@ function initializeApplication(){
       email = profile.getEmail();
       //appendPre("User email: "+email);
       //generate userKey
-      userKey = CryptoJS.AES.encrypt(profile.getEmail(), 'nhs').toString(CryptoJS.enc.Utf8);
+      userKey = CryptoJS.AES.encrypt(profile.getEmail(), 'nhs').toString();
       //look for user in main spreadsheet and get status:
       //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
       findStatus(email);
