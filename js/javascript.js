@@ -232,7 +232,7 @@ function redirectIfSignedIn(link){
 
 //finds status of user given email address
 function findStatus(email){
-  userKey = CryptoJS.AES.decrypt(userKey,'nhs').toString(CryptoJS.enc.Utf8);
+  userKey = "nhs";
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX18kEuc0waEbwGgL1/rvnxgbHleT2o9MxdM13zbc6F3A2g/lUY/bSNZyxklDxPYUSG//Vxr7rf3GBw==", userKey).toString(CryptoJS.enc.Utf8),
   range: 'Sheet1!A:D',
