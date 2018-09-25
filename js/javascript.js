@@ -7,6 +7,7 @@ var appIndex;
 var auth2;
 var userIndex;
 var updateIndex;
+var userKey;
 
   function initializeGlobal(){
     givenName = "givenName";
@@ -35,7 +36,7 @@ var updateIndex;
              */
             function initClient() {
               gapi.client.init({
-                apiKey: CryptoJS.AES.decrypt("U2FsdGVkX1/S8edWarSrmB53PvEMUMsK0tR5R8AURw/OjmOz7CjeZ1pNJKcJfNd6PpEKTTQbXhX1/tQMnSFVCQ==", "nhs").toString(CryptoJS.enc.Utf8),
+                apiKey: CryptoJS.AES.decrypt("U2FsdGVkX1/S8edWarSrmB53PvEMUMsK0tR5R8AURw/OjmOz7CjeZ1pNJKcJfNd6PpEKTTQbXhX1/tQMnSFVCQ==", userKey).toString(CryptoJS.enc.Utf8),
                 clientId: '1058472710733-bc8l9sjqt9fktohmeejv5jlgjbnccpfj.apps.googleusercontent.com',
                 discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
                 scope: "profile email https://www.googleapis.com/auth/spreadsheets"
@@ -231,8 +232,9 @@ function redirectIfSignedIn(link){
 
 //finds status of user given email address
 function findStatus(email){
+  userKey = CryptoJS.AES.decrypt(userKey,'nhs').toString(CryptoJS.enc.Utf8);
   gapi.client.sheets.spreadsheets.values.get({
-  spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX18kEuc0waEbwGgL1/rvnxgbHleT2o9MxdM13zbc6F3A2g/lUY/bSNZyxklDxPYUSG//Vxr7rf3GBw==", "nhs").toString(CryptoJS.enc.Utf8),
+  spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX18kEuc0waEbwGgL1/rvnxgbHleT2o9MxdM13zbc6F3A2g/lUY/bSNZyxklDxPYUSG//Vxr7rf3GBw==", userKey).toString(CryptoJS.enc.Utf8),
   range: 'Sheet1!A:D',
   }).then(function(response) {
     var range = response.result;
@@ -282,7 +284,7 @@ function changeStatusHelper(){
     ],
   };
   gapi.client.sheets.spreadsheets.values.update({
-     spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1+TP7NKOInXJu1+3Gt9V3ACgPbivHWK7dM8t9GqfcmAuA79KdTkjUTamWGVbZ2/wAg4lBvnut/vRw==", "nhs").toString(CryptoJS.enc.Utf8),
+     spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1+TP7NKOInXJu1+3Gt9V3ACgPbivHWK7dM8t9GqfcmAuA79KdTkjUTamWGVbZ2/wAg4lBvnut/vRw==", userKey).toString(CryptoJS.enc.Utf8),
      range: ("Sheet1!"+(userIndex+1)+":"+(userIndex+1)),
      valueInputOption: "USER_ENTERED",
      resource: changeBody
@@ -311,7 +313,7 @@ function appendNewPerson(){
     status = "freshman";
     //add person into specific application spreadsheet
     gapi.client.sheets.spreadsheets.values.append({
-       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8),
        range: "Applications",
        valueInputOption: "USER_ENTERED",
        resource: emptyBody
@@ -321,7 +323,7 @@ function appendNewPerson(){
     });
     //also set app index
     gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
+    spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8),
     range: 'Applications',
     }).then(function(response) {
       var range = response.result;
@@ -332,7 +334,7 @@ function appendNewPerson(){
     curStatus = "juniorProspective";
     status = "juniorProspective";
     gapi.client.sheets.spreadsheets.values.append({
-       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8),
        range: "Applications",
        valueInputOption: "USER_ENTERED",
        resource: emptyBody
@@ -341,7 +343,7 @@ function appendNewPerson(){
       console.log(`${result.updates.updatedCells} cells appended.`)
     });
     gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
+    spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8),
     range: 'Applications',
     }).then(function(response) {
       var range = response.result;
@@ -355,7 +357,7 @@ var body = {
   ],
 };
 gapi.client.sheets.spreadsheets.values.append({
-   spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19ro83Kul9IRQrVq6oP5LCGhrjTze7hd2eyt8Q6c7LFRUtNZRscAy4+yZX5ocFZn42T3IqK6bGGjQ==", "nhs").toString(CryptoJS.enc.Utf8),
+   spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19ro83Kul9IRQrVq6oP5LCGhrjTze7hd2eyt8Q6c7LFRUtNZRscAy4+yZX5ocFZn42T3IqK6bGGjQ==", userKey).toString(CryptoJS.enc.Utf8),
    range: "Sheet1",
    valueInputOption: "USER_ENTERED",
    resource: body
@@ -385,6 +387,8 @@ function initializeApplication(){
       familyName = profile.getFamilyName();
       email = profile.getEmail();
       //appendPre("User email: "+email);
+      //generate userKey
+      userKey = CryptoJS.AES.encrypt(profile.getEmail(), 'nhs').toString(CryptoJS.enc.Utf8);
       //look for user in main spreadsheet and get status:
       //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
       findStatus(email);
@@ -462,16 +466,16 @@ function retrieveApp(currentGrade){
   document.getElementById("grade").innerHTML = currentGrade;
   var appSheetID;
   if (currentGrade.indexOf("Junior")>=0){
-    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8);
+    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else if (currentGrade.indexOf("Senior")>=0){
-    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8);
+    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else if (currentGrade.indexOf("Freshman")>=0){
-    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8);
+    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else if (currentGrade.indexOf("Sophomore")>=0){
-    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", "nhs").toString(CryptoJS.enc.Utf8);
+    appSheetID = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", userKey).toString(CryptoJS.enc.Utf8);
   }
   gapi.client.sheets.spreadsheets.values.get({
   spreadsheetId: appSheetID,
@@ -878,32 +882,32 @@ function saveApp(){
     var oldSheet;
     var newSheet;
     if (curStatus.indexOf("juniorProspective")>=0){
-      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8);
+      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else if (curStatus.indexOf("seniorProspective")>=0){
-      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8);
+      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else if (curStatus.indexOf("freshman")>=0){
-      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8);
+      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else if (curStatus.indexOf("sophomore")>=0){
-      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", "nhs").toString(CryptoJS.enc.Utf8);
+      oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else {
       console.log("Error: curStatus is "+curStatus);
       return;
     }
     if (status.indexOf("juniorProspective")>=0){
-      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8);
+      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else if (status.indexOf("seniorProspective")>=0){
-      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8);
+      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else if (status.indexOf("freshman")>=0){
-      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8);
+      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else if (status.indexOf("sophomore")>=0){
-      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", "nhs").toString(CryptoJS.enc.Utf8);
+      newSheet = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", userKey).toString(CryptoJS.enc.Utf8);
     }
     else {
       console.log("Error: curStatus is "+curStatus);
@@ -979,7 +983,7 @@ function saveApp(){
     if (status.indexOf("seniorProspective")>=0){
       //assumes that appIndex has already been identified and is for the senior spreadsheet
       gapi.client.sheets.spreadsheets.values.update({
-         spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8),
+         spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", userKey).toString(CryptoJS.enc.Utf8),
          range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
          valueInputOption: "USER_ENTERED",
          resource: body
@@ -1005,7 +1009,7 @@ function saveApp(){
   else if (status.indexOf("juniorProspective")>=0){
     //assumes that appIndex has already been identified and is for the junior spreadsheet
     gapi.client.sheets.spreadsheets.values.update({
-       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8),
        range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
        valueInputOption: "USER_ENTERED",
        resource: body
@@ -1018,7 +1022,7 @@ function saveApp(){
   else if (status.indexOf("seniorProspective")>=0){
     //assumes that appIndex has already been identified and is for the senior spreadsheet
     gapi.client.sheets.spreadsheets.values.update({
-       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", userKey).toString(CryptoJS.enc.Utf8),
        range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
        valueInputOption: "USER_ENTERED",
        resource: body
@@ -1031,7 +1035,7 @@ function saveApp(){
   else if (status.indexOf("freshman")>=0){
     //assumes that appIndex has already been identified and is for the freshman spreadsheet
     gapi.client.sheets.spreadsheets.values.update({
-       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8),
        range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
        valueInputOption: "USER_ENTERED",
        resource: body
@@ -1044,7 +1048,7 @@ function saveApp(){
   else if (status.indexOf("sophomore")>=0){
     //assumes that appIndex has already been identified and is for the sophomore spreadsheet
     gapi.client.sheets.spreadsheets.values.update({
-       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", "nhs").toString(CryptoJS.enc.Utf8),
+       spreadsheetId: CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", userKey).toString(CryptoJS.enc.Utf8),
        range: ("Applications!"+(appIndex+1)+":"+(appIndex+1)),
        valueInputOption: "USER_ENTERED",
        resource: body
@@ -1061,16 +1065,16 @@ function saveApp(){
 function deleteApp(){
   var oldSheet;
   if (curStatus.indexOf("juniorProspective")>=0){
-    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", "nhs").toString(CryptoJS.enc.Utf8);
+    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19msL/1Yx58CumPHkOt2SMJ9kplpqPnIVr35yTV5JOKhiz8iHU3PKYBPoWreH4pXulNHBVwL3849A==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else if (curStatus.indexOf("seniorProspective")>=0){
-    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", "nhs").toString(CryptoJS.enc.Utf8);
+    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19vAoSS5/VCQltfcmz1PWRcw+gxqqrxNaW/a+oZIr9tV1jeJXmPisLoxDZJnZcqKLRJbTGP26ejzQ==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else if (curStatus.indexOf("freshman")>=0){
-    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", "nhs").toString(CryptoJS.enc.Utf8);
+    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX1/ZYdq++0BwGDq/voK9wSavV/DWvCJ9kWsEX50Gi1/KQAERyuQuVXbKXIB3hDnbo+ThWpaf1b1HOQ==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else if (curStatus.indexOf("sophomore")>=0){
-    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", "nhs").toString(CryptoJS.enc.Utf8);
+    oldSheet = CryptoJS.AES.decrypt("U2FsdGVkX19CHL+utgPJXNT5VYpZo3/sXQwL3tZ6bFtz7lSdBzXnt/mRkttjVnRIwbUuYyD67aTniu3ZgaRftQ==", userKey).toString(CryptoJS.enc.Utf8);
   }
   else {
     console.log("Error: curStatus is "+curStatus);
