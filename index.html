@@ -10,7 +10,6 @@
 
       gtag('config', 'UA-125404357-1');
     </script>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +24,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="../css/stylesheet.css">
 
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -36,11 +35,19 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
 
     <!--
+    //REFERENCE: http://www.firewatchgame.com/ is really nice
+//REFERENCE: http://sagvli.com/ and https://teenhacksli.com/ show smoothness of Bootstrap
 
-//TODO: Add fade in parallax with https://stackoverflow.com/questions/26694385/fade-in-on-scroll-down-fade-out-on-scroll-up-based-on-element-position-in-win
+//TODO: Add in the new application processes for the prospective applicants
+//TODO: Change references to procedures to website-based things.
+//TODO: Update NHS Tutoring Form and NHS Contract from 2017-2018 to 2018-2019.
+//TODO: There's no tutoring form upload link or outside tutoring verification link
+//TODO: Use https://medium.com/@jaejohns/how-to-use-google-sheets-as-your-website-database-b0f2f13d0396 to implement Google Sheets
+//TODO: Implement Google Sign-In with https://developers.google.com/identity/sign-in/web/
+//TODO: Implement Google Analytics code
 
 /*
 COLOR SCHEME:
@@ -67,15 +74,15 @@ COLOR SCHEME:
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           About
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Welcome</a>
-          <a class="dropdown-item" href="#tutoringJump">Tutoring</a>
-          <a class="dropdown-item" href="#formsAndLinksJump">Forms and Links</a>
-          <a class="dropdown-item" href="#contact">Contact Us</a>
+          <a class="dropdown-item" href="../">Welcome</a>
+          <a class="dropdown-item" href="../#tutoringJump">Tutoring</a>
+          <a class="dropdown-item" href="../#formsAndLinksJump">Forms and Links</a>
+          <a class="dropdown-item" href="../#contact">Contact Us</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -83,29 +90,29 @@ COLOR SCHEME:
           For Prospective Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="./prospective" title="prospective">Application Process</a>
-          <a class="dropdown-item" href="./prospective#FAQJump">FAQ</a>
-          <a class="dropdown-item" href="./prospective#creditJump">Credit Table</a>
-          <a class="dropdown-item" href="./prospective#volunteerJump">Volunteer Opportunities</a>
+          <a class="dropdown-item" href="../prospective">Application Process</a>
+          <a class="dropdown-item" href="../prospective#FAQJump">FAQ</a>
+          <a class="dropdown-item" href="../prospective#creditJump">Credit Table</a>
+          <a class="dropdown-item" href="../prospective#volunteerJump">Volunteer Opportunities</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:redirectIfSignedIn('./underclassman');">Underclassman Applications</a>
-          <a class="dropdown-item" href="javascript:redirectIfSignedIn('./upperclassman');">Junior and Senior Applications</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('../underclassman');">Underclassman Applications</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('../upperclassman');">Junior and Senior Applications</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item active dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           For Current Members
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="./current">Calendar</a>
-          <a class="dropdown-item" href="./current#membershipJump">Maintaining Membership</a>
+          <a class="dropdown-item" href="../current">Calendar</a>
+          <a class="dropdown-item" href="../current#membershipJump">Maintaining Membership</a>
           <a class="dropdown-item" href="javascript:alert('Coming soon!');">Photo Gallery</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="javascript:redirectIfSignedIn('./tracker');">Credit Tracker</a>
+          <a class="dropdown-item" href="javascript:redirectIfSignedIn('../tracker');">Credit Tracker</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./privacy">
+        <a class="nav-link" href="../privacy">
           Privacy Policy
         </a>
       </li>
@@ -121,436 +128,308 @@ COLOR SCHEME:
   </div>
 </nav>
 
-<!--<img src="assets/photos/trophy.jpg" class="img-fluid" alt="trophy">-->
-
-<div class="bg welcomeIntro">
+<div class="trackerIntro bg">
   <div class="text">
-    <h1 style="font-family: 'Indie Flower', cursive; font-size: 4em;">Bronx Science</h1>
-    <h1 style="font-family: 'Indie Flower', cursive; font-size: 4em;">National Honor Society</h1>
+    <h1 style="font-family: 'Kalam', cursive; font-size: 4em;">Credit Tracker</h1>
   </div>
-  <img src="assets/arrow.svg" alt="arrow" id="arrowSVG">
+  <img src="../assets/arrow.svg" alt="arrow" id="arrowSVG">
 </div>
 
 <div class="mainBody">
-  <div class="container-fluid text-center" id="apply" style="padding:0em;">
+
+  <div class="container-fluid text-center" id="trackerTop" style="color: #000;">
+    <h1 class="dark">Plan ahead.</h1>
+    <hr class="green"><br>
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-light" id="applyNow" onclick="redirectIfSignedIn('./upperclassman')">Apply now!</button>
-        <hr id="welcomeJump">
+        <p>As NHS members, you are responsible for making sure that you fulfill your credit
+          requirements each semester and that your credit records are accurate. Below,
+          you may view your current record of credits and probations, as well as how many
+          more you will need by the end of the semester. If you
+          notice any errors, please notify us via <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">this Google Form</a>.
+        </p>
+        <p>
+          To the right, you will also find a tentative calendar for dates of NHS events of the
+          2018-2019 school year! Please plan your time accordingly, especially for mandatory
+          events like Open House and Graduation.
+        </p>
+        <p>
+          We look forward to working with you!
+        </p>
+        <p id="loadingText" style="display:none;"><i> <!--after button is clicked, set loading things and then initialize app-->
+          Please wait while tracker is loading. If loading takes excessively long, try refreshing the page.
+          You must enable cookies and JavaScript for the tracker to load.
+        </i></p>
+        <a href="https://bxscience.edu/" target="_blank"><img border="0" alt="atom" src="../assets/atomTransparent.png" width="75" height="75">
+        </a>
+      </div>
+      <div class="col" id="noShowMobile4">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=bxscience.edu_4qhbrm10id0a415j0td05itvdk%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="container-fluid text-center" id="welcomeTop">
+    <div class="row" id="showMobile4">
+      <div class="col">
+        <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=bxscience.edu_4qhbrm10id0a415j0td05itvdk%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+    <hr class="green">
+    <!--WORK HERE FOR CREDIT TRACKER-->
     <div class="row">
       <div class="col">
-        <h1>Welcome to the Bronx Science National Honor Society!</h1>
-        <hr class="light">
-        <p>Gaining membership to the National Honor Society (NHS) is
-          one of the greatest academic honors that a student may receive
-          at Bronx Science. In order to be accepted as a member, students
-          are required to meet rigorous academic and service requirements.
-          Each member must possess exceptional levels of scholarship, service,
-          leadership, and character in order to meet this goal. On this website, you
-          will find information and applications regarding the Bronx Science NHS. Information
-          about the overarching organization can be found <a href="https://www.nhs.us/" target="_blank">here</a>.
-        </p>
-      </div>
-      <div class="col" class="noShowMobile" style="display:none;" id="noShowMobile1">
-        <div class="embed-responsive embed-responsive-16by9 noShowMobile">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PIiUVltWoVo?rel=0" allowfullscreen></iframe>
-        </div>
-        <div class="embed-responsive embed-responsive-1by1 noShowMobile">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PIiUVltWoVo?rel=0" allowfullscreen></iframe>
-        </div>
+        <img src="../assets/loading.gif" id="loadingImg" alt="Credit tracker is loading..." class="mx-auto" style="display:none;"></img>
       </div>
     </div>
-    <div class="row" class="showMobile"> <!--video will shift under here if mobile-->
+    <div class="row" id="appButton">
       <div class="col">
-        <div class="embed-responsive embed-responsive-21by9 showMobile">
-          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PIiUVltWoVo?rel=0" allowfullscreen></iframe>
-        </div>
+        <button type="button" class="btn btn-dark btn-lg btn-block" onclick="initializeTracker()">Click to Launch Credit Tracker</button>
       </div>
     </div>
-  </div>
+    <div id="tracker" style="display:none;">
+      <br>
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-overview-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview" aria-selected="true">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-service-tab" data-toggle="pill" href="#pills-service" role="tab" aria-controls="pills-service" aria-selected="false">Service</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-leadership-tab" data-toggle="pill" href="#pills-leadership" role="tab" aria-controls="pills-leadership" aria-selected="false">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-signature-tab" data-toggle="pill" href="#pills-signature" role="tab" aria-controls="pills-signature" aria-selected="false">Tutoring</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-agreement-tab" data-toggle="pill" href="#pills-agreement" role="tab" aria-controls="pills-agreement" aria-selected="false">Probations</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+              <h4 class="dark">
+                NHS 2018-2019 Credit Tracker
+              </h4>
+              <hr class="green">
+              <p>
+                <b>Service</b>: You have <span id="numberServiceCreditsOverview">x</span>/5 credits.<br>
+                <b>Projects</b>: You have <span id="numberProjectCreditsOverview">x</span>/5 credits.<br>
+                <b>Tutoring</b>: You have <span id="numberTutoringCreditsOverview">x</span>/15 credits.<br>
+                <b>Probations</b>: You have <span id="numberProbationsOverview">x</span> probations.
+              </p>
+              <p>
+                Remember to fill out, if applicable, <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Volunteer%20Form%202018-2019.pdf" target="_blank">this</a> form with events and activities where the NHS board is not present (Winter Wonderland decorating, etc.), and submit it to the Dropbox <a href="https://www.dropbox.com/request/HOo6QzIiRxwDcDjrSTRm" target="_blank">here</a> by <b>January 14th</b> to receive credits for those events. To view this information in spreadsheet format, visit the <a href="https://docs.google.com/spreadsheets/d/1yQkpeLWwiS8R4ngrkCvbF_tdFgK_PkgzbQPG3y_RbwA/edit?usp=sharing" target="_blank" id="creditSheetLink">credit sheet</a>. If you have any questions, please contact nhs@bxscience.edu.
+              </p>
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Requirements Each Semester
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body">
+                            <ul>
+                              <li>
+                                Scholarship: You must maintain a 90 or above average.
+                              </li>
+                              <li>
+                                Tutoring: You must tutor 20 hours. First-semester seniors only need to tutor 15 hours.
+                              </li>
+                              <li>
+                                Character: A teacher approval email will be sent out to your teachers.
+                              </li>
+                              <li>
+                                Service: You must have 5 credits.
+                              </li>
+                              <li>
+                                Projects: You must compete a total of 3 projects per semester.
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Probation System
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                          <div class="card-body">
+                            <p>There are three levels of probation. If you exceed three levels, you will be dismissed from NHS. Below you will find the number of probation levels imposed for specific infractions.</p>
+                            <h4 class="dark">One Level</h4>
+                            <ul>
+                              <li>Failure to answer an email sent by an NHS Officer, Mr. DeSilva, or another faculty member.</li>
+                              <li>Failure to sign up for a mandatory project before a deadline.</li>
+                              <li>Failure to attend a project for which you volunteered without notifying an NHS Officer or Mr. DeSilva in advance.</li>
+                              <li>2 excused absences from meetings (each additional absence beyond this equals one level).</li>
+                              <li>Submitting a late absence note. Please note that absence notes received after the next meeting will not be considered.</li>
+                            </ul>
+                            <h4 class="dark">Two Levels</h4>
+                            <ul>
+                              <li>Not attending a mandatory project (unless you have been cleared by the officers)</li>
+                              <li>One unexcused absence.  If you have two, you will be dismissed.</li>
+                            </ul>
+                            <h4 class="dark">Removing Levels of Probation</h4>
+                            <p>To be removed from one level of probation, you may complete an extra project <i>after</i>
+                            you have completed your other project requirements.</p>
+                            <p>
+                              <i>Example 1:</i> An NHS member decides to skip an NHS meeting without submitting an absence note and is assigned two levels of probation. Later in the semester, the same NHS member completes two additional projects and is removed from probation.
+                            </p>
+                            <p>
+                              <i>Example 2:</i> An NHS member misses two meetings (excused absences) and is given one level of probation. The following week, they fail to attend a mandatory project and are given two additional levels of probation. If they get one more level of probation, they will be dismissed from NHS.
+                            </p>
+                            <p>
+                              <i>Example 3:</i> An NHS member decides to skip a project for which they volunteered and is given one level of probation.  The following week, they decide to skip a meeting without providing an absence note and receive two additional levels of probation.  Finally, they fail to sign up for a mandatory project before a given deadline and are dismissed from NHS because they have exceeded three levels of probation.
+                            </p>
+                            <p><b>Stay on top of your responsibilities and don't let this happen to you!</b></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Attendance Policy
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                          <div class="card-body">
+                            <ul>
+                              <li>
+                                <i>Excused Absence (per semester):</i> You are allowed one excused absence per semester. After that, any more excused absences will give you one level of probation.
+                              </li>
+                              <li>
+                                <i>Unexcused Absence (per semester):</i> Your first unexcused absence will give you two levels of probation. After that, any more unexcused absences will result in dismissal from NHS.
+                              </li>
+                              <li>
+                                <i>Late Absence Note:</i> If you submit an absence note late, you will receive 1 level of probation. Any absence notes received after the next NHS meeting will not be considered. Submit a picture or scanned copy of your absence notes at <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">this link</a>. No paper absence notes will be accepted.
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingFour">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              Absence Notes
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                          <div class="card-body">
+                            <ol>
+                              <li>
+                                Absence notes must be submitted no later than one week after the NHS meeting that you missed.
+                              </li>
+                              <li>
+                                Click <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Absence%20Form.pdf" target="_blank">here</a> to download and absence note, fill it out completely, and obtain the appropriate signature(s).
+                              </li>
+                              <li>
+                                Click <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">here</a> to upload your absence note to Dropbox.
+                              </li>
+                              <li>
+                                Absence notes that are submitted by hand or placed in Mr. DeSilva's mailbox will not be accepted. You must upload your absence note to Dropbox.
+                              </li>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingFive">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                              Attendance and Project Records
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                          <div class="card-body">
+                            <p>It is the responsibility of every NHS member to verify that his/her attendance and project records are accurate and up-to-date. You must be logged in to your Bronx Science email in order to view these documents. If you have any questions about the attendance policy, your personal attendance record, or your personal project record, please contact NHS Vice President of Organization, Sunny Jang, at jangs1@bxscience.edu.</p>
+                            <p>For junior and senior attendance records, click <a href="https://docs.google.com/spreadsheets/d/1GJUHEVpeN1Y3SPP9lSGRHJlQReMpPZ-yEPvqu3ODelI/edit?usp=sharing" target="_blank">here</a>.
+                              For junior project records, click <a href="https://docs.google.com/spreadsheets/d/1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s/edit?usp=sharing" target="_blank">here</a>.
+                              For senior project records, click <a href="https://docs.google.com/spreadsheets/d/1yQkpeLWwiS8R4ngrkCvbF_tdFgK_PkgzbQPG3y_RbwA/edit?usp=sharing" target="_blank">here</a>.
+                            </p>
+                            <p>
+                              If you believe there is an error regarding your credits, please fill out <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">this form</a> instead of emailing NHS.
+                            </p>
+                            <p>
+                              If you are volunteering for an event or activity at which the NHS Board is not present to take attendance, please record your service and project hours using <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Volunteer%20Form%202018-2019.pdf" target="_blank">this form</a>. For example, use this form if you are an NHS member volunteering for the SHSAT or the borough high school fair, but NOT for Open House or Graduation. Towards the end of the semester, you will upload the form <a href="https://www.dropbox.com/request/HOo6QzIiRxwDcDjrSTRm" target="_blank">here</a>.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingSix">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                              Event Sign-Up Forms and Permission Slips
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                          <div class="card-body">
+                            <p>
+                              Please note that NHS will notify members of upcoming events via email.
+                              If you sign up for an event, you must download, print, and deliver a permission slip (if required) for that event.
+                              Sign-up forms will only accept responses within a reasonable time frame preceding each event.
+                            </p>
+                            <p>
+                              If you have questions about events or projects, please email NHS Vice President of Organization, Sunny Jang, at jangs1@bxscience.edu.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
 
-  <div class="container-fluid text-center" id="info" style="color: #000;">
-    <div class="row">
-      <div class="col" style="border-right: 1px solid #037164;">
-        <h2 class="dark">Information for Prospective NHS Applicants</h2>
-        <hr class="green">
-        <p>
-          <strong>Senior applications closed September 21st, 2018. Junior applications will officially open in February.</strong>
-        </p>
-        <p>Applications to the National Honor Society are accepted twice a year:
-          Seniors apply during fall semester and Juniors apply during spring semester.
-          You may work on your application and log credit ahead of time using this web app.
-          Applications will be completed through this web app or by Google Form.
-          Application deadlines will be announced in advance and publicized widely
-          throughout Bronx Science. For information about the application process
-          and requirements, please click <a href="./prospective">here</a>. To start or complete an
-          application, please click <a href="./upperclassman">here</a>.
-        </p>
-        <p id="tutoringJump">
-          Once you've submitted an application, you will receive notification of
-          your admission status shortly after the application deadline. If you are
-          accepted to the National Honor Society, your guidance counselor will receive
-          an official notification of your membership.
-        </p>
-      </div>
-      <div class="col" style="border-left: 1px solid #037164;">
-        <h2 class="dark">Information for Current NHS Members</h2>
-        <hr class="green">
-        <p>Congratulations for making it into NHS! This is a huge accomplishment
-          and you should be proud of yourself for all the work that you have put into
-          your community and academics. For upcoming events, membership maintenance requirements,
-          and more, please click <a href="./current">here</a>. To review your credits,
-          please click <a href="./tracker">here</a>.
-        </p>
-        <!--<a href="https://bxscience.edu/" target="_blank"><img border="0" alt="atom" src="assets/atomTransparent.png" width="200" height="200">
-        </a>-->
-        <img width="200">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col-11">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-<ol class="carousel-indicators">
-  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="9"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="10"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="11"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="12"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="13"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="14"></li>
-  <li data-target="#carouselExampleIndicators" data-slide-to="15"></li>
-</ol>
-<div class="carousel-inner">
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0040.jpg" alt="Slide 1">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0042.jpg" alt="Slide 2">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0043.jpg" alt="Slide 3">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0046.jpg" alt="Slide 4">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0047.jpg" alt="Slide 5">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0048.jpg" alt="Slide 6">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0054.jpg" alt="Slide 7">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0055.jpg" alt="Slide 8">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0057.jpg" alt="Slide 9">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0058.jpg" alt="Slide 10">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0059.jpg" alt="Slide 11">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0069.jpg" alt="Slide 12">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0070.jpg" alt="Slide 13">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0072.jpg" alt="Slide 14">
-  </div>
-  <div class="carousel-item">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0077.jpg" alt="Slide 15">
-  </div>
-  <div class="carousel-item active">
-    <img class="d-block w-100" src="assets/photos/nhsPhotos/DSC_0038.jpg" alt="Slide 16">
-  </div>
-</div>
-<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  <span class="sr-only">Previous</span>
-</a>
-<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  <span class="sr-only">Next</span>
-</a>
-</div>
-</div>
-<div class="col"></div>
-</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid text-center" id="tutoring">
-    <h2>Tutoring</h2>
-    <hr class="light">
-    <div class="row">
-      <div class="col-5" id="noShowMobile3">
-        <p>Part of the responsibilities of NHS include tutoring individuals who may
-          want extra help with a subject. Please use the appropriate google forms
-          (links provided on right) to submit all tutoring requests.
-          To document tutoring hours, use <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">this form</a>.
-          Then, towards the end of the semester, if you are a current member, upload the form <a href="https://www.dropbox.com/request/kQkhVAISjn0sgy4C6xlC" target="_blank">here</a>.
-          If you are a prospective applicant seeking credit, upload the form <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">here</a> before the application deadline,
-          unless you obtain a signature from a faculty member on your physical application, in which case you do not need to upload another form.
-        </p>
-        <p><b>Office Hours Tutoring:</b> NHS Members will be available throughout
-          the day in the library multipurpose room and the guidance office.
-        </p>
-        <p><b>Note: To access any google sign up forms, you must be logged in to your Bronx Science account.</b>
-            Emails sent to Mr. DeSilva or any NHS Officer requesting to share Google forms will not receive a reply.
-        </p>
-        <p id="formsAndLinksJump">Any tutoring ideas or questions should be directed to Margaret Wong (National Honor Society
-          Vice President of Tutoring) at wongm@bxscience.edu.
-        </p>
-      </div>
-      <div class="col" style="display:none;" id="showMobile3">
-        <p>Part of the responsibilities of NHS include tutoring individuals who may
-          want extra help with a subject. Please use the appropriate google forms
-          (links provided on right) to submit all tutoring requests.
-          To document tutoring hours, use <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">this form</a>.
-          Then, towards the end of the semester, if you are a current member, upload the form <a href="https://www.dropbox.com/request/kQkhVAISjn0sgy4C6xlC" target="_blank">here</a>.
-          If you are a prospective applicant seeking credit, upload the form <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">here</a> before the application deadline,
-          unless you obtain a signature from a faculty member on your physical application, in which case you do not need to upload another form.
-        </p>
-        <p><b>Office Hours Tutoring:</b> NHS Members will be available throughout
-          the day in the library multipurpose room and the guidance office.
-        </p>
-        <p><b>Note: To access any google sign up forms, you must be logged in to your Bronx Science account.</b>
-            Emails sent to Mr. DeSilva or any NHS Officer requesting to share Google forms will not receive a reply.
-        </p>
-        <p>Any tutoring ideas or questions should be directed to Margaret Wong (National Honor Society
-          Vice President of Tutoring) at wongm@bxscience.edu.
-        </p>
-      </div>
-      <div class="col" id="noShowMobile2" style="display:none;">
-        <div id="accordion">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Tutoring Request Forms for All Students
-                </button>
-              </h5>
+            <div class="tab-pane fade" id="pills-service" role="tabpanel" aria-labelledby="pills-service-tab">
+              <h4 class="dark">
+                Service Credits
+              </h4>
+              <hr class="green">
+              <p>
+                You have <span id="numberServiceCredits">x</span> out of 5 service credits for this semester.
+              </p>
             </div>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                Please use <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">this form</a>
-                 to request a tutor. Margaret Wong (National Honor Society Vice President of Tutoring)
-                 will match tutors and tutees according to the subject.
-                 If you do not hear back from Margaret within a few days,
-                 please email her directly at wongm@bxscience.edu.
-              </div>
+            <div class="tab-pane fade" id="pills-leadership" role="tabpanel" aria-labelledby="pills-leadership-tab">
+              <h4 class="dark">
+                Project Credits
+              </h4>
+              <hr class="green">
+              <p>
+                You have <span id="numberProjectCredits">x</span> out of 3 project credits for this semester.
+              </p>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Tutoring Request Forms for All Teachers
-                </button>
-              </h5>
+            <div class="tab-pane fade" id="pills-signature" role="tabpanel" aria-labelledby="pills-signature-tab">
+              <h4 class="dark">
+                Tutoring Credits
+              </h4>
+              <hr class="green">
+              <p>
+                You have <span id="numberTutoringCredits">x</span> out of 15 tutoring credits for this semester.
+              </p>
+              <p>
+                <span id="officeHoursText"></span>
+              </p>
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                Teachers may request a National Honor Society tutor for their students by submitting
-                <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdLcDrIJrTNdkqQt7-Q9RemKhN9fFzzD79gqI9eySOT2JM0Dg/viewform" target="_blank">this form</a>
-                or to assist them during SGI by submitting
-                <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeyjRcRfL13OwiIX94_SfjTqsf3K9vdkeYprVpDBrNfS6nEhQ/viewform" target="_blank">this form</a>.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Frequenty Asked Questions About Requesting a Tutor
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                <ol>
-                  <li><b>How do I request a tutor?</b>
-                    <br>Fill out the
-                    <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request form</a>
-                    and you will be matched with a NHS tutor who can tutor in that subject
-                    and has the same free periods as you.
-                    <br><br>
-                  </li>
-                  <li><b>I requested a tutor but haven’t heard back yet, what do I do?</b>
-                    <br>Please be patient. If it has been more than a week, and you still don't have a tutor, then you may email Margaret Wong (VP of Tutoring) to inquire about your request.
-                    <br><br>
-                  </li>
-                  <li><b>I am a parent. How do I sign my child up for a tutor?</b>
-                    <br>Have your child fill out the
-                    <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request form</a>
-                     (there is no paper form) and he/she will be matched with a NHS tutor who can tutor in the requested subject.  Students requesting a tutor must use their Bronx Science email address.
-                    <br><br>
-                  </li>
-                  <li><b>Can I meet with my tutor outside of school?</b>
-                    <br>Unfortunately, no. All tutoring must be done in school, in a space with teacher supervision such as the library or a classroom during SGI.
-                    <br><br>
-                  </li>
-                  <li><b>Will tutoring save my grade?</b>
-                    <br>We hope it will, but ultimately, our tutors are not professionals. We recommend going to SGI, using resources such as review books or <a href="https://www.khanacademy.org/" target="_blank">KhanAcademy</a>, or seeking additional outside help if you are really struggling.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingFour">
-              <h5 class="mb-0">
-                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Frequenty Asked Questions About Becoming a Tutor
-                </button>
-              </h5>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-              <div class="card-body">
-                <ol>
-                  <li><b>I am an NHS member who signed up to become a tutor, but my tutee is not responding. What do I do?</b>
-                    <br>Email them again, and be sure to CC Maggie. It is your responsibility to keep track of your tutoring assignments. If the student still doesn't respond, please notify Maggie and she will inform Mr. DeSilva, who will then take further action to contact the student.
-                    <br><br>
-                  </li>
-                  <li><b>How many tutoring hours can I do outside of school?</b>
-                    <br>You must do at least ten tutoring hours in school. The other ten can be from outside tutoring. Or, you could do five hours of outside tutoring and one additional project.
-                    <br><br>
-                  </li>
-                  <li><b>I am a student who would like to tutor for NHS, even though I am not a member. How can I register?</b>
-                    <br>Fill out the <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdv_9BbLASGFYaNmMquVqXcIGGI-5MBpBcTV8NnO6zNVizOng/viewform" target="_blank">Underclassmen Tutoring Registration Form</a>.
-                    Then, ask a teacher to verify that you are qualified to tutor, using <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">this form</a>.
-                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">NHS Tutoring Form</a>,
-                    and upload the form <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">here</a> before the application deadline.
-                    Also, although you may receive up to two assignments, please realize that you may not get an assignment right away.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col" style="display: none;" id="showMobile2">
-        <div id="accordion">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Tutoring Request Forms for All Students
-                </button>
-              </h5>
-            </div>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                Please use <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">this form</a>
-                 to request a tutor. Margaret Wong (National Honor Society Vice President of Tutoring)
-                 will match tutors and tutees according to the subject.
-                 If you do not hear back from Margaret within a few days,
-                 please email her directly at wongm@bxscience.edu.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Tutoring Request Forms for All Teachers
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                Teachers may request a National Honor Society tutor for their students by submitting
-                <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdLcDrIJrTNdkqQt7-Q9RemKhN9fFzzD79gqI9eySOT2JM0Dg/viewform" target="_blank">this form</a>
-                or to assist them during SGI by submitting
-                <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeyjRcRfL13OwiIX94_SfjTqsf3K9vdkeYprVpDBrNfS6nEhQ/viewform" target="_blank">this form</a>.
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Frequenty Asked Questions About Requesting a Tutor
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                <ol>
-                  <li><b>How do I request a tutor?</b>
-                    <br>Fill out the
-                    <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request form</a>
-                    and you will be matched with a NHS tutor who can tutor in that subject
-                    and has the same free periods as you.
-                    <br><br>
-                  </li>
-                  <li><b>I requested a tutor but haven’t heard back yet, what do I do?</b>
-                    <br>Please be patient. If it has been more than a week, and you still don't have a tutor, then you may email Margaret Wong (VP of Tutoring) to inquire about your request.
-                    <br><br>
-                  </li>
-                  <li><b>I am a parent. How do I sign my child up for a tutor?</b>
-                    <br>Have your child fill out the
-                    <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request form</a>
-                     (there is no paper form) and he/she will be matched with a NHS tutor who can tutor in the requested subject.  Students requesting a tutor must use their Bronx Science email address.
-                    <br><br>
-                  </li>
-                  <li><b>Can I meet with my tutor outside of school?</b>
-                    <br>Unfortunately, no. All tutoring must be done in school, in a space with teacher supervision such as the library or a classroom during SGI.
-                    <br><br>
-                  </li>
-                  <li><b>Will tutoring save my grade?</b>
-                    <br>We hope it will, but ultimately, our tutors are not professionals. We recommend going to SGI, using resources such as review books or <a href="https://www.khanacademy.org/" target="_blank">KhanAcademy</a>, or seeking additional outside help if you are really struggling.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingFour">
-              <h5 class="mb-0">
-                <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Frequenty Asked Questions About Becoming a Tutor
-                </button>
-              </h5>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-              <div class="card-body">
-                <ol>
-                  <li><b>I am an NHS member who signed up to become a tutor, but my tutee is not responding. What do I do?</b>
-                    <br>Email them again, and be sure to CC Maggie. It is your responsibility to keep track of your tutoring assignments. If the student still doesn't respond, please notify Maggie and she will inform Mr. DeSilva, who will then take further action to contact the student.
-                    <br><br>
-                  </li>
-                  <li><b>How many tutoring hours can I do outside of school?</b>
-                    <br>You must do at least ten tutoring hours in school. The other ten can be from outside tutoring. Or, you could do five hours of outside tutoring and one additional project.
-                    <br><br>
-                  </li>
-                  <li><b>I am a student who would like to tutor for NHS, even though I am not a member. How can I register?</b>
-                    <br>Fill out the <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdv_9BbLASGFYaNmMquVqXcIGGI-5MBpBcTV8NnO6zNVizOng/viewform" target="_blank">Underclassmen Tutoring Registration Form</a>.
-                    Then, ask a teacher to verify that you are qualified to tutor, using <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">this form</a>.
-                    If you would like to get credit for joining NHS in the future, just download and print out the <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">NHS Tutoring Form</a>.
-                    Also, although you may receive up to two assignments, please realize that you may not get an assignment right away.
-                  </li>
-                </ol>
-              </div>
+            <div class="tab-pane fade" id="pills-agreement" role="tabpanel" aria-labelledby="pills-agreement-tab">
+              <h4 class="dark">
+                Probations
+              </h4>
+              <hr class="green">
+              <p>
+                You have </span id="numberProbations">x</span> probations. <!--if no probations, js say good job; else, tell them how to get rid of probations and if there's a mistake to let us know immediately-->
+              </p>
             </div>
           </div>
         </div>
@@ -558,263 +437,12 @@ COLOR SCHEME:
     </div>
   </div>
 
-  <div class="container-fluid text-center" id="formsAndLinks">
-    <div class="row">
-      <div class="col" style="border-right: 1px solid #FFDE00;">
-        <h3>Forms and Links</h3>
-        <hr>
-        <ul>
-          <li>
-            <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Absence%20Form.pdf" target="_blank">NHS Absence Note</a> - for members
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">Link to Submit Absence Notes</a> - for members
-          </li>
-          <li>
-            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLScYuXqtHa_k9gP1HTPQtILdoP1dlh32lb4v15YLxBccC_BnUQ/viewform?c=0&w=1" target="_blank">Tutoring Request Form</a> - for students seeking a tutor
-          </li>
-          <li>
-            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSdLcDrIJrTNdkqQt7-Q9RemKhN9fFzzD79gqI9eySOT2JM0Dg/viewform" target="_blank">Tutoring Request Form</a> - for faculty seeking a tutor on behalf of an individual student
-          </li>
-          <li>
-            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeyjRcRfL13OwiIX94_SfjTqsf3K9vdkeYprVpDBrNfS6nEhQ/viewform" target="_blank">Tutoring Request Form</a> - for faculty seeking assistance during SGI
-          </li>
-          <li>
-            <a href="https://www.bxscience.edu/ourpages/auto/2014/4/24/60444455/NHS%20Tutoring%20Form%202018-2019.pdf" target="_blank">Tutoring Record Form</a> - for members to fill out as they tutor
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/kQkhVAISjn0sgy4C6xlC" target="_blank">Link to submit tutoring forms (current members)</a> - for current members to upload tutoring forms towards the end of the semester
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/C4gfH2bqhbsYMubcOOzb" target="_blank">Link to submit tutoring forms (prospective applicants)</a> - for prospective applicants to upload tutoring forms for credit
-          </li>
-          <li>
-            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSeUjuOQREuMrtXgajxHeH7rMpfCyvI8BdmChgo0YHASPyqFBg/viewform" target="_blank">Qualifying a Tutor</a> - for teachers to fill out on behalf of a non-NHS student wishing to tutor
-          </li>
-          <li>
-            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSenETrGcOGpo26C1D3kr7cmEQa9ZGVjMFu9SggKcPku9GWlKw/viewform" target="_blank">Suggestion Form</a> - to comment about NHS
-          </li>
-          <li>
-            <a href="https://docs.google.com/a/bxscience.edu/forms/d/e/1FAIpQLSekiccbcJlFNXT300ndquV9qlXfsD0gLdV0t9IN-CmteiHIGA/viewform?c=0&w=1" target="_blank">Tutoring Sign-Up</a> - for members to indicate when they are free to tutor
-          </li>
-          <li>
-            <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Contract.pdf" target="_blank">NHS Contract</a> - for members
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/MsLdbqEyTWg55kZy2dWZ" target="_blank">Link to Submit NHS Contract</a> - for members
-          </li>
-          <li>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">Credit Correction Form</a> - for members
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/rydqEPNZiMGVnkw9FPD2" target="_blank">Link to Submit Underclassman Forms</a> - for prospective underclassmen
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/WArbXHN9KCtxATweW7n6" target="_blank">Link to Submit Out-Of-School Activity Verification Letters (Underclassmen)</a> - for prospective underclassmen
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/q1xfjVhls3w58pvrtHYD" target="_blank">Link to Submit Scanned Paper Applications (Juniors)</a> - for prospective juniors
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/nIBeZRRrxSJKHeuy7o5C" target="_blank">Link to Submit Out-Of-School Activity Verification Letters (Juniors)</a> - for prospective juniors
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/bzPv6YdE4XCCjcylN0kG" target="_blank">Link to Submit Scanned Paper Applications (Seniors)</a> - for prospective seniors
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/Dcdff0Cn9256dMQRAO0I" target="_blank">Link to Submit Out-Of-School Activity Verification Letters (Seniors)</a> - for prospective seniors
-          </li>
-          <li>
-            <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Volunteer%20Form%202018-2019.pdf" target="_blank">NHS Volunteer Form</a> - for members to record service/project credits for events at which the NHS board is not present to take attendance
-          </li>
-          <li>
-            <a href="https://www.dropbox.com/request/HOo6QzIiRxwDcDjrSTRm" target="_blank">Link to Submit NHS Volunteer Form</a> - for members to record service/project credits for events at which the NHS board is not present to take attendance
-          </li>
-        </ul>
-      </div>
-      <div class="col-4" style="border-left: 1px solid #FFDE00;" id="noShowMobile7">
-        <h3>Uploading Instructions</h3>
-        <hr>
-        <ol>
-          <li>
-            Scan your file in pdf format and save as "your last name, your first name".  For example, "DeSilva, Paul". Do not include the quotation marks.
-          </li>
-          <li>
-            Please be sure that cookies are enabled in your browser’s preferences.
-          </li>
-          <li>
-            Go to the appropriate Dropbox link.
-          </li>
-          <li>
-            Attach a single file.
-          </li>
-          <li>
-            Fill in first name, last name, and email address.
-          </li>
-          <li>
-            Click the “Upload” button.
-          </li>
-          <li>
-            You will receive a confirmation email (provided that you supplied the correct email address) from Dropbox, indicating that your files have been uploaded successfully.
-          </li>
-          <li>
-            Repeat steps 1-7 for each individual file.
-          </li>
-        </ol>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col" id="showMobile7">
-        <h3>Uploading Instructions</h3>
-        <hr>
-        <ol>
-          <li>
-            Scan your file in pdf format and save as "your last name, your first name".  For example, "DeSilva, Paul". Do not include the quotation marks.
-          </li>
-          <li>
-            Please be sure that cookies are enabled in your browser’s preferences.
-          </li>
-          <li>
-            Go to the appropriate Dropbox link.
-          </li>
-          <li>
-            Attach a single file.
-          </li>
-          <li>
-            Fill in first name, last name, and email address.
-          </li>
-          <li>
-            Click the “Upload” button.
-          </li>
-          <li>
-            You will receive a confirmation email (provided that you supplied the correct email address) from Dropbox, indicating that your files have been uploaded successfully.
-          </li>
-          <li>
-            Repeat steps 1-7 for each individual file.
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid text-center" id="contact">
-    <h2>Contact Us</h2>
-    <p>Click the headshots on the left for position descriptions and contact information!</p>
-    <hr class="light">
-    <div class="row">
-      <div class="col mx-auto" style="border-right: 1px solid #FFF;">
-        <div class="row mx-auto">
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#chris" role="button" aria-expanded="false" aria-controls="chris"><img class="headshot rounded" src="assets/contactUs/chris.jpg" width = "75%"></a>
-            <p style="line-height: 1.2;">Chris Yeung<br><small>President</small></p>
-          </div>
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#maggie" role="button" aria-expanded="false" aria-controls="maggie"><img class="headshot rounded" src="assets/contactUs/maggie.jpg" width = "75%"></a>
-            <p style="line-height: 1.2;">Maggie Wong<br><small>Vice President of Tutoring</small></p>
-          </div>
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#sunny" role="button" aria-expanded="false" aria-controls="sunny"><img class="headshot rounded" src="assets/contactUs/sunny.jpg" width = "75%"></a>
-            <p style="line-height: 1.2;">Sunny Jang<br><small>Vice President of Organization</small></p>
-          </div>
-        </div>
-        <div class="row mx-auto">
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#alex" role="button" aria-expanded="false" aria-controls="alex"><img class="headshot rounded" src="assets/contactUs/alex.jpg" width = "75%"></a>
-            <p style="line-height: 1.2;">Alex Chen<br><small>Vice President of Technology</small></p>
-          </div>
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#desilva" role="button" aria-expanded="false" aria-controls="desilva"><img class="headshot rounded" src="assets/contactUs/desilva.jpg" width = "75%"></a>
-            <p style="line-height: 1.2;">Paul DeSilva<br><small>Faculty Advisor</small></p>
-          </div>
-          <div class="col-lg-4 col-md-6 mx-auto">
-            <a data-toggle="collapse" href="#nhs" role="button" aria-expanded="false" aria-controls="nhs"><img class="headshot rounded" src="assets/contactUs/nhs.jpg" width = "75%"></a>
-            <p style="line-height: 1.2;">NHS<br><small>Trusty Email Account</small></p>
-          </div>
-        </div>
-      </div>
-      <div class="col" style="border-left: 1px solid #FFF;">
-        <div class="collapse" id="chris" style="color: #000;">
-          <div class="card card-body">
-            Hello! My name is Chris and I am so honored to be your NHS president! Feel free to ask me all your general questions about NHS, including the application process and maintaining membership. You can contact me at yeungc@bxscience.edu.
-          </div>
-        </div>
-        <div class="collapse" id="maggie" style="color: #000;">
-          <div class="card card-body">
-            Hello, I'm Maggie! I'm here to help you with anything related to NHS tutoring. Please contact me at wongm@bxscience.edu if you have questions about office hours, requesting a tutor, etc.
-          </div>
-        </div>
-        <div class="collapse" id="sunny" style="color: #000;">
-          <div class="card card-body">
-            Hi, my name is Sunny and I am so excited to serve as your NHS Vice President of Organization this year! Feel free to ask me any questions about attendance, project records, or just NHS in general by emailing at jangs1@bxscience.edu.
-          </div>
-        </div>
-        <div class="collapse" id="alex" style="color: #000;">
-          <div class="card card-body">
-            Hi, I'm Alex! Feel free to ask me about anything related to technology (NHS website, forms, etc.) or NHS in general. My email is chena@bxscience.edu.
-          </div>
-        </div>
-        <div class="collapse" id="desilva" style="color: #000;">
-          <div class="card card-body">
-            I am Mr. DeSilva, the Bronx Science NHS advisor. You may contact me at desilva@bxscience.edu.
-          </div>
-        </div>
-        <div class="collapse" id="nhs" style="color: #000;">
-          <div class="card card-body">
-            Hi, I'm the NHS email account! Please email nhs@bxscience.edu for any general questions or concerns whose answers you cannot find in the FAQs.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid text-center" id="contact2">
-    <h2>Contact Us</h2>
-    <hr class="light">
-    <div class="row">
-      <div class="col mx-auto">
-        <img class="headshot rounded-circle" src="assets/contactUs/chris.jpg" width = "20%">
-        <h4>Chris Yeung</h4>
-        <h6>President</h6>
-        <p>
-          Oversees NHS. All general questions about the application process and being a member of NHS can be directed to him, as well as questions that do not fit into any other category.
-          You may contact him at yeungc@bxscience.edu.
-        </p>
-        <br>
-        <img class="headshot rounded-circle" src="assets/contactUs/sunny.jpg" width = "20%">
-        <h4>Sunny Jang</h4>
-        <h6>Vice President of Organization</h6>
-        <p>
-          Keeps track of attendance and project records. All excuses for absences can be directed to her. You may contact her at jangs1@bxscience.edu.
-        </p>
-        <br>
-        <img class="headshot rounded-circle" src="assets/contactUs/maggie.jpg" width = "20%">
-        <h4>Margaret Wong</h4>
-        <h6>Vice President of Tutoring</h6>
-        <p>
-          All questions about tutoring (requirements, placements, assignments) can be directed to her. You may contact her at wongm@bxscience.edu.
-        </p>
-        <br>
-        <img class="headshot rounded-circle" src="assets/contactUs/alex.jpg" width = "20%">
-        <h4>Alex Chen</h4>
-        <h6>Vice President of Technology</h6>
-        <p>
-        All questions about technology-related items (NHS website, forms, etc.) can be directed to him. You may contact him at chena@bxscience.edu.
-        </p>
-        <br>
-        <img class="headshot rounded-circle" src="assets/contactUs/desilva.jpg" width = "20%">
-        <h4>Paul DeSilva</h4>
-        <h6>Advisor</h6>
-        <p>
-          Mr. DeSilva is the NHS advisor. You may contact him at desilva@bxscience.edu.
-        </p>
-        <br>
-        <img class="headshot rounded-circle" src="assets/contactUs/nhs.jpg" width = "20%">
-        <p>
-          Please direct all other concerns to nhs@bxscience.edu.
-        </p>
-      </div>
-    </div>
-  </div>
+    <!-- just testing
+    <div id="test">
+      <h1>Hello, world!</h1>
+      <h1>{{ message }}</h1>
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div> -->
 
     <div class="container-fluid text-center page-footer font-small" id="footer">
       <div class="row">
@@ -826,15 +454,16 @@ COLOR SCHEME:
 
 </div>
 
-    <!-- Other JavaScript -->
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
-    <script src="js/javascript.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+<!-- Other JavaScript -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+<script src="../js/javascript.js"></script>
+<script src="../js/creditTrackerScript.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<script async defer src="https://apis.google.com/js/api.js"
+  onload="this.onload=function(){};handleClientLoad()"
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
 
     <!-- DO NOT TOUCH THIS SECTION, NECESSARY FOR BOOTSTRAP FRAMEWORK -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
