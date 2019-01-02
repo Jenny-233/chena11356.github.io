@@ -137,9 +137,9 @@ COLOR SCHEME:
 
 <div class="mainBody">
 
-  <div class="container-fluid text-center" id="trackerTop">
-    <h1>Plan ahead.</h1>
-    <hr class="light"><br>
+  <div class="container-fluid text-center" id="trackerTop" style="color: #000;">
+    <h1 class="dark">Plan ahead.</h1>
+    <hr class="green"><br>
     <div class="row">
       <div class="col">
         <p>As NHS members, you are responsible for making sure that you fulfill your credit
@@ -149,10 +149,6 @@ COLOR SCHEME:
           notice any errors, please notify us via <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">this Google Form</a>.
         </p>
         <p>
-          In addition to your verified credits, you may add planned credits. These are for your
-          personal benefit to help better organize your time and get a sense of where you are
-          in terms of credits and whether you might be at risk; otherwise, you do not need to worry about them.
-        <p>
           To the right, you will also find a tentative calendar for dates of NHS events of the
           2018-2019 school year! Please plan your time accordingly, especially for mandatory
           events like Open House and Graduation.
@@ -160,6 +156,12 @@ COLOR SCHEME:
         <p>
           We look forward to working with you!
         </p>
+        <p id="loadingText" style="display:none;"><i> <!--after button is clicked, set loading things and then initialize app-->
+          Please wait while tracker is loading. If loading takes excessively long, try refreshing the page.
+          You must enable cookies and JavaScript for the tracker to load.
+        </i></p>
+        <a href="https://bxscience.edu/" target="_blank"><img border="0" alt="atom" src="../assets/atomTransparent.png" width="75" height="75">
+        </a>
       </div>
       <div class="col" id="noShowMobile4">
         <div class="embed-responsive embed-responsive-16by9">
@@ -172,9 +174,269 @@ COLOR SCHEME:
         <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=400&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=bxscience.edu_4qhbrm10id0a415j0td05itvdk%40group.calendar.google.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>
-    <hr>
+    <hr class="green">
+    <!--WORK HERE FOR CREDIT TRACKER-->
+    <div class="row">
+      <div class="col">
+        <img src="../assets/loading.gif" id="loadingImg" alt="Credit tracker is loading..." class="mx-auto" style="display:none;"></img>
+      </div>
+    </div>
+    <div class="row" id="appButton">
+      <div class="col">
+        <button type="button" class="btn btn-dark btn-lg btn-block" onclick="initializeTracker()">Click to Launch Credit Tracker</button>
+      </div>
+    </div>
+    <!--MAKE TRACKER style="display:none;" AFTER DEVELOPMENT-->
+    <div id="tracker">
+      <br>
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-overview-tab" data-toggle="pill" href="#pills-overview" role="tab" aria-controls="pills-overview" aria-selected="true">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-service-tab" data-toggle="pill" href="#pills-service" role="tab" aria-controls="pills-service" aria-selected="false">Service</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-leadership-tab" data-toggle="pill" href="#pills-leadership" role="tab" aria-controls="pills-leadership" aria-selected="false">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-signature-tab" data-toggle="pill" href="#pills-signature" role="tab" aria-controls="pills-signature" aria-selected="false">Tutoring</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-agreement-tab" data-toggle="pill" href="#pills-agreement" role="tab" aria-controls="pills-agreement" aria-selected="false">Probations</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+              <h4 class="dark">
+                NHS 2018-2019 Credit Tracker
+              </h4>
+              <hr class="green">
+              <p>
+                <b>Service</b>: You have <span id="numberServiceCreditsOverview">x</span>/5 credits.<br>
+                <b>Projects</b>: You have <span id="numberProjectCreditsOverview">x</span>/5 credits.<br>
+                <b>Tutoring</b>: You have <span id="numberTutoringCreditsOverview">x</span>/15 credits.<br>
+                <b>Probations</b>: You have <span id="numberProbationsOverview">x</span> probations.
+              </p>
+              <p>
+                Remember to fill out, if applicable, <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Volunteer%20Form%202018-2019.pdf" target="_blank">this</a> form with events and activities where the NHS board is not present (Winter Wonderland decorating, etc.), and submit it to the Dropbox <a href="https://www.dropbox.com/request/HOo6QzIiRxwDcDjrSTRm" target="_blank">here</a> by <b>January 14th</b> to receive credits for those events. To view this information in spreadsheet format, visit the <a href="https://docs.google.com/spreadsheets/d/1yQkpeLWwiS8R4ngrkCvbF_tdFgK_PkgzbQPG3y_RbwA/edit?usp=sharing" target="_blank" id="creditSheetLink">credit sheet</a>. If you have any questions, please contact nhs@bxscience.edu.
+              </p>
+                    <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Requirements Each Semester
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div class="card-body">
+                            <ul>
+                              <li>
+                                Scholarship: You must maintain a 90 or above average.
+                              </li>
+                              <li>
+                                Tutoring: You must tutor 20 hours. First-semester seniors only need to tutor 15 hours.
+                              </li>
+                              <li>
+                                Character: A teacher approval email will be sent out to your teachers.
+                              </li>
+                              <li>
+                                Service: You must have 5 credits.
+                              </li>
+                              <li>
+                                Projects: You must compete a total of 3 projects per semester.
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Probation System
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                          <div class="card-body">
+                            <p>There are three levels of probation. If you exceed three levels, you will be dismissed from NHS. Below you will find the number of probation levels imposed for specific infractions.</p>
+                            <h4 class="dark">One Level</h4>
+                            <ul>
+                              <li>Failure to answer an email sent by an NHS Officer, Mr. DeSilva, or another faculty member.</li>
+                              <li>Failure to sign up for a mandatory project before a deadline.</li>
+                              <li>Failure to attend a project for which you volunteered without notifying an NHS Officer or Mr. DeSilva in advance.</li>
+                              <li>2 excused absences from meetings (each additional absence beyond this equals one level).</li>
+                              <li>Submitting a late absence note. Please note that absence notes received after the next meeting will not be considered.</li>
+                            </ul>
+                            <h4 class="dark">Two Levels</h4>
+                            <ul>
+                              <li>Not attending a mandatory project (unless you have been cleared by the officers)</li>
+                              <li>One unexcused absence.  If you have two, you will be dismissed.</li>
+                            </ul>
+                            <h4 class="dark">Removing Levels of Probation</h4>
+                            <p>To be removed from one level of probation, you may complete an extra project <i>after</i>
+                            you have completed your other project requirements.</p>
+                            <p>
+                              <i>Example 1:</i> An NHS member decides to skip an NHS meeting without submitting an absence note and is assigned two levels of probation. Later in the semester, the same NHS member completes two additional projects and is removed from probation.
+                            </p>
+                            <p>
+                              <i>Example 2:</i> An NHS member misses two meetings (excused absences) and is given one level of probation. The following week, they fail to attend a mandatory project and are given two additional levels of probation. If they get one more level of probation, they will be dismissed from NHS.
+                            </p>
+                            <p>
+                              <i>Example 3:</i> An NHS member decides to skip a project for which they volunteered and is given one level of probation.  The following week, they decide to skip a meeting without providing an absence note and receive two additional levels of probation.  Finally, they fail to sign up for a mandatory project before a given deadline and are dismissed from NHS because they have exceeded three levels of probation.
+                            </p>
+                            <p><b>Stay on top of your responsibilities and don't let this happen to you!</b></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Attendance Policy
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                          <div class="card-body">
+                            <ul>
+                              <li>
+                                <i>Excused Absence (per semester):</i> You are allowed one excused absence per semester. After that, any more excused absences will give you one level of probation.
+                              </li>
+                              <li>
+                                <i>Unexcused Absence (per semester):</i> Your first unexcused absence will give you two levels of probation. After that, any more unexcused absences will result in dismissal from NHS.
+                              </li>
+                              <li>
+                                <i>Late Absence Note:</i> If you submit an absence note late, you will receive 1 level of probation. Any absence notes received after the next NHS meeting will not be considered. Submit a picture or scanned copy of your absence notes at <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">this link</a>. No paper absence notes will be accepted.
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingFour">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              Absence Notes
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                          <div class="card-body">
+                            <ol>
+                              <li>
+                                Absence notes must be submitted no later than one week after the NHS meeting that you missed.
+                              </li>
+                              <li>
+                                Click <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Absence%20Form.pdf" target="_blank">here</a> to download and absence note, fill it out completely, and obtain the appropriate signature(s).
+                              </li>
+                              <li>
+                                Click <a href="https://www.dropbox.com/request/ghkxqBeEOkEgC8Zzg9QZ" target="_blank">here</a> to upload your absence note to Dropbox.
+                              </li>
+                              <li>
+                                Absence notes that are submitted by hand or placed in Mr. DeSilva's mailbox will not be accepted. You must upload your absence note to Dropbox.
+                              </li>
+                            </ol>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingFive">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                              Attendance and Project Records
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                          <div class="card-body">
+                            <p>It is the responsibility of every NHS member to verify that his/her attendance and project records are accurate and up-to-date. You must be logged in to your Bronx Science email in order to view these documents. If you have any questions about the attendance policy, your personal attendance record, or your personal project record, please contact NHS Vice President of Organization, Sunny Jang, at jangs1@bxscience.edu.</p>
+                            <p>For junior and senior attendance records, click <a href="https://docs.google.com/spreadsheets/d/1GJUHEVpeN1Y3SPP9lSGRHJlQReMpPZ-yEPvqu3ODelI/edit?usp=sharing" target="_blank">here</a>.
+                              For junior project records, click <a href="https://docs.google.com/spreadsheets/d/1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s/edit?usp=sharing" target="_blank">here</a>.
+                              For senior project records, click <a href="https://docs.google.com/spreadsheets/d/1yQkpeLWwiS8R4ngrkCvbF_tdFgK_PkgzbQPG3y_RbwA/edit?usp=sharing" target="_blank">here</a>.
+                            </p>
+                            <p>
+                              If you believe there is an error regarding your credits, please fill out <a href="https://docs.google.com/forms/d/e/1FAIpQLSePRQUWUUV-GMnIktPC8DVOZpxA93nOvWgkS27WETedANaxdQ/viewform" target="_blank">this form</a> instead of emailing NHS.
+                            </p>
+                            <p>
+                              If you are volunteering for an event or activity at which the NHS Board is not present to take attendance, please record your service and project hours using <a href="https://www.bxscience.edu/ourpages/auto/2014/9/28/52800649/NHS%20Volunteer%20Form%202018-2019.pdf" target="_blank">this form</a>. For example, use this form if you are an NHS member volunteering for the SHSAT or the borough high school fair, but NOT for Open House or Graduation. Towards the end of the semester, you will upload the form <a href="https://www.dropbox.com/request/HOo6QzIiRxwDcDjrSTRm" target="_blank">here</a>.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingSix">
+                          <h5 class="mb-0">
+                            <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                              Event Sign-Up Forms and Permission Slips
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                          <div class="card-body">
+                            <p>
+                              Please note that NHS will notify members of upcoming events via email.
+                              If you sign up for an event, you must download, print, and deliver a permission slip (if required) for that event.
+                              Sign-up forms will only accept responses within a reasonable time frame preceding each event.
+                            </p>
+                            <p>
+                              If you have questions about events or projects, please email NHS Vice President of Organization, Sunny Jang, at jangs1@bxscience.edu.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-service" role="tabpanel" aria-labelledby="pills-service-tab">
+              <h4 class="dark">
+                Service Credits
+              </h4>
+              <hr class="green">
+              <p>
+                You have <span id="numberServiceCredits">x</span> out of 5 service credits for this semester.
+              </p>
+            </div>
+            <div class="tab-pane fade" id="pills-leadership" role="tabpanel" aria-labelledby="pills-leadership-tab">
+              <h4 class="dark">
+                Project Credits
+              </h4>
+              <hr class="green">
+              <p>
+                You have <span id="numberProjectCredits">x</span> out of 3 project credits for this semester.
+              </p>
+            </div>
+            <div class="tab-pane fade" id="pills-signature" role="tabpanel" aria-labelledby="pills-signature-tab">
+              <h4 class="dark">
+                Tutoring Credits
+              </h4>
+              <hr class="green">
+              <p>
+                You have <span id="numberTutoringCredits">x</span> out of 15 tutoring credits for this semester.
+              </p>
+              <p>
+                <span id="officeHoursText"></span>
+              </p>
+            </div>
+            <div class="tab-pane fade" id="pills-agreement" role="tabpanel" aria-labelledby="pills-agreement-tab">
+              <h4 class="dark">
+                Probations
+              </h4>
+              <hr class="green">
+              <p>
+                You have </span id="numberProbations">x</span> probations. <!--if no probations, js say good job; else, tell them how to get rid of probations and if there's a mistake to let us know immediately-->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <img src="../assets/comingSoon.png" class="img-fluid" width="100%" alt="Credit Tracker is still in development and will be coming soon!">
 
     <!-- just testing
     <div id="test">
@@ -196,6 +458,7 @@ COLOR SCHEME:
 <!-- Other JavaScript -->
 <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 <script src="../js/javascript.js"></script>
+<script src="../js/creditTrackerScript.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
 <script async defer src="https://apis.google.com/js/api.js"
