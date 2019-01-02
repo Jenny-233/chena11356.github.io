@@ -120,8 +120,20 @@ button#applyNow:hover{
   background-color: #FFF;
 }
 
-#contact, #contact2, #infoThree, #footer, #trackerTop, #photoGallery {
+#contact, #contact2, #infoThree, #footer {
   background-color: #000; //black
+}
+
+#infoThree a.nav-link {
+  color:white;
+}
+
+#infoThree a.nav-link:hover {
+  color:#FFDE00;
+}
+
+#infoThree a.active {
+  color:white !important;
 }
 
 #welcomeTop{
@@ -132,7 +144,7 @@ button#applyNow:hover{
 background-size: cover;
 }
 
-#info, #creditTable, #membership, #upperclassmanTop, #underclassmanTop {
+#info, #creditTable, #membership, #upperclassmanTop, #underclassmanTop, #trackerTop {
   background-color: #FFF; //white
   color: #001910;
 }
@@ -193,7 +205,7 @@ ul.nav-pills {
 
 }
 
-ul.nav-pills a.active {
+ul.nav-pills a.active, div.nav-pills a.active {
   color: #FFF;
   background-color: #037164 !important;
 }
