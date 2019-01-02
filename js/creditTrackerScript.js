@@ -48,12 +48,13 @@ function findStatus2(email){
         if ((row[2]+"").indexOf(email)>=0){
           status = row[3]+"";
           userIndex = i;
-          $(document).trigger('function_e_complete');
-          return;
+          break;
         }
       }
-      status = "N/A";
-      $(document).trigger('function_e_complete');
+      if (status.indexOf("status")>=0){
+        status = "N/A";
+      }
+      initializeTrackerHelper();
     }
   });
 }
@@ -150,7 +151,7 @@ function initializeTrackerHelper(){
             serviceCredits = row[TOTALSERVICEINDEX];
             projectCredits = row[TOTALPROJECTSINDEX];
             tutoringCredits = row[TOTALTUTORINGINDEX];
-            $(document).trigger('function_d_complete'); //trigger filling in the application
+            changeTrackerInfo();
             break;
           }
         }
@@ -303,5 +304,5 @@ function setOfficeHoursText(){
 
 initializeGlobal2();
 setOfficeHoursText();
-$(document).bind('function_e_complete', initializeTrackerHelper);
-$(document).bind('function_d_complete', changeTrackerInfo);
+//$(document).bind('function_e_complete', initializeTrackerHelper);
+//$(document).bind('function_d_complete', changeTrackerInfo);
