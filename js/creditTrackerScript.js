@@ -192,6 +192,27 @@ function initializeTracker2(){
   document.getElementById("projectActivitiesUL").innerHTML = temp;
   setServiceOpportunitiesText();
   setProjectOpportunitiesText();
+  setProbationsText(probations);
+}
+
+function setProbationsText(numProbations){
+  var text="";
+  if (numProbations==0){
+    text = "Good job!";
+  }
+  else if (numProbations==1){
+    text = "You can earn an extra project credit to remove this probation.";
+  }
+  else if (numProbations==2){
+    text = "That's not good. You can earn extra project credits to remove probations.";
+  }
+  else if (numProbations==3){
+    text = "If you receive another probation, you will be dismissed from NHS and your guidance counselor will be informed. You can earn extra project credits to remove probations.";
+  }
+  if (numProbations>0){
+    text+=" If you see an error with your probations, please contact nhs@bxscience.edu immediately."
+  }
+  document.getElementById("probationsText").innerHTML = text;
 }
 
 function setProjectOpportunitiesText(){
@@ -211,7 +232,12 @@ function calculateProjectOpportunities(){
   }
   else{
     if (curMonth==1){
-      return 15;
+      if (curday>=1&&curDay<=28){
+        return 0;
+      }
+      else {
+        return 15;
+      }
     }
     else if (curMonth==2){
       if (curDay>=1&&curDay<=14){
@@ -294,7 +320,12 @@ function calculateServiceOpportunities(){
   }
   else{
     if (curMonth==1){
-      return 21;
+      if (curday>=1&&curDay<=28){
+        return 0;
+      }
+      else {
+        return 21;
+      }
     }
     else if (curMonth==2){
       if (curDay>=1&&curDay<=9){
@@ -380,14 +411,11 @@ function calculateOfficeHoursWeeksLeft(){
   }
   else{
     if (curMonth==1){
-      if (curDay>=1&&curDay<=5){
-        return 21;
+      if (curday>=1&&curDay<=12){
+        return 1;
       }
-      else if (curDay<=12){
-        return 20;
-      }
-      else if (curDay<=19){
-        return 19;
+      else if (curDay<=28){
+        return 0;
       }
       else {
         return 18;
