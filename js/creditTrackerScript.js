@@ -167,6 +167,16 @@ function initializeTracker2(){
   document.getElementById("numberProjectCreditsOverview").innerHTML = projectCredits;
   document.getElementById("numberTutoringCreditsOverview").innerHTML = tutoringCredits;
   document.getElementById("numberProbationsOverview").innerHTML = probations;
+  var temp = "";
+  for (var i = 0; i < serviceActivites.length;i++){
+    temp+="<li>"+serviceActivities[i][0]+" from "+serviceActivities[i][1]+"</li>";
+  }
+  document.getElementById("serviceActivitiesUL").innerHTML = temp;
+  temp = "";
+  for (var i = 0; i < projectActivites.length;i++){
+    temp+="<li>"+projectActivities[i][0]+" from "+projectActivities[i][1]+"</li>";
+  }
+  document.getElementById("projectActivitiesUL").innerHTML = temp;
 }
 
 function calculateOfficeHoursWeeksLeft(){
