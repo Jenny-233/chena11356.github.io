@@ -34,7 +34,7 @@ function convertToZeroIfEmpty(input){
   return input;
 }
 
-function initializeTracker(){
+function initializeTracker(callback){
   //make sure user is signed in
   if (gapi.auth2.getAuthInstance().isSignedIn.get()){
     //show loading stuff
@@ -67,98 +67,106 @@ function initializeTracker(){
             status = row[3]+"";
             userIndex = i;
             console.log("Found user at userIndex "+userIndex+" and status is "+status);
+            callback(initializeTracker2);
             break;
           }
         }
       }
     });
-    document.getElementById("loadingText").style.display = "none";
-    document.getElementById("loadingImg").style.display = "none";
-    document.getElementById("tracker").style.display = "block";
-    console.log("Showing application");
-    if (!(status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0)){
-      alert("It seems that you are not a current NHS member. If this is incorrect, please contact chena@bxscience.edu.");
-      document.getElementById("tracker").style.display = "none";
-      return;
-    }
-    else {
-      var creditSheetID;
-      if (status.indexOf("seniorCurrent")>=0){
-        //retrieve information from senior spreadsheet
-        creditSheetID = "1yQkpeLWwiS8R4ngrkCvbF_tdFgK_PkgzbQPG3y_RbwA";
-      }
-      else{
-        //retrieve information from junior spreadsheet
-        creditSheetID = "1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s";
-      }
-      //then connect to the spreadsheet and get all the information needed
-      gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: creditSheetID,
-      range: 'Credits',
-      }).then(function(response) {
-        var range = response.result;
-        if (range.values.length > 0) {
-          //first get necessary indices
-          var TOTALTUTORINGINDEX = -1;
-          var TOTALPROJECTSINDEX = -1;
-          var TOTALSERVICEINDEX = -1;
-          var temp = "";
-          for (var i = 0; i < range.values[0].length; i++){
-            temp = range.values[0][i];
-            if (temp.indexOf("TOTAL TUTORING")>=0){
-              TOTALTUTORINGINDEX = temp;
-            }
-            else if (temp.indexOf("TOTAL PROJECTS")>=0){
-              TOTALPROJECTSINDEX = temp;
-            }
-            else if (temp.indexOf("TOTAL SERVICE")>=0){
-              TOTALSERVICEINDEX = temp;
-            }
-          }
-          if (TOTALTUTORINGINDEX==-1){
-            console.log("Error: cannot find total tutoring index");
-          }
-          if (TOTALPROJECTSINDEX==-1){
-            console.log("Error: cannot find total projects index");
-          }
-          if (TOTALSERVICEINDEX==-1){
-            console.log("Error: cannot find total service index");
-          }
-          for (var i = 0; i < range.values.length; i++) {
-            var row = range.values[i];
-            //row is array of arrays of application info
-            if ((row[2]+"").indexOf(email)>=0){ //when applicant is found by email
-              appIndex = i;
-              probations = convertToZeroIfEmpty(row[3]);
-              for (var j = 4; j < TOTALTUTORINGINDEX; j++){
-                if (row[j].indexOf("service")>=0){ //if cell in range has the word "service", add the service activity and number of credits into the array
-                  serviceActivities.push(row[j],[range.values[0][j]]); //e.g. ["2 service", "Winter Wonderland"]
-                }
-                else if (row[j].indexOf("project")>=0){
-                  projectActivities.push(row[j],[range.values[0][j]]);
-                }
-              }
-              serviceCredits = row[TOTALSERVICEINDEX];
-              projectCredits = row[TOTALPROJECTSINDEX];
-              tutoringCredits = row[TOTALTUTORINGINDEX];
-              break;
-            }
-          }
-        }
-      });
-      document.getElementById("numberServiceCredits").innerHTML = serviceCredits;
-      document.getElementById("numberProjectCredits").innerHTML = projectCredits;
-      document.getElementById("numberTutoringCredits").innerHTML = tutoringCredits;
-      document.getElementById("numberProbations").innerHTML = probations;
-      document.getElementById("numberServiceCreditsOverview").innerHTML = serviceCredits;
-      document.getElementById("numberProjectCreditsOverview").innerHTML = projectCredits;
-      document.getElementById("numberTutoringCreditsOverview").innerHTML = tutoringCredits;
-      document.getElementById("numberProbationsOverview").innerHTML = probations;
-    }
   }
   else{
     alert("To use this service, please sign in using your bxscience.edu email.")
   }
+}
+
+function initializeTracker1(callback){
+  document.getElementById("loadingText").style.display = "none";
+  document.getElementById("loadingImg").style.display = "none";
+  document.getElementById("tracker").style.display = "block";
+  console.log("Showing application");
+  if (!(status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0)){
+    alert("It seems that you are not a current NHS member. If this is incorrect, please contact chena@bxscience.edu.");
+    document.getElementById("tracker").style.display = "none";
+    return;
+  }
+  else {
+    var creditSheetID;
+    if (status.indexOf("seniorCurrent")>=0){
+      //retrieve information from senior spreadsheet
+      creditSheetID = "1yQkpeLWwiS8R4ngrkCvbF_tdFgK_PkgzbQPG3y_RbwA";
+    }
+    else{
+      //retrieve information from junior spreadsheet
+      creditSheetID = "1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s";
+    }
+    //then connect to the spreadsheet and get all the information needed
+    gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: creditSheetID,
+    range: 'Credits',
+    }).then(function(response) {
+      var range = response.result;
+      if (range.values.length > 0) {
+        //first get necessary indices
+        var TOTALTUTORINGINDEX = -1;
+        var TOTALPROJECTSINDEX = -1;
+        var TOTALSERVICEINDEX = -1;
+        var temp = "";
+        for (var i = 0; i < range.values[0].length; i++){
+          temp = range.values[0][i];
+          if (temp.indexOf("TOTAL TUTORING")>=0){
+            TOTALTUTORINGINDEX = temp;
+          }
+          else if (temp.indexOf("TOTAL PROJECTS")>=0){
+            TOTALPROJECTSINDEX = temp;
+          }
+          else if (temp.indexOf("TOTAL SERVICE")>=0){
+            TOTALSERVICEINDEX = temp;
+          }
+        }
+        if (TOTALTUTORINGINDEX==-1){
+          console.log("Error: cannot find total tutoring index");
+        }
+        if (TOTALPROJECTSINDEX==-1){
+          console.log("Error: cannot find total projects index");
+        }
+        if (TOTALSERVICEINDEX==-1){
+          console.log("Error: cannot find total service index");
+        }
+        for (var i = 0; i < range.values.length; i++) {
+          var row = range.values[i];
+          //row is array of arrays of application info
+          if ((row[2]+"").indexOf(email)>=0){ //when applicant is found by email
+            appIndex = i;
+            probations = convertToZeroIfEmpty(row[3]);
+            for (var j = 4; j < TOTALTUTORINGINDEX; j++){
+              if (row[j].indexOf("service")>=0){ //if cell in range has the word "service", add the service activity and number of credits into the array
+                serviceActivities.push(row[j],[range.values[0][j]]); //e.g. ["2 service", "Winter Wonderland"]
+              }
+              else if (row[j].indexOf("project")>=0){
+                projectActivities.push(row[j],[range.values[0][j]]);
+              }
+            }
+            serviceCredits = row[TOTALSERVICEINDEX];
+            projectCredits = row[TOTALPROJECTSINDEX];
+            tutoringCredits = row[TOTALTUTORINGINDEX];
+            callback();
+            break;
+          }
+        }
+      }
+    });
+  }
+}
+
+function initializeTracker2(){
+  document.getElementById("numberServiceCredits").innerHTML = serviceCredits;
+  document.getElementById("numberProjectCredits").innerHTML = projectCredits;
+  document.getElementById("numberTutoringCredits").innerHTML = tutoringCredits;
+  document.getElementById("numberProbations").innerHTML = probations;
+  document.getElementById("numberServiceCreditsOverview").innerHTML = serviceCredits;
+  document.getElementById("numberProjectCreditsOverview").innerHTML = projectCredits;
+  document.getElementById("numberTutoringCreditsOverview").innerHTML = tutoringCredits;
+  document.getElementById("numberProbationsOverview").innerHTML = probations;
 }
 
 function calculateOfficeHoursWeeksLeft(){
