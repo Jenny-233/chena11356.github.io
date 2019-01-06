@@ -37,15 +37,19 @@ function convertToZeroIfEmpty(input){
 function initializeTracker(){
   //make sure user is signed in
   if (gapi.auth2.getAuthInstance().isSignedIn.get()){
-    //get rid of loading stuff and show the application
+    //show loading stuff
     document.getElementById("loadingText").style.display = "block";
     document.getElementById("loadingImg").style.display = "block";
     document.getElementById("appButton").style.display = "none";
+    console.log("Showing loading stuff");
     //get information
     var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     givenName = profile.getGivenName();
     familyName = profile.getFamilyName();
     email = profile.getEmail();
+    console.log("Given name is "+givenName);
+    console.log("Family name is "+familyName);
+    console.log("Email is "+email);
     //appendPre("User email: "+email);
     //look for user in main spreadsheet and get status:
     //freshman, sophomore, juniorProspective, seniorProspective, juniorCurrent, or seniorCurrent
@@ -57,21 +61,21 @@ function initializeTracker(){
       if (range.values.length > 0) {
         for (var i = 0; i < range.values.length; i++) {
           var row = range.values[i];
+          console.log(row[2]); //should log the emails
           //row is array of arrays of last name, first name, email address, and status
           if ((row[2]+"").indexOf(email)>=0){
             status = row[3]+"";
             userIndex = i;
+            console.log("Found user at userIndex "+userIndex+" and status is "+status);
             break;
           }
-        }
-        if (status.indexOf("status")>=0){
-          status = "N/A";
         }
       }
     });
     document.getElementById("loadingText").style.display = "none";
     document.getElementById("loadingImg").style.display = "none";
     document.getElementById("tracker").style.display = "block";
+    console.log("Showing application");
     if (!(status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0)){
       alert("It seems that you are not a current NHS member. If this is incorrect, please contact chena@bxscience.edu.");
       document.getElementById("tracker").style.display = "none";
