@@ -412,6 +412,9 @@ function calculateOfficeHoursWeeksLeft(){
   else{
     if (curMonth==1){
       if (curDay>=1&&curDay<=12){
+        return 2;
+      }
+      else if (curDay<=19){
         return 1;
       }
       else if (curDay<=28){
