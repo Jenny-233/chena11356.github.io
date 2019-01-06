@@ -10,9 +10,9 @@ var projectCredits;
 var tutoringCredits;
 var probations;
 var serviceActivities;
-//var serviceActivityCredits;
+var serviceActivityCredits;
 var projectActivities;
-//var projectActivityCredits;
+var projectActivityCredits;
 
 function initializeGlobal2(){
   givenName = "givenName";
@@ -144,13 +144,14 @@ function initializeTracker1(callback){
             probations = convertToZeroIfEmpty(row[3]);
             for (var j = 4; j < TOTALTUTORINGINDEX; j++){
               console.log("This is "+row[j]);
-              if (row[j].indexOf("service")>=0){ //if cell in range has the word "service", add the service activity and number of credits into the array
-                serviceActivities.push(row[j],range.values[0][j]); //e.g. ["2 service", "Winter Wonderland"]
-                //serviceActivityCredits.push(row[j]);
+              if (row[j].indexOf("service")>=0){ //if cell in range has the word "service", add the service activity and number of credits into the arrays
+                serviceActivities.push(range.values[0][j]);
+                serviceActivityCredits.push(row[j]);
                 console.log("Adding "+row[j]+" credits from "+range.values[0][j]);
               }
               else if (row[j].indexOf("project")>=0){
-                projectActivities.push(row[j],range.values[0][j]);
+                projectActivities.push(range.values[0][j]);
+                projectActivityCredits.push(row[j]);
                 console.log("Adding "+row[j]+" credits from "+range.values[0][j]);
               }
             }
@@ -178,14 +179,14 @@ function initializeTracker2(){
   var temp = "";
   var temp2 = "";
   for (var i = 0; i < serviceActivities.length;i++){
-    temp2 = "<li>"+serviceActivities[i][0]+" from "+serviceActivities[i][1]+"</li>"
+    temp2 = "<li>"+serviceActivityCredits[i]+" from "+serviceActivities[i]+"</li>"
     temp+=temp2;
   }
   document.getElementById("serviceActivitiesUL").innerHTML = temp;
   temp = "";
   temp2 = "";
   for (var i = 0; i < projectActivities.length;i++){
-    temp2 = "<li>"+projectActivities[i][0]+" from "+projectActivities[i][1]+"</li>";
+    temp2 = "<li>"+projectActivityCredits[i]+" from "+projectActivities[i]+"</li>";
     temp+=temp2;
   }
   document.getElementById("projectActivitiesUL").innerHTML = temp;
