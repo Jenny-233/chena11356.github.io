@@ -320,7 +320,7 @@ function calculateServiceOpportunities(){
   }
   else{
     if (curMonth==1){
-      if (curday>=1&&curDay<=28){
+      if (curDay>=1&&curDay<=28){
         return 0;
       }
       else {
