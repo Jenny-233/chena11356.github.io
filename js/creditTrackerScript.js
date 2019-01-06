@@ -9,8 +9,10 @@ var serviceCredits;
 var projectCredits;
 var tutoringCredits;
 var probations;
-var serviceActivities; //2d array of service activities AND the number of credits received for each activity
+var serviceActivities;
+//var serviceActivityCredits;
 var projectActivities;
+//var projectActivityCredits;
 
 function initializeGlobal2(){
   givenName = "givenName";
@@ -24,7 +26,9 @@ function initializeGlobal2(){
   tutoringCredits = 0;
   probations = 0;
   serviceActivities = [];
+  serviceActivityCredits = [];
   projectActivities = [];
+  projectActivityCredits = [];
 }
 
 function convertToZeroIfEmpty(input){
@@ -141,11 +145,12 @@ function initializeTracker1(callback){
             for (var j = 4; j < TOTALTUTORINGINDEX; j++){
               console.log("This is "+row[j]);
               if (row[j].indexOf("service")>=0){ //if cell in range has the word "service", add the service activity and number of credits into the array
-                serviceActivities.push(row[j],[range.values[0][j]]); //e.g. ["2 service", "Winter Wonderland"]
+                serviceActivities.push(row[j],range.values[0][j]); //e.g. ["2 service", "Winter Wonderland"]
+                //serviceActivityCredits.push(row[j]);
                 console.log("Adding "+row[j]+" credits from "+range.values[0][j]);
               }
               else if (row[j].indexOf("project")>=0){
-                projectActivities.push(row[j],[range.values[0][j]]);
+                projectActivities.push(row[j],range.values[0][j]);
                 console.log("Adding "+row[j]+" credits from "+range.values[0][j]);
               }
             }
