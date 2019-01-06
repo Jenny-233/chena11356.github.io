@@ -190,6 +190,183 @@ function initializeTracker2(){
     temp+=temp2;
   }
   document.getElementById("projectActivitiesUL").innerHTML = temp;
+  setServiceOpportunitiesText();
+  setProjectOpportunitiesText();
+}
+
+function setProjectOpportunitiesText(){
+  var text = "Based on previous years, there are approximately <b>"+calculateProjectOpportunities()+"</b> opportunities remaining in this semester to accumulate project credits. Please note that some of these opportunities may allow you to earn more than 1 credit at once, that some events may overlap with service opportunities, and that this estimate may not be 100% accurate.";
+  document.getElementById("projectOpportunities").innerHTML = text;
+}
+
+function calculateProjectOpportunities(){
+  var curDate = new Date().toLocaleDateString();
+  var curMonth = parseInt(curDate.split("/")[0],10);
+  var curDay = parseInt(curDate.split("/")[1],10);
+  var curYear = parseInt(curDate.split("/")[2],10);
+  var res = "";
+  if (curYear!=2019){
+    alert("It appears the year is no longer 2019. Please update the function calculateProjectOpportunities().");
+    return 0;
+  }
+  else{
+    if (curMonth==1){
+      return 15;
+    }
+    else if (curMonth==2){
+      if (curDay>=1&&<=14){
+        return 15;
+      }
+      else {
+        return 14;
+      }
+    }
+    else if (curMonth==3){
+      if (curDay>=1&&curDay<=8){
+        return 14;
+      }
+      else if (curDay<=27){
+        return 13;
+      }
+      else if (curDay<=29){
+        return 12;
+      }
+      else {
+        return 11;
+      }
+    }
+    else if (curMonth==4){
+      if (curDay>=1&&curDay<=25){
+        return 11;
+      }
+      else {
+        return 10;
+      }
+    }
+    else if (curMonth==5){
+      if (curDay>=1&&curDay<=24){
+        return 10;
+      }
+      else if (curDay<=29){
+        return 8;
+      }
+      else if (curDay<=30){
+        return 7;
+      }
+      else {
+        return 6;
+      }
+    }
+    else if (curMonth==6){
+      if (curDay==1){
+        return 5;
+      }
+      else if (curDay<=4){
+        return 3;
+      }
+      else if (curDay<=7){
+        return 2;
+      }
+      else{
+        return 0;
+      }
+    }
+    else{
+      return 0;
+    }
+  }
+}
+
+function setServiceOpportunitiesText(){
+  var text = "Based on previous years, there are approximately <b>"+calculateServiceOpportunities()+"</b> opportunities remaining in this semester to accumulate service credits. Please note that some of these opportunities may allow you to earn more than 1 credit at once, that some of these events may overlap with project opportunities, and that this estimate may not be 100% accurate.";
+  document.getElementById("serviceOpportunities").innerHTML = text;
+}
+
+function calculateServiceOpportunities(){
+  var curDate = new Date().toLocaleDateString();
+  var curMonth = parseInt(curDate.split("/")[0],10);
+  var curDay = parseInt(curDate.split("/")[1],10);
+  var curYear = parseInt(curDate.split("/")[2],10);
+  var res = "";
+  if (curYear!=2019){
+    alert("It appears the year is no longer 2019. Please update the function calculateServiceOpportunities().");
+    return 0;
+  }
+  else{
+    if (curMonth==1){
+      return 21;
+    }
+    else if (curMonth==2){
+      if (curDay>=1&&<=9){
+        return 21;
+      }
+      else if (curDay<=14){
+        return 20;
+      }
+      else {
+        return 19;
+      }
+    }
+    else if (curMonth==3){
+      if (curDay>=1&&curDay<=8){
+        return 19;
+      }
+      else if (curDay<=29){
+        return 18;
+      }
+      else {
+        return 17;
+      }
+    }
+    else if (curMonth==4){
+      if (curDay>=1&&curDay<=16){
+        return 17;
+      }
+      else if (curDay<=23){
+        return 16;
+      }
+      else if (curDay<=26){
+        return 15;
+      }
+      else {
+        return 14;
+      }
+    }
+    else if (curMonth==5){
+      if (curDay>=1&&curDay<=4){
+        return 14;
+      }
+      else if (curDay<=23){
+        return 12;
+      }
+      else if (curDay<=24){
+        return 11;
+      }
+      else if (curDay<=25){
+        return 10;
+      }
+      else if (curDay<=29){
+        return 8;
+      }
+      else {
+        return 7;
+      }
+    }
+    else if (curMonth==6){
+      if (curDay==1){
+        return 5;
+      }
+      else if (curDay<=7){
+        return 1;
+      }
+      else{
+        return 0;
+      }
+    }
+    else{
+      return 0;
+    }
+  }
 }
 
 function calculateOfficeHoursWeeksLeft(){
@@ -197,7 +374,6 @@ function calculateOfficeHoursWeeksLeft(){
   var curMonth = parseInt(curDate.split("/")[0],10);
   var curDay = parseInt(curDate.split("/")[1],10);
   var curYear = parseInt(curDate.split("/")[2],10);
-  var weeksLeft;
   if (curYear!=2019){
     alert("It appears the year is no longer 2019. Please update the function calculateOfficeHoursWeeksLeft().");
     return 0;
@@ -304,7 +480,7 @@ function calculateOfficeHoursWeeksLeft(){
 
 function setOfficeHoursText(){
   var weeksLeft = calculateOfficeHoursWeeksLeft();
-  var text = "There are "+weeksLeft+" weeks remaining in this semester for office hours.";
+  var text = "There are <b>"+weeksLeft+"</b> weeks remaining in this semester for office hours.";
   if (weeksLeft==0){
     text += "";
   }
