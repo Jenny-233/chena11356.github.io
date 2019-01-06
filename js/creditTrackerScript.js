@@ -214,7 +214,7 @@ function calculateProjectOpportunities(){
       return 15;
     }
     else if (curMonth==2){
-      if (curDay>=1&&<=14){
+      if (curDay>=1&&curDay<=14){
         return 15;
       }
       else {
@@ -297,7 +297,7 @@ function calculateServiceOpportunities(){
       return 21;
     }
     else if (curMonth==2){
-      if (curDay>=1&&<=9){
+      if (curDay>=1&&curDay<=9){
         return 21;
       }
       else if (curDay<=14){
