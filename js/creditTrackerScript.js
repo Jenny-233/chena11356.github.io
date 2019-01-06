@@ -179,14 +179,14 @@ function initializeTracker2(){
   var temp = "";
   var temp2 = "";
   for (var i = 0; i < serviceActivities.length;i++){
-    temp2 = "<li>"+serviceActivityCredits[i]+" from "+serviceActivities[i]+"</li>"
+    temp2 = "<li style='display:inline-block;'>"+serviceActivityCredits[i]+" from "+serviceActivities[i]+"</li>"
     temp+=temp2;
   }
   document.getElementById("serviceActivitiesUL").innerHTML = temp;
   temp = "";
   temp2 = "";
   for (var i = 0; i < projectActivities.length;i++){
-    temp2 = "<li>"+projectActivityCredits[i]+" from "+projectActivities[i]+"</li>";
+    temp2 = "<li style='display:inline-block;'>"+projectActivityCredits[i]+" from "+projectActivities[i]+"</li>";
     temp+=temp2;
   }
   document.getElementById("projectActivitiesUL").innerHTML = temp;
