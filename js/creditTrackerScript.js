@@ -139,11 +139,14 @@ function initializeTracker1(callback){
             appIndex = i;
             probations = convertToZeroIfEmpty(row[3]);
             for (var j = 4; j < TOTALTUTORINGINDEX; j++){
+              console.log("This is "+row[j]);
               if (row[j].indexOf("service")>=0){ //if cell in range has the word "service", add the service activity and number of credits into the array
                 serviceActivities.push(row[j],[range.values[0][j]]); //e.g. ["2 service", "Winter Wonderland"]
+                console.log("Adding "+row[j]+" credits from "+range.values[0][j]);
               }
               else if (row[j].indexOf("project")>=0){
                 projectActivities.push(row[j],[range.values[0][j]]);
+                console.log("Adding "+row[j]+" credits from "+range.values[0][j]);
               }
             }
             serviceCredits = row[TOTALSERVICEINDEX];
@@ -168,13 +171,17 @@ function initializeTracker2(){
   document.getElementById("numberTutoringCreditsOverview").innerHTML = tutoringCredits;
   document.getElementById("numberProbationsOverview").innerHTML = probations;
   var temp = "";
+  var temp2 = "";
   for (var i = 0; i < serviceActivities.length;i++){
-    temp+="<li>"+serviceActivities[i][0]+" from "+serviceActivities[i][1]+"</li>";
+    temp2 = "<li>"+serviceActivities[i][0]+" from "+serviceActivities[i][1]+"</li>"
+    temp+=temp2;
   }
   document.getElementById("serviceActivitiesUL").innerHTML = temp;
   temp = "";
+  temp2 = "";
   for (var i = 0; i < projectActivities.length;i++){
-    temp+="<li>"+projectActivities[i][0]+" from "+projectActivities[i][1]+"</li>";
+    temp2 = "<li>"+projectActivities[i][0]+" from "+projectActivities[i][1]+"</li>";
+    temp+=temp2;
   }
   document.getElementById("projectActivitiesUL").innerHTML = temp;
 }
