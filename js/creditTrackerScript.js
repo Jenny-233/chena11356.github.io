@@ -114,13 +114,13 @@ function initializeTracker1(callback){
         for (var i = 0; i < range.values[0].length; i++){
           temp = range.values[0][i];
           if (temp.indexOf("TOTAL TUTORING")>=0){
-            TOTALTUTORINGINDEX = temp;
+            TOTALTUTORINGINDEX = i;
           }
           else if (temp.indexOf("TOTAL PROJECTS")>=0){
-            TOTALPROJECTSINDEX = temp;
+            TOTALPROJECTSINDEX = i;
           }
           else if (temp.indexOf("TOTAL SERVICE")>=0){
-            TOTALSERVICEINDEX = temp;
+            TOTALSERVICEINDEX = i;
           }
         }
         if (TOTALTUTORINGINDEX==-1){
