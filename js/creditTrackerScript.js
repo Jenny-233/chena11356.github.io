@@ -45,7 +45,6 @@ function initializeTracker(callback){
     document.getElementById("loadingText").style.display = "block";
     document.getElementById("loadingImg").style.display = "block";
     document.getElementById("appButton").style.display = "none";
-    console.log("Showing loading stuff");
     //get information
     var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
     givenName = profile.getGivenName();
@@ -84,13 +83,12 @@ function initializeTracker(callback){
 }
 
 function initializeTracker1(callback){
-  document.getElementById("loadingText").style.display = "none";
-  document.getElementById("loadingImg").style.display = "none";
-  document.getElementById("tracker").style.display = "block";
-  console.log("Showing application");
   if (!(status.indexOf("seniorCurrent")>=0||status.indexOf("juniorCurrent")>=0)){
     alert("It seems that you are not a current NHS member. If this is incorrect, please contact chena@bxscience.edu.");
     document.getElementById("tracker").style.display = "none";
+    document.getElementById("loadingText").style.display = "none";
+    document.getElementById("loadingImg").style.display = "none";
+    document.getElementById("tracker").style.display = "block";
     return;
   }
   else {
@@ -193,6 +191,9 @@ function initializeTracker2(){
   setServiceOpportunitiesText();
   setProjectOpportunitiesText();
   setProbationsText(probations);
+  document.getElementById("loadingText").style.display = "none";
+  document.getElementById("loadingImg").style.display = "none";
+  document.getElementById("tracker").style.display = "block";
 }
 
 function setProbationsText(numProbations){
