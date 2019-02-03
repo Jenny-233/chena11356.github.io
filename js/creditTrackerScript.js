@@ -100,6 +100,8 @@ function initializeTracker1(callback){
     else{
       //retrieve information from junior spreadsheet
       creditSheetID = "1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s";
+      //change link to credit spreadhseet
+      document.getElementById("creditSheetLink").href = "https://docs.google.com/spreadsheets/d/1kgcIOqlAVqofPiqqIkWTXGeQ5YWcTMW1Jk-gWjkVE1s/edit?usp=sharing";
     }
     //then connect to the spreadsheet and get all the information needed
     gapi.client.sheets.spreadsheets.values.get({
